@@ -10,7 +10,7 @@ export const AppLayout = () => {
       {({ open, close }) => {
         return (
           <Fragment>
-            <header className="fixed h-20 inset-x-0 top-0 right-0 bg-gray-50 border-b border-gray-300 dark:border-b-white/10 dark:bg-white/5 z-20 dark:backdrop-blur-sm">
+            <header className="fixed h-20 inset-x-0 top-0 right-0 bg-navigationbackground border-b border-gray-300 z-20">
               <nav className="h-full px-4 relative flex items-center justify-between">
                 <DisclosureButton className="absolute right-4 top-6 lg:hidden">
                   <span className="sr-only">Close Side menu</span>

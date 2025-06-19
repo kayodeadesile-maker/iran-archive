@@ -3,106 +3,21 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@font-face {
-  font-family: "Inter";
-  src: url("./assets/fonts/Inter-Thin.ttf");
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("./assets/fonts/Inter-ExtraLight.ttf");
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("./assets/fonts/Inter-Light.ttf");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("./assets/fonts/Inter-Regular.ttf");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("./assets/fonts/Inter-Medium.ttf");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("./assets/fonts/Inter-SemiBold.ttf");
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("./assets/fonts/Inter-Bold.ttf");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("./assets/fonts/Inter-ExtraBold.ttf");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("./assets/fonts/Inter-Black.ttf");
-  font-weight: 900;
-  font-style: normal;
-}
-
-/* Lato Font Family */
-@font-face {
-  font-family: "Lato";
-  src: url("./assets/fonts/Lato-Thin.ttf");
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Lato";
-  src: url("./assets/fonts/Lato-Regular.ttf");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Lato";
-  src: url("./assets/fonts/Lato-Bold.ttf");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Lato";
-  src: url("./assets/fonts/Lato-Black.ttf");
-  font-weight: 900;
-  font-style: normal;
+@theme {
+  --color-backgroundcolor: #f9f4ec;
+  --color-textcolor: #a0a7bc;
+  --color-navigationbackground: #e6d1b2;
 }
 
 /* Theme Configuration */
-@theme {
+/* @theme {
   --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-lato: "Lato", ui-sans-serif, system-ui, sans-serif;
-}
+} */
+
 @layer base {
   body {
-    @apply font-inter font-normal dark:bg-black antialiased;
+    @apply antialiased;
   }
 }
 
@@ -113,24 +28,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 @layer components {
-  table.app thead tr {
-    @apply bg-[#F3F4F7] dark:bg-white/5 dark:text-white border-b border-[#D9DCE7] dark:border-white/10;
-  }
-
-  table.app tbody tr:nth-child(odd) {
-    @apply bg-gray-50 dark:bg-white/10 dark:text-white border-b border-[#D9DCE7] dark:border-white/10;
-  }
-
-  table.app tbody tr:nth-child(even) {
-    @apply bg-[#F3F4F7] dark:bg-white/5 dark:text-white border-b border-[#D9DCE7] dark:border-white/10;
-  }
-
-  table.app tbody tr:nth-child(:last-child) {
-    @apply border-b-0;
-  }
-
-  table.app td,
-  table.app th {
-    @apply px-2 py-2.5 text-left text-[#565656] dark:text-white text-sm capitalize whitespace-nowrap;
-  }
 }
