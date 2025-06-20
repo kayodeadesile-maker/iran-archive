@@ -3,6 +3,48 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@font-face {
+  font-family: "Clash Grotesk";
+  src: url("./assets/fonts/ClashGrotesk-Variable.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Clash Grotesk";
+  src: url("./assets/fonts/ClashGrotesk-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Clash Grotesk";
+  src: url("./assets/fonts/ClashGrotesk-SemiBold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Clash Grotesk";
+  src: url("./assets/fonts/ClashGrotesk-Medium.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Clash Grotesk";
+  src: url("./assets/fonts/ClashGrotesk-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Clash Grotesk";
+  src: url("./assets/fonts/ClashGrotesk-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Clash Grotesk";
+  src: url("./assets/fonts/ClashGrotesk-ExtraLight.ttf");
+  font-weight: 200;
+}
+
 @theme {
   --color-lightgoldcolorsix: #f9f4ec;
   --color-textcolor: #a0a7bc;
@@ -12,6 +54,7 @@
   --color-goldcolor: #2b1f0e;
   --color-lightgoldcolor: #c79852;
   --color-lightgoldcolorfive: #f1e5d4;
+  --font-clashgrotesk: "Clash Grotesk", sans-serif;
 }
 
 /* Theme Configuration */

@@ -105,7 +105,7 @@ export default function Home() {
 
       {/* Featured Archive start */}
       <div className="mt-8">
-        <h1 className="text-xl lg:text-2xl font-medium mb-2">Featured Archives</h1>
+        <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-clashgrotesk">Featured Archives</h1>
 
         <div className="grid grd-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <ArchiveCardComponent
@@ -120,7 +120,7 @@ export default function Home() {
 
       {/* Learn Yoruba start */}
       <div className="mt-8">
-        <h1 className="text-xl lg:text-2xl font-medium mb-2">Learn Yoruba</h1>
+        <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-clashgrotesk">Learn Yoruba</h1>
 
         <div className="grid grd-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <ArchiveCardComponent
