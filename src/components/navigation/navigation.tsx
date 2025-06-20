@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import { navigateRoutesOne, navigateRoutesTwo } from "./routes";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
-import LogoImage from "@/assets/iran-logo.png";
+import LogoImage from "@/assets/Iran-logo.png";
 import {
   framerIcon,
   framerNavItems,
