@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { AppNavigation } from "@/components/navigation/navigation";
 import { Outlet } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import LogoImage from "@/assets/iran-logo.png";
 
 export const AppLayout = () => {
   return (
@@ -12,6 +13,22 @@ export const AppLayout = () => {
           <Fragment>
             <header className="fixed h-20 inset-x-0 top-0 right-0 bg-navigationbackground border-b border-gray-300 z-20">
               <nav className="h-full px-4 relative flex items-center justify-between">
+                <div className="flex items-center">
+                  <div className="flex-1 lg:flex-none h-16 lg:justify-start flex justiffy-center items-center">
+                    <img src={LogoImage} alt="app logo" className="h-full" />
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <button className="px-6 py-1.5 rounded-lg bg-white text-sm md:text-base font-medium text-textblack outline-0 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 border-0 transition-all">
+                    Log in
+                  </button>
+                  <button className="px-6 py-1.5 rounded-lg bg-accientblue text-sm md:text-base font-medium text-white outline-0 focus:ring-2 focus:ring-accientblue focus:ring-offset-2 border-0 transition-all hover:bg-accientblue/80">
+                    Sign up
+                  </button>
+                  <button></button>
+                </div>
+
                 <DisclosureButton className="absolute right-4 top-6 lg:hidden">
                   <span className="sr-only">Close Side menu</span>
                   {open ? (
