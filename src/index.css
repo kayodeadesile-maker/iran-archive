@@ -3,6 +3,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Clash Grotesk */
 @font-face {
   font-family: "Clash Grotesk";
   src: url("./assets/fonts/ClashGrotesk-Variable.ttf");
@@ -45,6 +46,68 @@
   font-weight: 200;
 }
 
+/*Avenir  */
+@font-face {
+  font-family: "Avenri";
+  src: url("./assets/fonts/Avenir-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Avenri";
+  src: url("./assets/fonts/AvenirLTStd-Book.otf") format("opentype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Avenri LT";
+  src: url("./assets/fonts/Fontspring-DEMO-gibson-medium.otf") format("opentype");
+  font-weight: 500;
+}
+
+/* Nunito */
+@font-face {
+  font-family: "Nunito";
+  src: url("./assets/fonts/Nunito-Black.ttf");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./assets/fonts/Nunito-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./assets/fonts/Nunito-SemiBold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./assets/fonts/Nunito-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./assets/fonts/Nunito-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./assets/fonts/Nunito-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./assets/fonts/Nunito-Thin.ttf");
+  font-weight: 200;
+}
+
 @theme {
   --color-lightgoldcolorsix: #f9f4ec;
   --color-textcolor: #a0a7bc;
@@ -55,12 +118,15 @@
   --color-lightgoldcolor: #c79852;
   --color-lightgoldcolorfive: #f1e5d4;
   --font-clashgrotesk: "Clash Grotesk", sans-serif;
+  --font-avenir: "Avenir", sans;
+  --font-avenirlt: "Avenir LT", sans;
+  --font-nunito: "Nunito", sans-serif;
 }
 
 /* Theme Configuration */
 /* @theme {
   --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-lato: "Lato", ui-sans-serif, system-ui, sans-serif;
+  --font-Nunito: "Nunito", ui-sans-serif, system-ui, sans-serif;
 } */
 
 @layer base {

@@ -23,7 +23,7 @@ const QuickLinkCard = ({ href, label }: QuickLinkCardProps) => {
   return (
     <Link to={href} className="block flex-grow shrink-0 group">
       <div className="p-4 bg-goldcolor rounded-2xl group-hover:bg-goldcolor/90 transition-colors">
-        <p className="text-white text-sm sm:text-base font-medium capitalize text-center">
+        <p className="text-white text-sm sm:text-base font-medium font-nunito capitalize text-center">
           {label}
         </p>
       </div>
@@ -44,8 +44,8 @@ const ArchiveMiniCardComponent = ({ title, Icon, description }: ArchiveMiniCardC
         {Icon}
       </span>
       <div className="space">
-        <h3 className="font-medium text-base">{title}</h3>
-        <p className="font-normal text-sm">{description}</p>
+        <h3 className="font-semibold font-nunito text-base">{title}</h3>
+        <p className="font-normal font-nunito text-sm">{description}</p>
       </div>
     </div>
   );
@@ -71,8 +71,8 @@ const ArchiveCardComponent = ({
       </header>
 
       <div className="mt-4">
-        <h3 className="sm:text-lg font-medium capitalize">{title}</h3>
-        {description && <p className="text-sm font-medium">{description}</p>}
+        <h3 className="sm:text-lg font-semibold capitalize font-nunito">{title}</h3>
+        {description && <p className="text-sm font-medium font-nunito">{description}</p>}
       </div>
     </div>
   );
@@ -105,9 +105,11 @@ export default function Home() {
 
       {/* Featured Archive start */}
       <div className="mt-8">
-        <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-clashgrotesk">Featured Archives</h1>
+        <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-clashgrotesk">
+          Featured Archives
+        </h1>
 
-        <div className="grid grd-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grd-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
           <ArchiveCardComponent
             title="historical moments & events"
             imageLink={FeaturedImages.historical}
@@ -127,9 +129,9 @@ export default function Home() {
             title="yoruba alphabets"
             description="Start by learning Yoruba from Alphabets"
             imageLink={FeaturedImages.learn}
-            otherClasses="!bg-lightgoldcolorsix"
+            otherClasses="!bg-lightgoldcolorsix !col-span-full xl:!col-span-1"
           />
-          <div className="col-span-2 grid grid-cols-2 gap-3">
+          <div className="col-span-full grid grid-cols-2 xl:col-span-2 gap-3">
             <ArchiveMiniCardComponent
               Icon={
                 <svg
@@ -243,6 +245,13 @@ export default function Home() {
         </div>
       </div>
       {/* Learn Yoruba end */}
+
+      {/*  */}
+      <div className="mt-8">
+        <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-clashgrotesk">
+          Sea what people are reading
+        </h1>
+      </div>
     </div>
   );
 }
