@@ -6,7 +6,7 @@ import { navigateRoutesOne, navigateRoutesTwo } from "./routes";
 export const AppNavigation = () => {
   return (
     <Fragment>
-      <nav className="hidden lg:block fixed left-0 w-80 bg-backgroundcolor h-[calc(100vh-5rem)] top-20 border-r border-gray-300 ">
+      <nav className="hidden lg:block fixed left-0 w-80 bg-lightgoldcolorsix h-[calc(100vh-5rem)] top-20 border-r border-gray-300 ">
         <div>
           <div className="flex flex-col items-center w-full">
             {navigateRoutesOne.map(({ label, Icon, current }) => (
@@ -74,7 +74,7 @@ export const AppNavigation = () => {
         </div>
       </nav>
 
-      <DisclosurePanel className="fixed z-10 transition-all lg:hidden left-0 right-0 w-full bg-backgroundcolor top-20">
+      <DisclosurePanel className="fixed z-10 transition-all lg:hidden left-0 right-0 w-full bg-lightgoldcolorsix top-20">
         <div className="">
           <div className="flex flex-col items-center w-full"></div>
         </div>

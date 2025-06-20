@@ -4,12 +4,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-backgroundcolor: #f9f4ec;
+  --color-lightgoldcolorsix: #f9f4ec;
   --color-textcolor: #a0a7bc;
   --color-navigationbackground: #e6d1b2;
   --color-accientblue: #006eff;
   --color-textblack: #0a0b0e;
   --color-goldcolor: #2b1f0e;
+  --color-lightgoldcolor: #c79852;
+  --color-lightgoldcolorfive: #f1e5d4;
 }
 
 /* Theme Configuration */
