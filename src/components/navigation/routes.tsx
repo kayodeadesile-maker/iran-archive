@@ -46,7 +46,7 @@ export const navigateRoutesTwo: RouteProps = [
     current: true,
   },
   {
-    label: "contect us",
+    label: "contact us",
     Icon: (
       <svg
         width="19"

@@ -131,7 +131,7 @@ export default function Home() {
             imageLink={FeaturedImages.learn}
             otherClasses="!bg-lightgoldcolorsix !col-span-full xl:!col-span-1"
           />
-          <div className="col-span-full grid grid-cols-2 xl:col-span-2 gap-3">
+          <div className="col-span-full grid sm:grid-cols-2 xl:col-span-2 gap-3">
             <ArchiveMiniCardComponent
               Icon={
                 <svg
