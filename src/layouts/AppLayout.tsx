@@ -3,7 +3,6 @@ import { Fragment } from "react";
 import { AppNavigation } from "@/components/navigation/navigation";
 import { Outlet } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import LogoImage from "@/assets/iran-logo.png";
 
 export const AppLayout = () => {
   return (
@@ -15,7 +14,7 @@ export const AppLayout = () => {
               <nav className="h-full px-4 relative flex items-center justify-between">
                 <div className="flex items-center">
                   <div className="flex-1 lg:flex-none h-16 lg:justify-start flex justiffy-center items-center">
-                    <img src={LogoImage} alt="app logo" className="h-full" />
+                    <img src="/iran-logo.png" alt="app logo" className="h-full" />
                   </div>
                 </div>
 
