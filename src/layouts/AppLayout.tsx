@@ -19,7 +19,7 @@ export const AppLayout = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="sm:flex items-center gap-3 !mr-10 lg:!mr-0 hidden">
                   <button className="px-6 py-1.5 rounded-lg bg-white text-sm md:text-base font-medium text-textblack outline-0 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 border-0 transition-all">
                     Log in
                   </button>
@@ -32,16 +32,16 @@ export const AppLayout = () => {
                 <DisclosureButton className="absolute right-4 top-6 lg:hidden">
                   <span className="sr-only">Close Side menu</span>
                   {open ? (
-                    <XMarkIcon className="h-8 w-8 text-gray-800 dark:text-white" />
+                    <XMarkIcon className="h-8 w-8 text-goldcolor" />
                   ) : (
-                    <Bars3Icon className="h-8 w-8 text-gray-800 dark:text-white" />
+                    <Bars3Icon className="h-8 w-8 text-goldcolor" />
                   )}
                 </DisclosureButton>
               </nav>
             </header>
             <div className="flex items-stretch justify-between flex-shrink-0">
               <AppNavigation />
-              <main className="absolute left-0 lg:left-80 w-full lg:w-[calc(100%-20rem)] pt-20 min-h-screen  overflow-auto">
+              <main className="absolute left-0 lg:left-80 w-full lg:w-[calc(100%-20rem)] pt-20 min-h-screen overflow-auto">
                 <div className="px-4 min-h-screen">
                   <Outlet context={{ close }} />
                 </div>
