@@ -1,11 +1,12 @@
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import HistoricalImage from "@/assets/historical-image.png";
 import VisualArchivesImage from "@/assets/visual-archives-image.png";
 import OralTraditionImage from "@/assets/oral-tradition-image.png";
 import LearnYorubaImage from "@/assets/learn-yoruba-image.png";
 import { classNames } from "@/utils";
+import { motion } from "framer-motion";
 
 const FeaturedImages = {
   historical: HistoricalImage,
@@ -23,7 +24,7 @@ const QuickLinkCard = ({ href, label }: QuickLinkCardProps) => {
   return (
     <Link to={href} className="block flex-grow shrink-0 group">
       <div className="p-4 bg-goldcolor rounded-2xl group-hover:bg-goldcolor/90 transition-colors">
-        <p className="text-white text-sm sm:text-base font-medium font-nunito capitalize text-center">
+        <p className="text-white text-sm sm:text-base font-medium font-avenirMT capitalize text-center">
           {label}
         </p>
       </div>
@@ -44,8 +45,8 @@ const ArchiveMiniCardComponent = ({ title, Icon, description }: ArchiveMiniCardC
         {Icon}
       </span>
       <div className="space">
-        <h3 className="font-semibold font-nunito text-base">{title}</h3>
-        <p className="font-normal font-nunito text-sm">{description}</p>
+        <h3 className="font-semibold font-avenirMT text-base">{title}</h3>
+        <p className="font-normal font-avenirMT text-sm">{description}</p>
       </div>
     </div>
   );
@@ -71,8 +72,8 @@ const ArchiveCardComponent = ({
       </header>
 
       <div className="mt-4">
-        <h3 className="sm:text-lg font-semibold capitalize font-nunito">{title}</h3>
-        {description && <p className="text-sm font-medium font-nunito">{description}</p>}
+        <h3 className="sm:text-lg font-semibold capitalize font-avenirMT">{title}</h3>
+        {description && <p className="text-sm font-medium font-avenirMT">{description}</p>}
       </div>
     </div>
   );
@@ -81,8 +82,55 @@ const ArchiveCardComponent = ({
 export default function Home() {
   const [serachText, setSearchText] = useState<string>("");
 
+  const quicklinks = [
+    {
+      label: "proverbs",
+      href: "",
+    },
+    {
+      label: "history",
+      href: "",
+    },
+    {
+      label: "vegetables",
+      href: "",
+    },
+    {
+      label: "herbs",
+      href: "",
+    },
+    {
+      label: "plants",
+      href: "",
+    },
+    {
+      label: "heroes",
+      href: "",
+    },
+    {
+      label: "naming traditions",
+      href: "",
+    },
+  ];
+
+  const quicklinksContainerVariants = {
+    hidden: {
+      scale: 0.3,
+      opacity: 0.2,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+    },
+  };
+
+  const quicklinksVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <div className="max-w-7xl mx-auto pt-10">
+    <div className="max-w-6xl mx-auto pt-10">
       {/* Search bar start */}
       <SeearcComponent
         searchText={serachText}
@@ -92,15 +140,35 @@ export default function Home() {
       {/* Search bar end */}
 
       {/* Quick links start */}
-      <div className="p-4 bg-lightgoldcolorsix flex items-center flex-wrap mt-10 rounded-2xl gap-2">
-        <QuickLinkCard label="proverbs" href="" />
-        <QuickLinkCard label="history" href="" />
-        <QuickLinkCard label="vegetables" href="" />
-        <QuickLinkCard label="herbs" href="" />
-        <QuickLinkCard label="plants" href="" />
-        <QuickLinkCard label="heroes" href="" />
-        <QuickLinkCard label="naming traditions" href="" />
-      </div>
+      <motion.div
+        variants={quicklinksContainerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ amount: 0.3, once: false }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="p-4 bg-lightgoldcolorsix flex items-center flex-wrap mt-20 rounded-2xl gap-2"
+      >
+        {React.Children.toArray(
+          quicklinks.map(({ label, href }, idx) => {
+            return (
+              <motion.div
+                variants={quicklinksVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ amount: 0.1, once: false }}
+                transition={{
+                  duration: 0.4,
+                  delay: 0.6 + idx * 0.15, // Start after container animation (0.5s) + buffer (0.2s)
+                  ease: "easeOut",
+                }}
+                className="block flex-grow shrink-0 group"
+              >
+                <QuickLinkCard label={label} href={href} />
+              </motion.div>
+            );
+          })
+        )}
+      </motion.div>
       {/* Quick links end */}
 
       {/* Featured Archive start */}
@@ -249,7 +317,7 @@ export default function Home() {
       {/*  */}
       <div className="mt-8">
         <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-clashgrotesk">
-          Sea what people are reading
+          See what people are reading
         </h1>
       </div>
     </div>
@@ -264,7 +332,7 @@ type SearchComponentProps = {
 
 const SeearcComponent = ({ searchText, handleClearSearch, handleSearch }: SearchComponentProps) => {
   return (
-    <fieldset className="max-w-2xl mx-auto">
+    <fieldset className="max-w-2xl mx-auto mt-10">
       <label htmlFor="search" className="sr-only"></label>
       <div className="relative">
         <button

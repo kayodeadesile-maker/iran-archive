@@ -45,7 +45,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                   </span>
                   <span
                     className={classNames(
-                      "text-base sm:text-lg font-nunito font-medium capitalize"
+                      "text-base sm:text-lg font-avenirMT font-medium capitalize"
                       // isActive ? "text-[#5932EA] font-medium" : "text-[#0C0C0D] font-normal"
                     )}
                   >
@@ -78,7 +78,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                   </span>
                   <span
                     className={classNames(
-                      "text-base sm:text-lg font-medium font-nunito capitalize"
+                      "text-base sm:text-lg font-medium font-avenirMT capitalize"
                       // isActive ? "text-[#5932EA] font-medium" : "text-[#0C0C0D] font-normal"
                     )}
                   >
@@ -107,7 +107,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
             <motion.div
               {...framerSidebarPanel}
               className={classNames(
-                "relative h-full w-full sm:max-w-sm bg-lightgoldcolorsix  overflow-y-scroll"
+                "relative h-full w-full sm:max-w-sm bg-lightgoldcolorsix overflow-y-scroll"
               )}
             >
               <button className="absolute right-4 top-6 lg:hidden z-30" onClick={() => close()}>
@@ -147,7 +147,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                         <motion.div
                           {...framerText(idx, open)}
                           className={classNames(
-                            "text-base sm:text-lg font-nunito font-medium capitalize"
+                            "text-base sm:text-lg font-avenirMT font-medium capitalize"
                             // isActive ? "text-[#5932EA] font-medium" : "text-[#0C0C0D] font-normal"
                           )}
                         >
@@ -197,7 +197,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                         <motion.div
                           {...framerText(idx + navigateRoutesOne.length, open)}
                           className={classNames(
-                            "text-base sm:text-lg font-nunito font-medium capitalize"
+                            "text-base sm:text-lg font-avenirMT font-medium capitalize"
                             // isActive ? "text-[#5932EA] font-medium" : "text-[#0C0C0D] font-normal"
                           )}
                         >
