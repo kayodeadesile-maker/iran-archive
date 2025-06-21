@@ -7,6 +7,7 @@ import OralTraditionImage from "@/assets/oral-tradition-image.png";
 import LearnYorubaImage from "@/assets/learn-yoruba-image.png";
 import { classNames } from "@/utils";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const FeaturedImages = {
   historical: HistoricalImage,
@@ -81,6 +82,15 @@ const ArchiveCardComponent = ({
 
 export default function Home() {
   const [serachText, setSearchText] = useState<string>("");
+  const { ref: containerRef, inView: containerInView } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
+  const [itemRef, itemInView] = useInView({
+    threshold: 0.9,
+    triggerOnce: false,
+  });
 
   const quicklinks = [
     {
@@ -141,10 +151,10 @@ export default function Home() {
 
       {/* Quick links start */}
       <motion.div
+        ref={containerRef}
         variants={quicklinksContainerVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ amount: 0.3, once: false }}
+        animate={containerInView ? "visible" : "hidden"}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="p-4 bg-lightgoldcolorsix flex items-center flex-wrap mt-20 rounded-2xl gap-2"
       >
@@ -154,11 +164,11 @@ export default function Home() {
               <motion.div
                 variants={quicklinksVariants}
                 initial="hidden"
-                whileInView="visible"
-                viewport={{ amount: 0.1, once: false }}
+                ref={itemRef}
+                animate={itemInView ? "visible" : "hidden"}
                 transition={{
                   duration: 0.4,
-                  delay: 0.6 + idx * 0.15, // Start after container animation (0.5s) + buffer (0.2s)
+                  delay: idx * 0.15, // Stagger delay only
                   ease: "easeOut",
                 }}
                 className="block flex-grow shrink-0 group"
