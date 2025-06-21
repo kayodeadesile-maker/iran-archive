@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-type RouteProps = {
+export type RouteProps = {
   label: string;
   Icon: any;
   menuComponent?: JSX.Element | React.FC;

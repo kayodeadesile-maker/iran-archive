@@ -1,7 +1,7 @@
 import { classNames } from "@/utils";
 import { DisclosurePanel } from "@headlessui/react";
-import { Fragment } from "react";
-import { navigateRoutesOne, navigateRoutesTwo } from "./routes";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import { navigateRoutesOne, navigateRoutesTwo, type RouteProps } from "./routes";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
 import LogoImage from "@/assets/Iran-logo.png";
@@ -19,41 +19,104 @@ type AppNavigationPropsType = {
 };
 
 export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
-  console.log(open);
+  const menuRefs = useRef<HTMLDivElement[]>([]);
+  const [openMenuIndex, setOpenMenuIndex] = useState<number | null>(null);
+
+  const handleClickOutside = useCallback(
+    (event: MouseEvent) => {
+      if (openMenuIndex !== null) {
+        const clickedElement = event.target as Node;
+        const menuRef = menuRefs.current[openMenuIndex];
+        if (menuRef && !menuRef.contains(clickedElement)) {
+          setOpenMenuIndex(null);
+        }
+      }
+    },
+    [openMenuIndex]
+  );
+
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === "Escape" && openMenuIndex !== null) {
+        setOpenMenuIndex(null);
+      }
+    },
+    [openMenuIndex]
+  );
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const handleMenuToggle = useCallback(
+    (index: number, route: RouteProps[0]) => {
+      if (route.menuComponent && openMenuIndex !== index) {
+        setOpenMenuIndex(openMenuIndex === index ? null : index);
+      }
+
+      if (route.openMenu) {
+        route.openMenu();
+      }
+    },
+    [openMenuIndex]
+  );
 
   return (
     <Fragment>
       <nav className="hidden lg:block fixed left-0 w-80 bg-lightgoldcolorsix h-[calc(100vh-5rem)] top-20 border-r border-gray-300">
         <div>
           <div className="flex flex-col items-center w-full">
-            {navigateRoutesOne.map(({ label, Icon, current }) => (
-              <button
-                className={classNames(
-                  "flex items-center space-x-4 relative w-full py-4 px-7",
-                  current ? "hover:bg-gray-50 " : ""
-                )}
-                aria-current={current ? "page" : undefined}
-              >
-                <>
-                  <span
+            {navigateRoutesOne.map((route, index) => {
+              const { label, Icon, current } = route;
+              // const openMenu = navigateRoutesOne.find((route) => route.label === label)?.openMenu;
+              const isMenuOpen = openMenuIndex! === index;
+
+              return (
+                <div
+                  ref={(el) => {
+                    if (el) {
+                      menuRefs.current[index] = el;
+                    }
+                  }}
+                  key={label}
+                  className="relative w-full"
+                >
+                  <button
+                    onClick={() => handleMenuToggle(index, route)}
                     className={classNames(
-                      // isActive ? "stroke-[#5932EA] dark:stroke-white" : "stroke-[#7B7B7B]",
-                      "h-6"
+                      "flex items-center space-x-4 relative w-full py-4 px-7",
+                      current ? "hover:bg-gray-50 " : ""
                     )}
+                    aria-current={current ? "page" : undefined}
                   >
-                    {Icon}
-                  </span>
-                  <span
-                    className={classNames(
-                      "text-base sm:text-lg font-avenirMT font-medium capitalize"
-                      // isActive ? "text-[#5932EA] font-medium" : "text-[#0C0C0D] font-normal"
-                    )}
-                  >
-                    {label}
-                  </span>
-                </>
-              </button>
-            ))}
+                    <>
+                      <span
+                        className={classNames(
+                          isMenuOpen ? "stroke-[#5932EA] dark:stroke-white" : "stroke-[#7B7B7B]",
+                          "h-6"
+                        )}
+                      >
+                        {Icon}
+                      </span>
+                      <span
+                        className={classNames(
+                          "text-base sm:text-lg font-avenirMT font-medium capitalize",
+                          isMenuOpen ? "text-[#5932EA] font-medium" : "text-[#0C0C0D] font-normal"
+                        )}
+                      >
+                        {label}
+                      </span>
+                    </>
+                  </button>
+                </div>
+              );
+            })}
           </div>
 
           <hr className="w-full border-[#956D30] my-6" />
