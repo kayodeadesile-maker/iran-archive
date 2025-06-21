@@ -22,8 +22,8 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
   const menuRefs = useRef<HTMLDivElement[]>([]);
   const [openMenuIndex, setOpenMenuIndex] = useState<number | null>(null);
 
-  const handleClickOutside = useCallback(
-    (event: MouseEvent) => {
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (openMenuIndex !== null) {
         const clickedElement = event.target as Node;
         const menuRef = menuRefs.current[openMenuIndex];
@@ -31,28 +31,22 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
           setOpenMenuIndex(null);
         }
       }
-    },
-    [openMenuIndex]
-  );
+    };
 
-  const handleKeyDown = useCallback(
-    (event: KeyboardEvent) => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [openMenuIndex]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape" && openMenuIndex !== null) {
         setOpenMenuIndex(null);
       }
-    },
-    [openMenuIndex]
-  );
+    };
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [openMenuIndex]);
 
   const handleMenuToggle = useCallback(
     (index: number, route: RouteProps[0]) => {
@@ -69,7 +63,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
 
   return (
     <Fragment>
-      <nav className="hidden lg:block fixed left-0 w-80 bg-lightgoldcolorsix h-[calc(100vh-5rem)] top-20 border-r border-gray-300">
+      <nav className="hidden lg:block fixed left-0 w-80 bg-lightgoldcolorsix h-[calc(100vh-5rem)] top-20 border-r border-gray-300 z-30">
         <div>
           <div className="flex flex-col items-center w-full">
             {navigateRoutesOne.map((route, index) => {
@@ -91,29 +85,33 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                     onClick={() => handleMenuToggle(index, route)}
                     className={classNames(
                       "flex items-center space-x-4 relative w-full py-4 px-7",
-                      current ? "hover:bg-gray-50 " : ""
+                      current ? "hover:bg-gray-50 " : "",
+                      isMenuOpen && "bg-gray-50"
                     )}
                     aria-current={current ? "page" : undefined}
                   >
                     <>
-                      <span
-                        className={classNames(
-                          isMenuOpen ? "stroke-[#5932EA] dark:stroke-white" : "stroke-[#7B7B7B]",
-                          "h-6"
-                        )}
-                      >
-                        {Icon}
-                      </span>
+                      <span className={classNames("h-6")}>{Icon}</span>
                       <span
                         className={classNames(
                           "text-base sm:text-lg font-avenirMT font-medium capitalize",
-                          isMenuOpen ? "text-[#5932EA] font-medium" : "text-[#0C0C0D] font-normal"
+                          isMenuOpen ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
                         )}
                       >
                         {label}
                       </span>
                     </>
                   </button>
+
+                  {route.menuComponent && isMenuOpen && (
+                    <div className="w-full">
+                      {typeof route.menuComponent === "function" ? (
+                        <route.menuComponent />
+                      ) : (
+                        route.menuComponent
+                      )}
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -133,7 +131,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                 <>
                   <span
                     className={classNames(
-                      // isActive ? "stroke-[#5932EA] dark:stroke-white" : "stroke-[#7B7B7B]",
+                      // isActive ? "stroke-goldcolor dark:stroke-white" : "stroke-[#7B7B7B]",
                       "h-6"
                     )}
                   >
@@ -142,7 +140,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                   <span
                     className={classNames(
                       "text-base sm:text-lg font-medium font-avenirMT capitalize"
-                      // isActive ? "text-[#5932EA] font-medium" : "text-[#0C0C0D] font-normal"
+                      // isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
                     )}
                   >
                     {label}
@@ -200,7 +198,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                         <motion.div
                           {...framerIcon(open)}
                           className={classNames(
-                            // isActive ? "stroke-[#5932EA] dark:stroke-white" : "stroke-[#7B7B7B]",
+                            // isActive ? "stroke-goldcolor dark:stroke-white" : "stroke-[#7B7B7B]",
                             "h-6"
                           )}
                         >
@@ -211,7 +209,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                           {...framerText(idx, open)}
                           className={classNames(
                             "text-base sm:text-lg font-avenirMT font-medium capitalize"
-                            // isActive ? "text-[#5932EA] font-medium" : "text-[#0C0C0D] font-normal"
+                            // isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
                           )}
                         >
                           {label}
@@ -250,7 +248,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                         <motion.div
                           {...framerIcon(open)}
                           className={classNames(
-                            // isActive ? "stroke-[#5932EA] dark:stroke-white" : "stroke-[#7B7B7B]",
+                            // isActive ? "stroke-goldcolor dark:stroke-white" : "stroke-[#7B7B7B]",
                             "h-6"
                           )}
                         >
@@ -261,7 +259,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                           {...framerText(idx + navigateRoutesOne.length, open)}
                           className={classNames(
                             "text-base sm:text-lg font-avenirMT font-medium capitalize"
-                            // isActive ? "text-[#5932EA] font-medium" : "text-[#0C0C0D] font-normal"
+                            // isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
                           )}
                         >
                           {label}
