@@ -468,7 +468,7 @@ const ContributionCardComponent = (card: ContributionCardProps) => {
         <img src={imageSrc} alt={title} className="object-center object-cover h-full w-full" />
       </header>
 
-      <div className="mt-2 p-4 flex items-start">
+      <div className="mt-2 p-4 flex items-start justify-between">
         <div>
           <h3 className="sm:text-lg font-semibold capitalize font-avenirMT">{title}</h3>
           <p className="text-sm font-normal font-sourcesans">{description}</p>
