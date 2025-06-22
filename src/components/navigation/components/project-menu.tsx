@@ -1,10 +1,31 @@
 import { classNames } from "@/utils";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { cardVariants, gridVariant, menuVariants, titleVariants } from "@/utils/framer";
 
-export const ProjectAndResearchMenuComponent = () => {
+type ProjectAndResearchMenuComponentProps = {
+  buttonRef?: React.RefObject<HTMLButtonElement>;
+};
+
+export const ProjectAndResearchMenuComponent = ({
+  buttonRef,
+}: ProjectAndResearchMenuComponentProps) => {
+  const [menuPosition, setMenuPosition] = React.useState<{ top: number; left: number }>({
+    top: 0,
+    left: 0,
+  });
+
+  useEffect(() => {
+    if (buttonRef && buttonRef.current) {
+      const buttonRect = buttonRef.current.getBoundingClientRect();
+      setMenuPosition({
+        top: buttonRect.top,
+        left: buttonRect.right + 10,
+      });
+    }
+  }, [buttonRef]);
+
   const links = [
     {
       title: "ongoing research",
@@ -49,8 +70,12 @@ export const ProjectAndResearchMenuComponent = () => {
         }}
         initial="hidden"
         animate="visible"
-        exit="hidden"
-        className="bg-white p-6 fixed left-[21rem] !z-20 rounded-xl border-lightgoldcolorfive border-[1.5px] max-w-lg w-full"
+        exit="exit"
+        style={{
+          top: `${menuPosition.top}px`,
+          left: `${menuPosition.left}px`,
+        }}
+        className="bg-white p-6 fixed !z-20 rounded-xl border-lightgoldcolorfive border-[1.5px] max-w-lg w-full"
       >
         <motion.h1
           variants={{
@@ -140,10 +165,7 @@ const MenuCardComponent = ({
         },
       }}
       custom={direction}
-      initial="hidden"
-      animate="visible"
-      whileHover="hover"
-      whileTap="tap"
+      className="relative w-full h-full"
     >
       <Link to={href} className="min-h-8">
         <motion.div

@@ -20,6 +20,7 @@ type AppNavigationPropsType = {
 
 export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
   const menuRefs = useRef<HTMLDivElement[]>([]);
+  const buttonRefs = useRef<HTMLButtonElement[]>([]);
   const [openMenuIndex, setOpenMenuIndex] = useState<number | null>(null);
 
   useEffect(() => {
@@ -27,7 +28,14 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
       if (openMenuIndex !== null) {
         const clickedElement = event.target as Node;
         const menuRef = menuRefs.current[openMenuIndex];
-        if (menuRef && !menuRef.contains(clickedElement)) {
+        const buttonRef = buttonRefs.current[openMenuIndex];
+
+        if (
+          menuRef &&
+          !menuRef.contains(clickedElement) &&
+          buttonRef &&
+          !buttonRef.contains(clickedElement)
+        ) {
           setOpenMenuIndex(null);
         }
       }
@@ -54,7 +62,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
         setOpenMenuIndex(openMenuIndex === index ? null : index);
       }
 
-      if (route.openMenu) {
+      if (route.openMenu && !route.menuComponent) {
         route.openMenu();
       }
     },
@@ -82,6 +90,11 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                   className="relative w-full"
                 >
                   <button
+                    ref={(el) => {
+                      if (el) {
+                        buttonRefs.current[index] = el;
+                      }
+                    }}
                     onClick={() => handleMenuToggle(index, route)}
                     className={classNames(
                       "flex items-center space-x-4 relative w-full py-4 px-7",
@@ -106,7 +119,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                   {route.menuComponent && isMenuOpen && (
                     <div className="w-full">
                       {typeof route.menuComponent === "function" ? (
-                        <route.menuComponent />
+                        <route.menuComponent buttonRef={{ current: buttonRefs.current[index] }} />
                       ) : (
                         route.menuComponent
                       )}
