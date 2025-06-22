@@ -3,74 +3,55 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Clash Grotesk */
+/* Source Sans 3  */
 @font-face {
-  font-family: "Clash Grotesk";
-  src: url("./assets/fonts/ClashGrotesk-Variable.ttf");
+  font-family: "Source Sans 3";
+  src: url("./assets/fonts/SourceSans3-Black.ttf");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("./assets/fonts/SourceSans3-ExtraBold.ttf");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("./assets/fonts/SourceSans3-Bold.ttf");
   font-weight: 700;
 }
 
 @font-face {
-  font-family: "Clash Grotesk";
-  src: url("./assets/fonts/ClashGrotesk-Bold.ttf");
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: "Clash Grotesk";
-  src: url("./assets/fonts/ClashGrotesk-SemiBold.ttf");
+  font-family: "Source Sans 3";
+  src: url("./assets/fonts/SourceSans3-SemiBold.ttf");
   font-weight: 600;
 }
-
 @font-face {
-  font-family: "Clash Grotesk";
-  src: url("./assets/fonts/ClashGrotesk-Medium.ttf");
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: "Clash Grotesk";
-  src: url("./assets/fonts/ClashGrotesk-Regular.ttf");
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: "Clash Grotesk";
-  src: url("./assets/fonts/ClashGrotesk-Light.ttf");
-  font-weight: 300;
-}
-
-@font-face {
-  font-family: "Clash Grotesk";
-  src: url("./assets/fonts/ClashGrotesk-ExtraLight.ttf");
-  font-weight: 200;
-}
-
-/*Avenir  */
-@font-face {
-  font-family: "Avenri";
-  src: url("./assets/fonts/Avenir-Regular.ttf");
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: "Avenri";
-  src: url("./assets/fonts/AvenirLTStd-Heavy.otf");
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: "Avenri";
-  src: url("./assets/fonts/AvenirLTStd-Medium.otf");
+  font-family: "Source Sans 3";
+  src: url("./assets/fonts/SourceSans3-Medium.ttf");
   font-weight: 500;
 }
 
 @font-face {
-  font-family: "Avenri";
-  src: url("./assets/fonts/AvenirLTStd-Book.otf");
+  font-family: "Source Sans 3";
+  src: url("./assets/fonts/SourceSans3-Regular.ttf");
   font-weight: 400;
 }
 
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("./assets/fonts/SourceSans3-Light");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("./assets/fonts/SourceSans3-ExtraLight");
+  font-weight: 200;
+}
+
+/*Avenir  */
 @font-face {
   font-family: "Avenri Montserrat";
   src: url("./assets/fonts/Montserrat-Black.ttf");
@@ -125,55 +106,103 @@
   font-weight: 100;
 }
 
+/* Satoshi */
 @font-face {
-  font-family: "Avenri LT";
-  src: url("./assets/fonts/Fontspring-DEMO-gibson-medium.otf");
-  font-weight: 500;
-}
-
-/* Nunito */
-@font-face {
-  font-family: "Nunito";
-  src: url("./assets/fonts/Nunito-Black.ttf");
-  font-weight: 900;
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Satoshi-Black.otf") format("opentype");
+  font-weight: 800;
 }
 
 @font-face {
-  font-family: "Nunito";
-  src: url("./assets/fonts/Nunito-Bold.ttf");
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Satoshi-Bold.otf") format("opentype");
   font-weight: 700;
 }
 
 @font-face {
-  font-family: "Nunito";
-  src: url("./assets/fonts/Nunito-SemiBold.ttf");
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: "Nunito";
-  src: url("./assets/fonts/Nunito-Medium.ttf");
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Satoshi-Medium.otf") format("opentype");
   font-weight: 500;
 }
 
 @font-face {
-  font-family: "Nunito";
-  src: url("./assets/fonts/Nunito-Regular.ttf");
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Satoshi-Regular.otf") format("opentype");
   font-weight: 400;
 }
 
 @font-face {
-  font-family: "Nunito";
-  src: url("./assets/fonts/Nunito-Light.ttf");
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Satoshi-Light.otf") format("opentype");
   font-weight: 300;
 }
 
+/* INTER FONTS */
+
 @font-face {
-  font-family: "Nunito";
-  src: url("./assets/fonts/Nunito-Thin.ttf");
-  font-weight: 200;
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
 }
 
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-ExtraLight.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-ExtraBold.ttf");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Black.ttf");
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* Theme Variables */
 @theme {
   --color-lightgoldcolorsix: #f9f4ec;
   --color-textcolor: #a0a7bc;
@@ -183,12 +212,10 @@
   --color-goldcolor: #2b1f0e;
   --color-lightgoldcolor: #c79852;
   --color-lightgoldcolorfive: #f1e5d4;
-  --color-lightbluecolorfive: #e5f0ff;
-  --color-darkbrowncolorsix: #ffe3e3;
-  --font-clashgrotesk: "Clash Grotesk", sans-serif;
-  --font-avenir: "Avenir", sans;
   --font-avenirMT: "Avenri Montserrat", sans;
-  --font-nunito: "Nunito", sans-serif;
+  --font-sourcesans: "Source Sans 3", sans-serif;
+  --font-satoshi: "Satoshi", sans-serif;
+  --font-inter: "Inter", sans-serif;
 }
 
 /* Theme Configuration */

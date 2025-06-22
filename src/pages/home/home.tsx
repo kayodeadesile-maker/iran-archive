@@ -1,10 +1,15 @@
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import HistoricalImage from "@/assets/historical-image.png";
-import VisualArchivesImage from "@/assets/visual-archives-image.png";
-import OralTraditionImage from "@/assets/oral-tradition-image.png";
-import LearnYorubaImage from "@/assets/learn-yoruba-image.png";
+import HistoricalImage from "@/assets/historical-image.jpg";
+import VisualArchivesImage from "@/assets/visual-archive-image.jpg";
+import OralTraditionImage from "@/assets/oral-tradition-image.jpg";
+import LearnYorubaImage from "@/assets/learn-yoruba-image.jpg";
+
+import SubmitArchiveImage from "@/assets/submit-archive.jpg";
+import VolunteerImage from "@/assets/volunteer-image.jpg";
+import FieldAgentImage from "@/assets/field-agent.jpg";
+
 import { classNames } from "@/utils";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -16,6 +21,12 @@ const FeaturedImages = {
   learn: LearnYorubaImage,
 };
 
+const ContributionImages = {
+  submit: SubmitArchiveImage,
+  volunteer: VolunteerImage,
+  agent: FieldAgentImage,
+};
+
 type QuickLinkCardProps = {
   href: string;
   label: string;
@@ -25,7 +36,7 @@ const QuickLinkCard = ({ href, label }: QuickLinkCardProps) => {
   return (
     <Link to={href} className="block flex-grow shrink-0 group">
       <div className="p-4 bg-goldcolor rounded-2xl group-hover:bg-goldcolor/90 transition-colors">
-        <p className="text-white text-sm sm:text-base font-medium font-avenirMT capitalize text-center">
+        <p className="text-white text-sm sm:text-base font-medium font-sourcesans capitalize text-center">
           {label}
         </p>
       </div>
@@ -47,7 +58,7 @@ const ArchiveMiniCardComponent = ({ title, Icon, description }: ArchiveMiniCardC
       </span>
       <div className="space">
         <h3 className="font-semibold font-avenirMT text-base">{title}</h3>
-        <p className="font-normal font-avenirMT text-sm">{description}</p>
+        <p className="font-normal font-sourcesans text-sm">{description}</p>
       </div>
     </div>
   );
@@ -58,6 +69,8 @@ type ArchiveCardComponentProps = {
   description?: string;
   title: string;
   otherClasses?: string;
+  titleClass?: string;
+  descriptionClass?: string;
 };
 
 const ArchiveCardComponent = ({
@@ -65,16 +78,20 @@ const ArchiveCardComponent = ({
   description,
   title,
   otherClasses,
+  descriptionClass,
+  titleClass,
 }: ArchiveCardComponentProps) => {
   return (
-    <div className={classNames("bg-lightgoldcolorsix p-4 rounded-xl", otherClasses!)}>
-      <header className="min-h-40 overflow-hidden rounded-lg">
-        <img src={imageLink} alt={title} className="object-center object-cover h-full w-full" />
+    <div className={classNames("bg-lightgoldcolorsix p-4 rounded-2xl", otherClasses!)}>
+      <header className="h-52 rounded-xl overflow-hidden">
+        <img src={imageLink} alt={title} className="object-center object-cover min-h-full w-full" />
       </header>
 
       <div className="mt-4">
-        <h3 className="sm:text-lg font-semibold capitalize font-avenirMT">{title}</h3>
-        {description && <p className="text-sm font-medium font-avenirMT">{description}</p>}
+        <h3 className={classNames(titleClass!, "sm:text-lg font-semibold capitalize")}>{title}</h3>
+        {description && (
+          <p className={classNames(descriptionClass!, "text-sm font-normal")}>{description}</p>
+        )}
       </div>
     </div>
   );
@@ -183,24 +200,31 @@ export default function Home() {
 
       {/* Featured Archive start */}
       <div className="mt-8">
-        <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-clashgrotesk">
-          Featured Archives
-        </h1>
+        <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-inter">Featured Archives</h1>
 
         <div className="grid grd-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
           <ArchiveCardComponent
             title="historical moments & events"
             imageLink={FeaturedImages.historical}
+            titleClass="!font-sourcesans"
           />
-          <ArchiveCardComponent title="visual archives" imageLink={FeaturedImages.visual} />
-          <ArchiveCardComponent title="oral traditions" imageLink={FeaturedImages.oral} />
+          <ArchiveCardComponent
+            title="visual archives"
+            imageLink={FeaturedImages.visual}
+            titleClass="!font-sourcesans"
+          />
+          <ArchiveCardComponent
+            title="oral traditions"
+            imageLink={FeaturedImages.oral}
+            titleClass="!font-sourcesans"
+          />
         </div>
       </div>
       {/* Featured Archive end */}
 
       {/* Learn Yoruba start */}
       <div className="mt-8">
-        <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-clashgrotesk">Learn Yoruba</h1>
+        <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-inter">Learn Yoruba</h1>
 
         <div className="grid grd-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <ArchiveCardComponent
@@ -208,6 +232,8 @@ export default function Home() {
             description="Start by learning Yoruba from Alphabets"
             imageLink={FeaturedImages.learn}
             otherClasses="!bg-lightgoldcolorsix !col-span-full xl:!col-span-1"
+            titleClass="!font-avenitMT"
+            descriptionClass="!font-sourcesans"
           />
           <div className="col-span-full grid sm:grid-cols-2 xl:col-span-2 gap-3">
             <ArchiveMiniCardComponent
@@ -331,13 +357,132 @@ export default function Home() {
 
       {/*  */}
       <div className="mt-8">
-        <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-clashgrotesk">
+        <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-inter">
           See what people are reading
         </h1>
       </div>
+      {/*  */}
+
+      {/* Contribute start*/}
+      <div className="mt-8">
+        <header>
+          <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-inter">Contribute</h1>
+          <p className="text-lg font-normal font-sourcesans">Be part of this historical journey.</p>
+        </header>
+        <div className="grid grd-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+          <ContributionCardComponent
+            actionComponent={
+              <button className="inline-flex items-center shrink-0 gap-4 rounded-md bg-white px-4 py-2.5">
+                <span className="text-sm font-medium font-satoshi">Submit</span>
+                <svg
+                  width="9"
+                  height="16"
+                  viewBox="0 0 9 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.763428 15.0257L7.77625 8.01283L0.763428 1"
+                    stroke="#0A0B0E"
+                    strokeWidth="1.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            }
+            imageSrc={ContributionImages.submit}
+            title="submit archive"
+            description="Share to preserve the Yoruba cultural legacy"
+          />
+          <ContributionCardComponent
+            actionComponent={
+              <button className="inline-flex items-center shrink-0 gap-4 rounded-md bg-white px-4 py-2.5">
+                <span className="text-sm font-medium font-satoshi">Sign up</span>
+                <svg
+                  width="9"
+                  height="16"
+                  viewBox="0 0 9 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.763428 15.0257L7.77625 8.01283L0.763428 1"
+                    stroke="#0A0B0E"
+                    strokeWidth="1.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            }
+            imageSrc={ContributionImages.volunteer}
+            title="volunteer"
+            description="Join us to keep Yoruba cultural heritage alive."
+          />
+          <ContributionCardComponent
+            actionComponent={
+              <button className="inline-flex items-center shrink-0 gap-4 rounded-md bg-white px-4 py-2.5">
+                <span className="text-sm font-medium font-satoshi">Sign up</span>
+                <svg
+                  width="9"
+                  height="16"
+                  viewBox="0 0 9 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.763428 15.0257L7.77625 8.01283L0.763428 1"
+                    stroke="#0A0B0E"
+                    strokeWidth="1.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            }
+            imageSrc={ContributionImages.agent}
+            title="field agent"
+            description="Be our field agent in your locality."
+          />
+        </div>
+      </div>
+      {/* Contribute end*/}
     </div>
   );
 }
+
+type ContributionCardProps = {
+  title: string;
+  description: string;
+  imageSrc: string;
+  actionComponent: React.JSX.Element | React.FC;
+};
+
+const ContributionCardComponent = (card: ContributionCardProps) => {
+  const { title, imageSrc, description } = card;
+
+  return (
+    <div className={classNames("bg-lightgoldcolorsix overflow-hidden rounded-xl")}>
+      <header className="h-52 rounded-xl overflow-hidden">
+        <img src={imageSrc} alt={title} className="object-center object-cover h-full w-full" />
+      </header>
+
+      <div className="mt-2 p-4 flex items-start">
+        <div>
+          <h3 className="sm:text-lg font-semibold capitalize font-avenirMT">{title}</h3>
+          <p className="text-sm font-normal font-sourcesans">{description}</p>
+        </div>
+
+        {card.actionComponent && typeof card.actionComponent === "function" ? (
+          <card.actionComponent />
+        ) : (
+          card.actionComponent
+        )}
+      </div>
+    </div>
+  );
+};
 
 type SearchComponentProps = {
   searchText: string;

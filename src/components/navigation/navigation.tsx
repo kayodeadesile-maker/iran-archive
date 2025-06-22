@@ -94,7 +94,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                       <span className={classNames("h-6")}>{Icon}</span>
                       <span
                         className={classNames(
-                          "text-base sm:text-lg font-avenirMT font-medium capitalize",
+                          "text-base sm:text-lg font-satoshi capitalize",
                           isMenuOpen ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
                         )}
                       >
@@ -139,7 +139,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                   </span>
                   <span
                     className={classNames(
-                      "text-base sm:text-lg font-medium font-avenirMT capitalize"
+                      "text-base sm:text-lg font-normal font-satoshi capitalize"
                       // isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
                     )}
                   >
@@ -208,7 +208,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                         <motion.div
                           {...framerText(idx, open)}
                           className={classNames(
-                            "text-base sm:text-lg font-avenirMT font-medium capitalize"
+                            "text-base sm:text-lg font-satoshi font-medium capitalize"
                             // isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
                           )}
                         >
@@ -258,7 +258,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                         <motion.div
                           {...framerText(idx + navigateRoutesOne.length, open)}
                           className={classNames(
-                            "text-base sm:text-lg font-avenirMT font-medium capitalize"
+                            "text-base sm:text-lg font-satoshi font-medium capitalize"
                             // isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
                           )}
                         >
