@@ -204,16 +204,21 @@
 
 /* Theme Variables */
 @theme {
+  /* colors */
   --color-lightgoldcolorsix: #f9f4ec;
   --color-textcolor: #a0a7bc;
   --color-navigationbackground: #e6d1b2;
-  --color-accientblue: #006eff;
+  --color-accentblue: #006eff;
   --color-textblack: #0a0b0e;
   --color-goldcolor: #2b1f0e;
   --color-lightgoldcolor: #c79852;
   --color-lightgoldcolorfive: #f1e5d4;
   --color-lightbluecolorfive: #e5f0ff;
   --color-darkbrowncolorsix: #ffe3e3;
+  --color-darkbluecolortwo: #001633;
+  --color-shadecolorfour: #3a4156;
+  --color-shadecoloreight: #dfe2e9;
+
   --font-avenirMT: "Avenri Montserrat", sans;
   --font-sourcesans: "Source Sans 3", sans-serif;
   --font-satoshi: "Satoshi", sans-serif;
