@@ -11,6 +11,9 @@ import VolunteerImage from "@/assets/volunteer-image.jpg";
 import FieldAgentImage from "@/assets/field-agent.jpg";
 
 import IllustrationImage from "@/assets/illustration.svg";
+import NewsletterBackgroundImage from "@/assets/newsletter-background-image.svg";
+import NewsletterBoyImage from "@/assets/newsletter-boy-image.svg";
+import NewsletterGirlImage from "@/assets/newsletter-girl-image.svg";
 
 import { classNames } from "@/utils";
 import { motion } from "framer-motion";
@@ -85,7 +88,7 @@ const ArchiveCardComponent = ({
 }: ArchiveCardComponentProps) => {
   return (
     <div className={classNames("bg-lightgoldcolorsix p-4 rounded-2xl", otherClasses!)}>
-      <header className="h-52 rounded-xl overflow-hidden">
+      <header className="xl:h-52 rounded-xl overflow-hidden">
         <img src={imageLink} alt={title} className="object-center object-cover min-h-full w-full" />
       </header>
 
@@ -452,7 +455,7 @@ export default function Home() {
       </div>
       {/* Contribute end*/}
 
-      {/* Featured Archive start */}
+      {/* Donation start */}
       <div className="mt-8">
         <div className="bg-darkbluecolortwo rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <div className="">
@@ -494,6 +497,68 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {/* Donation end */}
+
+      {/* NewsLetter start */}
+      <div className="mt-8 bg-lightgoldcolorfive rounded-2xl p-6 relative overflow-hidden">
+        <img className="absolute -bottom-9 w-full z-10" src={NewsletterBackgroundImage} />
+
+        <div className="flex items-center absolute right-0 top-0 h-full">
+          <img className="w-full z-10 h-full" src={NewsletterBoyImage} />
+          <img className="w-full z-10 h-full" src={NewsletterGirlImage} />
+        </div>
+        <div className="flex flex-col xl:flex-row xl:items-center xl:h-44 sm:gap-10 relative z-20 mx-auto max-w-4xl">
+          <div className="">
+            <h3 className="font-inter text-xl lg:text-3xl 2xl:text-4xl font-bold text-white">
+              Subscribe to our newletter
+            </h3>
+            <div className="max-w-[29rem]">
+              <p className="text-lg font-normal font-sourcesans text-white my-2.5">
+                Subscribe to hear ancestral echoes guiding unity and carry timeless heritage with
+                you
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <fieldset>
+              <label htmlFor="email" className="sr-only">
+                email address
+              </label>
+              <div className="w-96">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  className="block w-full px-4 py-3.5 rounded-xl bg-white  border font-normal font-avenirMT border-shadecolorsix  placeholder-textcolor text-gray-500 focus:ring-indigo-500 sm:text-sm outline-0 focus:ring-2"
+                />
+                <button className="inline-flex items-center bg-accentblue px-8 py-2.5 space-x-4 rounded-lg mt-3">
+                  <span className="text-white text-base capitalize font-satoshi font-normal">
+                    Subscribe
+                  </span>
+                  <svg
+                    width="11"
+                    height="20"
+                    viewBox="0 0 11 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1.11075 18.5245L9.61382 10.0214L1.11075 1.51831"
+                      stroke="white"
+                      strokeWidth="1.25"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      {/* NewsLetter end */}
     </div>
   );
 }
