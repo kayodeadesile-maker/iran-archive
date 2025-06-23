@@ -10,6 +10,8 @@ import SubmitArchiveImage from "@/assets/submit-archive.jpg";
 import VolunteerImage from "@/assets/volunteer-image.jpg";
 import FieldAgentImage from "@/assets/field-agent.jpg";
 
+import IllustrationImage from "@/assets/illustration.svg";
+
 import { classNames } from "@/utils";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -179,6 +181,7 @@ export default function Home() {
           quicklinks.map(({ label, href }, idx) => {
             return (
               <motion.div
+                key={`${label}-${idx}`}
                 variants={quicklinksVariants}
                 initial="hidden"
                 ref={itemRef}
@@ -448,6 +451,49 @@ export default function Home() {
         </div>
       </div>
       {/* Contribute end*/}
+
+      {/* Featured Archive start */}
+      <div className="mt-8">
+        <div className="bg-darkbluecolortwo rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+          <div className="">
+            <h3 className="font-inter text-xl lg:text-3xl 2xl:text-4xl font-bold text-white">
+              Donate to preserve Yoruba heritage
+            </h3>
+            <div className="max-w-[29rem]">
+              <p className="text-lg font-normal font-sourcesans text-white my-2.5">
+                Your donation helps preserve the rich heritage of the Yoruba culture. Every
+                contribution moves us closer to building a lasting archive for generations to come.
+              </p>
+            </div>
+            <Link to="">
+              <div className="inline-flex items-center bg-accentblue px-8 py-2.5 space-x-4 rounded-lg">
+                <span className="text-white text-base capitalize font-satoshi font-normal">
+                  donate
+                </span>
+                <svg
+                  width="11"
+                  height="20"
+                  viewBox="0 0 11 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.11075 18.5245L9.61382 10.0214L1.11075 1.51831"
+                    stroke="white"
+                    strokeWidth="1.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </Link>
+          </div>
+
+          <div className="w-60">
+            <img src={IllustrationImage} alt="illustration" className="h-full w-full" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
