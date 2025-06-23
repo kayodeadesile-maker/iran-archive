@@ -1,6 +1,6 @@
 import { classNames } from "@/utils";
 import { DisclosurePanel } from "@headlessui/react";
-import { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { navigateRoutesOne, navigateRoutesTwo, type RouteProps } from "./routes";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
@@ -71,96 +71,101 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
 
   return (
     <Fragment>
-      <nav className="hidden lg:block fixed left-0 w-80 bg-lightgoldcolorsix h-[calc(100vh-5rem)] top-20 border-r border-gray-300 z-30">
+      <nav className="hidden lg:block fixed left-0 w-80 bg-lightgoldcolorsix h-[calc(100vh-5rem)] top-20 border-r border-gray-300 z-30 overflow-hidden">
         <div>
           <div className="flex flex-col items-center w-full">
-            {navigateRoutesOne.map((route, index) => {
-              const { label, Icon, current } = route;
-              // const openMenu = navigateRoutesOne.find((route) => route.label === label)?.openMenu;
-              const isMenuOpen = openMenuIndex! === index;
+            {React.Children.toArray(
+              navigateRoutesOne.map((route, index) => {
+                const { label, Icon, current } = route;
+                // const openMenu = navigateRoutesOne.find((route) => route.label === label)?.openMenu;
+                const isMenuOpen = openMenuIndex! === index;
 
-              return (
-                <div
-                  ref={(el) => {
-                    if (el) {
-                      menuRefs.current[index] = el;
-                    }
-                  }}
-                  key={label}
-                  className="relative w-full"
-                >
-                  <button
+                return (
+                  <div
                     ref={(el) => {
                       if (el) {
-                        buttonRefs.current[index] = el;
+                        menuRefs.current[index] = el;
                       }
                     }}
-                    onClick={() => handleMenuToggle(index, route)}
-                    className={classNames(
-                      "flex items-center space-x-4 relative w-full py-4 px-7",
-                      current ? "hover:bg-gray-50 " : "",
-                      isMenuOpen && "bg-gray-50"
-                    )}
-                    aria-current={current ? "page" : undefined}
+                    key={`${label}-${index}`}
+                    className="relative w-full"
                   >
-                    <>
-                      <span className={classNames("h-6")}>{Icon}</span>
-                      <span
-                        className={classNames(
-                          "text-base sm:text-lg font-satoshi capitalize",
-                          isMenuOpen ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
-                        )}
-                      >
-                        {label}
-                      </span>
-                    </>
-                  </button>
-
-                  {route.menuComponent && isMenuOpen && (
-                    <div className="w-full">
-                      {typeof route.menuComponent === "function" ? (
-                        <route.menuComponent buttonRef={{ current: buttonRefs.current[index] }} />
-                      ) : (
-                        route.menuComponent
+                    <button
+                      ref={(el) => {
+                        if (el) {
+                          buttonRefs.current[index] = el;
+                        }
+                      }}
+                      onClick={() => handleMenuToggle(index, route)}
+                      className={classNames(
+                        "flex items-center space-x-4 relative w-full py-4 px-7",
+                        current ? "hover:bg-gray-50 " : "",
+                        isMenuOpen && "bg-gray-50"
                       )}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                      aria-current={current ? "page" : undefined}
+                    >
+                      <>
+                        <span className={classNames("h-6")}>{Icon}</span>
+                        <span
+                          className={classNames(
+                            "text-base sm:text-lg font-satoshi capitalize",
+                            isMenuOpen ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
+                          )}
+                        >
+                          {label}
+                        </span>
+                      </>
+                    </button>
+
+                    {route.menuComponent && isMenuOpen && (
+                      <div className="w-full">
+                        {typeof route.menuComponent === "function" ? (
+                          <route.menuComponent buttonRef={{ current: buttonRefs.current[index] }} />
+                        ) : (
+                          route.menuComponent
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+            )}
           </div>
 
           <hr className="w-full border-[#956D30] my-6" />
 
           <div className="mb-1 flex flex-col items-center w-full">
-            {navigateRoutesTwo.map(({ label, Icon, current }) => (
-              <button
-                className={classNames(
-                  "flex items-center space-x-4 relative w-full py-4 px-7",
-                  current ? "hover:bg-gray-50 " : ""
-                )}
-                aria-current={current ? "page" : undefined}
-              >
-                <>
-                  <span
-                    className={classNames(
-                      // isActive ? "stroke-goldcolor dark:stroke-white" : "stroke-[#7B7B7B]",
-                      "h-6"
-                    )}
-                  >
-                    {Icon}
-                  </span>
-                  <span
-                    className={classNames(
-                      "text-base sm:text-lg font-normal font-satoshi capitalize"
-                      // isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
-                    )}
-                  >
-                    {label}
-                  </span>
-                </>
-              </button>
-            ))}
+            {React.Children.toArray(
+              navigateRoutesTwo.map(({ label, Icon, current }, index) => (
+                <button
+                  key={`${label}-${index}`}
+                  className={classNames(
+                    "flex items-center space-x-4 relative w-full py-4 px-7",
+                    current ? "hover:bg-gray-50 " : ""
+                  )}
+                  aria-current={current ? "page" : undefined}
+                >
+                  <>
+                    <span
+                      className={classNames(
+                        // isActive ? "stroke-goldcolor dark:stroke-white" : "stroke-[#7B7B7B]",
+                        "h-6"
+                      )}
+                    >
+                      {Icon}
+                    </span>
+                    <span
+                      className={classNames(
+                        "text-base sm:text-lg font-normal font-satoshi capitalize"
+                        // isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
+                      )}
+                    >
+                      {label}
+                    </span>
+                  </>
+                </button>
+              ))
+            )}
           </div>
         </div>
       </nav>
@@ -197,39 +202,41 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                 </div>
 
                 <motion.div className="space-y-2">
-                  {navigateRoutesOne.map(({ label, Icon, current }, idx) => (
-                    <motion.button
-                      key={`${label}-${idx}`}
-                      {...framerNavItems(idx, open)}
-                      className={classNames(
-                        "flex items-center space-x-4 relative w-full py-4 px-7",
-                        current ? "hover:bg-gray-50 " : ""
-                      )}
-                      aria-current={current ? "page" : undefined}
-                    >
-                      <>
-                        <motion.div
-                          {...framerIcon(open)}
-                          className={classNames(
-                            // isActive ? "stroke-goldcolor dark:stroke-white" : "stroke-[#7B7B7B]",
-                            "h-6"
-                          )}
-                        >
-                          {Icon}
-                        </motion.div>
+                  {React.Children.toArray(
+                    navigateRoutesOne.map(({ label, Icon, current }, idx) => (
+                      <motion.button
+                        key={`${label}-${idx}`}
+                        {...framerNavItems(idx, open)}
+                        className={classNames(
+                          "flex items-center space-x-4 relative w-full py-4 px-7",
+                          current ? "hover:bg-gray-50 " : ""
+                        )}
+                        aria-current={current ? "page" : undefined}
+                      >
+                        <>
+                          <motion.div
+                            {...framerIcon(open)}
+                            className={classNames(
+                              // isActive ? "stroke-goldcolor dark:stroke-white" : "stroke-[#7B7B7B]",
+                              "h-6"
+                            )}
+                          >
+                            {Icon}
+                          </motion.div>
 
-                        <motion.div
-                          {...framerText(idx, open)}
-                          className={classNames(
-                            "text-base sm:text-lg font-satoshi font-medium capitalize"
-                            // isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
-                          )}
-                        >
-                          {label}
-                        </motion.div>
-                      </>
-                    </motion.button>
-                  ))}
+                          <motion.div
+                            {...framerText(idx, open)}
+                            className={classNames(
+                              "text-base sm:text-lg font-satoshi font-medium capitalize"
+                              // isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
+                            )}
+                          >
+                            {label}
+                          </motion.div>
+                        </>
+                      </motion.button>
+                    ))
+                  )}
                 </motion.div>
 
                 <motion.hr
@@ -243,43 +250,45 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                   transition={{
                     delay: 0.5 + navigateRoutesOne.length / 10,
                   }}
-                  className="w-full border-[#956D30] my-6 border-[1.5px]"
+                  className="w-full border-[#956D30] my-6 border-2"
                 />
 
                 <motion.div className="space-y-2">
-                  {navigateRoutesTwo.map(({ label, Icon, current }, idx) => (
-                    <motion.button
-                      key={`${label}-${idx}`}
-                      {...framerNavItems(idx + navigateRoutesOne.length, open)}
-                      className={classNames(
-                        "flex items-center space-x-4 relative w-full py-4 px-7",
-                        current ? "hover:bg-gray-50 " : ""
-                      )}
-                      aria-current={current ? "page" : undefined}
-                    >
-                      <>
-                        <motion.div
-                          {...framerIcon(open)}
-                          className={classNames(
-                            // isActive ? "stroke-goldcolor dark:stroke-white" : "stroke-[#7B7B7B]",
-                            "h-6"
-                          )}
-                        >
-                          {Icon}
-                        </motion.div>
+                  {React.Children.toArray(
+                    navigateRoutesTwo.map(({ label, Icon, current }, idx) => (
+                      <motion.button
+                        key={`${label}-${idx}`}
+                        {...framerNavItems(idx + navigateRoutesOne.length, open)}
+                        className={classNames(
+                          "flex items-center space-x-4 relative w-full py-4 px-7",
+                          current ? "hover:bg-gray-50 " : ""
+                        )}
+                        aria-current={current ? "page" : undefined}
+                      >
+                        <>
+                          <motion.div
+                            {...framerIcon(open)}
+                            className={classNames(
+                              // isActive ? "stroke-goldcolor dark:stroke-white" : "stroke-[#7B7B7B]",
+                              "h-6"
+                            )}
+                          >
+                            {Icon}
+                          </motion.div>
 
-                        <motion.div
-                          {...framerText(idx + navigateRoutesOne.length, open)}
-                          className={classNames(
-                            "text-base sm:text-lg font-satoshi font-medium capitalize"
-                            // isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
-                          )}
-                        >
-                          {label}
-                        </motion.div>
-                      </>
-                    </motion.button>
-                  ))}
+                          <motion.div
+                            {...framerText(idx + navigateRoutesOne.length, open)}
+                            className={classNames(
+                              "text-base sm:text-lg font-satoshi font-medium capitalize"
+                              // isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
+                            )}
+                          >
+                            {label}
+                          </motion.div>
+                        </>
+                      </motion.button>
+                    ))
+                  )}
                 </motion.div>
               </div>
             </motion.div>

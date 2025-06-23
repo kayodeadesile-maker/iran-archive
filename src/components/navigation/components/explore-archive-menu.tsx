@@ -93,7 +93,7 @@ export const ExploreArchiveMenuComponent = ({ buttonRef }: ExploreArchiveMenuCom
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="bg-white p-6 fixed !z-20 rounded-xl border-lightgoldcolorfive border-[1.5px] max-w-lg w-full"
+        className="bg-white p-6 fixed !z-20 rounded-xl border-lightgoldcolorfive border-2 max-w-lg w-full"
         style={{
           top: `${menuPosition.top}px`,
           left: `${menuPosition.left}px`,
