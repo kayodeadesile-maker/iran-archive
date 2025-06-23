@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { AppNavigation } from "@/components/navigation/navigation";
 import { Outlet } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Footer } from "@/components/footer/footer";
 
 export const AppLayout = () => {
   return (
@@ -22,7 +23,7 @@ export const AppLayout = () => {
                   <button className="px-6 py-1.5 rounded-lg bg-white text-sm md:text-base font-medium text-textblack outline-0 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 border-0 transition-all">
                     Log in
                   </button>
-                  <button className="px-6 py-1.5 rounded-lg bg-accientblue text-sm md:text-base font-medium text-white outline-0 focus:ring-2 focus:ring-accientblue focus:ring-offset-2 border-0 transition-all hover:bg-accientblue/80">
+                  <button className="px-6 py-1.5 rounded-lg bg-accentblue text-sm md:text-base font-medium text-white outline-0 focus:ring-2 focus:ring-accentblue focus:ring-offset-2 border-0 transition-all hover:bg-accentblue/80">
                     Sign up
                   </button>
                   <button></button>
@@ -44,6 +45,7 @@ export const AppLayout = () => {
                 <div className="px-4 min-h-screen">
                   <Outlet context={{ close, open }} />
                 </div>
+                <Footer />
               </main>
             </div>
           </Fragment>
