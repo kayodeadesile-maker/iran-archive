@@ -112,7 +112,7 @@ export const ExploreArchiveMenuComponent = ({ buttonRef }: ExploreArchiveMenuCom
           }}
           initial="hidden"
           animate="visible"
-          className="text-lg capitalize font-medium font-avenirMT"
+          className="text-lg capitalize font-medium font-inter"
         >
           explore archive
         </motion.h1>
@@ -187,16 +187,16 @@ const MenuCardComponent = ({
         },
       }}
       custom={direction}
-      className="min-h-8"
+      className="min-h-20"
     >
-      <Link to={href} className="min-h-8">
+      <Link to={href} className="h-full w-full">
         <motion.div
           whileHover={{
             boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
           }}
           className={classNames(
             backgroundClass,
-            "p-4 h-full flex items-center justify-center rounded-lg"
+            "p-4 h-full flex items-center shrink-0 w-full justify-center rounded-lg"
           )}
         >
           <motion.p
@@ -206,7 +206,7 @@ const MenuCardComponent = ({
             transition={{
               duration: 0.2,
             }}
-            className="text-base font-medium capitalize font-avenirMT text-gray-800"
+            className="text-base font-medium capitalize font-satoshi text-gray-800"
           >
             {title}
           </motion.p>

@@ -41,7 +41,7 @@ const QuickLinkCard = ({ href, label }: QuickLinkCardProps) => {
   return (
     <Link to={href} className="block flex-grow shrink-0 group">
       <div className="p-4 bg-goldcolor rounded-2xl group-hover:bg-goldcolor/90 transition-colors">
-        <p className="text-white text-sm sm:text-base font-medium font-sourcesans capitalize text-center">
+        <p className="text-white text-sm sm:text-base font-medium font-satoshi capitalize text-center">
           {label}
         </p>
       </div>
@@ -62,8 +62,8 @@ const ArchiveMiniCardComponent = ({ title, Icon, description }: ArchiveMiniCardC
         {Icon}
       </span>
       <div className="space">
-        <h3 className="font-semibold font-avenirMT text-base">{title}</h3>
-        <p className="font-normal font-sourcesans text-sm">{description}</p>
+        <h3 className="font-semibold font-inter text-base">{title}</h3>
+        <p className="font-normal font-satoshi text-sm">{description}</p>
       </div>
     </div>
   );
@@ -93,9 +93,9 @@ const ArchiveCardComponent = ({
       </header>
 
       <div className="mt-4">
-        <h3 className={classNames(titleClass!, "sm:text-lg font-semibold capitalize")}>{title}</h3>
+        <h3 className={classNames(titleClass!, "sm:text-lg font-semibold font-inter capitalize")}>{title}</h3>
         {description && (
-          <p className={classNames(descriptionClass!, "text-sm font-normal")}>{description}</p>
+          <p className={classNames(descriptionClass!, "text-sm font-normal font-satoshi")}>{description}</p>
         )}
       </div>
     </div>
@@ -463,7 +463,7 @@ export default function Home() {
               Donate to preserve Yoruba heritage
             </h3>
             <div className="max-w-[29rem]">
-              <p className="text-lg font-normal font-sourcesans text-white my-2.5">
+              <p className="text-lg font-normal font-satoshi text-white my-2.5">
                 Your donation helps preserve the rich heritage of the Yoruba culture. Every
                 contribution moves us closer to building a lasting archive for generations to come.
               </p>
@@ -509,11 +509,11 @@ export default function Home() {
         </div>
         <div className="flex flex-col xl:flex-row xl:items-center xl:h-44 sm:gap-10 relative z-20 mx-auto max-w-4xl">
           <div className="">
-            <h3 className="font-inter text-xl lg:text-3xl 2xl:text-4xl font-bold text-white">
+            <h3 className="font-inter text-xl lg:text-3xl 2xl:text-4xl font-bold text-gray-800">
               Subscribe to our newletter
             </h3>
             <div className="max-w-[29rem]">
-              <p className="text-lg font-normal font-sourcesans text-white my-2.5">
+              <p className="text-lg font-normal font-satoshi text-gray-800 my-2.5">
                 Subscribe to hear ancestral echoes guiding unity and carry timeless heritage with
                 you
               </p>
@@ -581,8 +581,8 @@ const ContributionCardComponent = (card: ContributionCardProps) => {
 
       <div className="mt-2 p-4 flex items-start justify-between">
         <div>
-          <h3 className="sm:text-lg font-semibold capitalize font-avenirMT">{title}</h3>
-          <p className="text-sm font-normal font-sourcesans">{description}</p>
+          <h3 className="sm:text-lg font-semibold capitalize font-inter">{title}</h3>
+          <p className="text-sm font-normal font-satoshi">{description}</p>
         </div>
 
         {card.actionComponent && typeof card.actionComponent === "function" ? (
