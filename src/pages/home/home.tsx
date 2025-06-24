@@ -370,7 +370,7 @@ export default function Home() {
       {/*  */}
 
       {/* Contribute start*/}
-      <div className="mt-8">
+      <div className="mt-16">
         <header>
           <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-inter">Contribute</h1>
           <p className="text-lg font-normal font-sourcesans">Be part of this historical journey.</p>
@@ -456,19 +456,19 @@ export default function Home() {
       {/* Contribute end*/}
 
       {/* Donation start */}
-      <div className="mt-8">
-        <div className="bg-darkbluecolortwo rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-          <div className="">
+      <div className="mt-16 bg-darkbluecolortwo rounded-2xl p-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between max-w-5xl mx-auto">
+          <div>
             <h3 className="font-inter text-xl lg:text-3xl 2xl:text-4xl font-bold text-white">
               Donate to preserve Yoruba heritage
             </h3>
-            <div className="max-w-[29rem]">
-              <p className="text-lg font-normal font-satoshi text-white my-2.5">
+            <div className="max-w-[29rem] my-3.5">
+              <p className="text-lg font-normal font-satoshi text-white">
                 Your donation helps preserve the rich heritage of the Yoruba culture. Every
                 contribution moves us closer to building a lasting archive for generations to come.
               </p>
             </div>
-            <Link to="">
+            <Link to="" className="inline-block">
               <div className="inline-flex items-center bg-accentblue px-8 py-2.5 space-x-4 rounded-lg">
                 <span className="text-white text-base capitalize font-satoshi font-normal">
                   donate
@@ -500,14 +500,14 @@ export default function Home() {
       {/* Donation end */}
 
       {/* NewsLetter start */}
-      <div className="mt-8 bg-lightgoldcolorfive rounded-2xl p-6 relative overflow-hidden">
+      <div className="mt-16 bg-lightgoldcolorfive rounded-2xl p-6 relative overflow-hidden">
         <img className="absolute -bottom-9 w-full z-10" src={NewsletterBackgroundImage} />
 
         <div className="flex items-center absolute right-0 top-0 h-full">
           <img className="w-full z-10 h-full" src={NewsletterBoyImage} />
           <img className="w-full z-10 h-full" src={NewsletterGirlImage} />
         </div>
-        <div className="flex flex-col xl:flex-row xl:items-center xl:h-44 sm:gap-10 relative z-20 mx-auto max-w-4xl">
+        <div className="flex flex-col xl:flex-row xl:items-center xl:h-44 sm:gap-10 relative z-20 mx-auto max-w-5xl">
           <div className="">
             <h3 className="font-inter text-xl lg:text-3xl 2xl:text-4xl font-bold text-gray-800">
               Subscribe to our newletter
