@@ -46,7 +46,7 @@ export const framerIcon = (open: boolean) => {
 export const menuVariants = {
   hidden: {
     opacity: 0,
-    scale: 0.95,
+    scale: 0,
     y: -10,
   },
 
