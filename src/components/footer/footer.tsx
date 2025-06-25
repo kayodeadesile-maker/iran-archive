@@ -72,7 +72,7 @@ export const Footer = () => {
       <div className="max-w-5xl mx-auto px-4 2xl:px-0">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-content-center w-full py-7 gap-8">
           <div className="w-auto text-center sm:text-left">
-            <h3 className="font-avenirMT font-semibold text-lg capitalize">quick links</h3>
+            <h3 className="font-inter font-semibold text-lg capitalize">quick links</h3>
             <ul className="space-y-2.5 mt-3">
               {React.Children.toArray(
                 quickLinks.map(({ title, url }, index) => {
@@ -90,7 +90,7 @@ export const Footer = () => {
           </div>
 
           <div className="w-auto text-center sm:text-left">
-            <h3 className="font-avenirMT font-semibold text-lg capitalize">company</h3>
+            <h3 className="font-inter font-semibold text-lg capitalize">company</h3>
             <ul className="space-y-2.5 mt-3">
               {React.Children.toArray(
                 companyLinks.map(({ title, url }, index) => {
@@ -108,7 +108,7 @@ export const Footer = () => {
           </div>
 
           <div className="w-auto text-center sm:text-left">
-            <h3 className="font-avenirMT font-semibold text-lg capitalize">support</h3>
+            <h3 className="font-inter font-semibold text-lg capitalize">support</h3>
             <ul className="space-y-2.5 mt-3">
               {React.Children.toArray(
                 supportLinks.map(({ title, url }, index) => {
@@ -126,7 +126,7 @@ export const Footer = () => {
           </div>
 
           <div className="w-auto">
-            <h3 className="font-avenirMT font-semibold text-lg capitalize text-center sm:text-left">
+            <h3 className="font-inter font-semibold text-lg capitalize text-center sm:text-left">
               contact us
             </h3>
             <ul className="flex flex-col items-center sm:items-start space-y-4 mt-3">
