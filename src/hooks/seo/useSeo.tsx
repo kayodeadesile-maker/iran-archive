@@ -10,7 +10,7 @@ interface TwitterCardProps {
 }
 
 interface StructuredDataProps {
-  type?: "WebPage" | "Article" | "BlogPosting" | "Organization" | "Person" | "Product";
+  type?: "WebPage" | "Article" | "BlogPosting" | "Organization" | "Person" | "Product" | "FAQ";
   data?: Record<string, any>;
 }
 
