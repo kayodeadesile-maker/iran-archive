@@ -1,8 +1,46 @@
 import React, { useCallback, useState } from "react";
 import { alphabets } from "./alphabets";
 import { classNames } from "@/utils";
+import { useSearchEngineOptimization } from "@/hooks/seo/useSeo";
 
 export default function Proverbs() {
+  const env = import.meta.env;
+
+  useSearchEngineOptimization({
+    title: "Explore Archive | Proverbs",
+    description:
+      "Iran (Yoruba) an archive for preserving accient and present yoruba tradition assets.",
+    canonical: env.MODE === "production" ? "https://iran-opal.vercel.app/explore-archive/proverbs" : "http://localhost:5173/explore-archive/proverbs",
+    themeColor: "#000000",
+    appleTouchIcon: "/iran-logo.png",
+    lang: "en-NG",
+    keywords: [
+      "Learn",
+      "Yoruba",
+      "Reading",
+      "People",
+      "Phrase",
+      "Alphabets",
+      "Dialects",
+      "Games",
+      "Traditions",
+      "Herbs",
+      "Proverbs",
+      "History",
+      "Plants",
+      "Heroes",
+      "Vegetables",
+    ],
+
+    ogTitle: "Archive Proverbs Page",
+    ogDescription:
+      "Iran (Yoruba) an archive for preserving accient and present yoruba tradition assets.",
+    ogImage: "/iran-logo.png",
+    ogImageAlt: "Screenshot of my awesome page",
+    ogType: "website",
+    ogSiteName: "Iran Yoruba Archive",
+  });
+  
   return (
     <div className="pt-10">
       <div className="max-w-6xl mx-auto">
@@ -65,7 +103,9 @@ const CategoryFilter = () => {
                 <button
                   title={value}
                   type="button"
-                  className={classNames("w-full px-3 py-2.5 bg-shadecolornine text-center font-satoshi font-medium capitalize rounded-[5px] focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 border border-gray-400")}
+                  className={classNames(
+                    "w-full px-3 py-2.5 bg-shadecolornine text-center font-satoshi font-medium capitalize rounded-[5px] focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 border border-gray-400"
+                  )}
                 >
                   {label}
                 </button>

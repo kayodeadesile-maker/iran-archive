@@ -42,9 +42,7 @@ export const AppLayout = () => {
             <div className="flex items-stretch justify-between flex-shrink-0">
               <AppNavigation close={close} open={open} />
               <main className="absolute left-0 lg:left-80 w-full lg:w-[calc(100%-20rem)] pt-20 min-h-screen overflow-auto">
-                <div className="px-4 min-h-screen">
-                  <Outlet context={{ close, open }} />
-                </div>
+                <Outlet context={{ close, open }} />
                 <Footer />
               </main>
             </div>

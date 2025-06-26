@@ -193,35 +193,68 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
 
           <div className="mb-1 flex flex-col items-center w-full">
             {React.Children.toArray(
-              navigateRoutesTwo.map(({ label, Icon, current }, index) => (
-                <button
-                  key={`${label}-${index}`}
-                  className={classNames(
-                    "flex items-center space-x-4 relative w-full py-4 px-7",
-                    current ? "hover:bg-gray-50 " : ""
-                  )}
-                  aria-current={current ? "page" : undefined}
-                >
-                  <>
-                    <span
+              navigateRoutesTwo.map((route, index) => {
+                const { label, Icon } = route;
+                const isActive = isRouteActive(route);
+                // const openMenu = navigateRoutesOne.find((route) => route.label === label)?.openMenu;
+                const isMenuOpen = openMenuIndex! === index;
+
+                return (
+                  <div
+                    ref={(el) => {
+                      if (el) {
+                        menuRefs.current[index] = el;
+                      }
+                    }}
+                    key={`${label}-${index}`}
+                    className="relative w-full"
+                  >
+                    <button
+                      ref={(el) => {
+                        if (el) {
+                          buttonRefs.current[index] = el;
+                        }
+                      }}
+                      onClick={() => handleNavigation(route, index)}
                       className={classNames(
-                        // isActive ? "stroke-goldcolor dark:stroke-white" : "stroke-[#7B7B7B]",
-                        "h-6"
+                        "flex items-center space-x-4 relative w-full py-4 px-7 hover:bg-gray-50",
+                        isMenuOpen && "bg-gray-50",
+                        isActive && !isMenuOpen && "bg-gray-50 border-r-4 border-goldcolor"
                       )}
+                      aria-current={isActive ? "page" : undefined}
                     >
-                      {Icon}
-                    </span>
-                    <span
-                      className={classNames(
-                        "text-base sm:text-lg font-normal font-satoshi capitalize"
-                        // isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
-                      )}
-                    >
-                      {label}
-                    </span>
-                  </>
-                </button>
-              ))
+                      <>
+                        <span
+                          className={classNames(
+                            "h-6",
+                            isActive ? "text-goldcolor" : "text-[#7B7B7B]"
+                          )}
+                        >
+                          {Icon}
+                        </span>
+                        <span
+                          className={classNames(
+                            "text-base sm:text-lg font-satoshi capitalize",
+                            isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
+                          )}
+                        >
+                          {label}
+                        </span>
+                      </>
+                    </button>
+
+                    {route.menuComponent && isMenuOpen && (
+                      <div className="w-full">
+                        {typeof route.menuComponent === "function" ? (
+                          <route.menuComponent buttonRef={{ current: buttonRefs.current[index] }} />
+                        ) : (
+                          route.menuComponent
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })
             )}
           </div>
         </div>
@@ -232,7 +265,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
         {open && (
           <DisclosurePanel
             static
-            className={classNames("fixed lg:hidden left-0 top-0 z-20 h-full w-full")}
+            className={classNames("fixed lg:hidden left-0 top-0 z-30 h-full w-full")}
           >
             <motion.div
               {...framerSidebarBackground(open)}
@@ -307,7 +340,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                   transition={{
                     delay: 0.5 + navigateRoutesOne.length / 10,
                   }}
-                  className="w-full border-[#956D30] my-6 border-2"
+                  className="w-full border-[#956D30] my-6 border"
                 />
 
                 <motion.div className="space-y-2">
