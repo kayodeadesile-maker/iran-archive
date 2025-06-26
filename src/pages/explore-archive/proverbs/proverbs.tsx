@@ -19,10 +19,64 @@ export default function Proverbs() {
         </div>
 
         <ProverbAlphabetFilteringBoardComponent />
+
+        <CategoryFilter />
       </div>
     </div>
   );
 }
+
+const CategoryFilter = () => {
+  const categories = [
+    {
+      value: "wisdom",
+      label: "wisdom",
+    },
+    {
+      value: "patient",
+      label: "patient",
+    },
+    {
+      value: "respect",
+      label: "respect",
+    },
+    {
+      value: "hard-work",
+      label: "hard work",
+    },
+    {
+      value: "relationships",
+      label: "relationships",
+    },
+    {
+      value: "caution",
+      label: "caution",
+    },
+  ];
+
+  return (
+    <nav className="border-t border-gray-400 mt-10">
+      <div className="py-4">
+        <h2 className="font-satoshi font-normal text-base sm:text-lg uppercase">filter by: </h2>
+        <div className="flex items-center gap-2 mt-3">
+          {React.Children.toArray(
+            categories.map(({ label, value }) => {
+              return (
+                <button
+                  title={value}
+                  type="button"
+                  className={classNames("w-full px-3 py-2.5 bg-shadecolornine text-center font-satoshi font-medium capitalize rounded-[5px] focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 border border-gray-400")}
+                >
+                  {label}
+                </button>
+              );
+            })
+          )}
+        </div>
+      </div>
+    </nav>
+  );
+};
 
 export const ProverbAlphabetFilteringBoardComponent = () => {
   const [alphabet, setAlphabet] = useState<string | null>(null);
