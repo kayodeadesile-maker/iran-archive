@@ -127,6 +127,7 @@ export const ExploreArchiveMenuComponent = ({ buttonRef }: ExploreArchiveMenuCom
             links.map(({ href, backgroundClass, title, direction }, index) => {
               return (
                 <MenuCardComponent
+                  key={`${href}-${index}`}
                   href={href}
                   index={index}
                   direction={direction}

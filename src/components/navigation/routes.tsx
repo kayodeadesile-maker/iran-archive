@@ -7,6 +7,7 @@ import { ContributionMenuComponent } from "./components/contibution-menu";
 export type RouteProps = {
   label: string;
   Icon: any;
+  path?: string;
   menuComponent?:
     | React.ComponentType<{ buttonRef?: React.RefObject<HTMLButtonElement> }>
     | JSX.Element;

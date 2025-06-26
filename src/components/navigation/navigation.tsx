@@ -26,7 +26,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
   const buttonRefs = useRef<HTMLButtonElement[]>([]);
   const [openMenuIndex, setOpenMenuIndex] = useState<number | null>(null);
 
-  const page = pathname.split("/");
+  const page = pathname.split("/").filter(Boolean);
 
   console.log(page);
 
@@ -76,6 +76,48 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
     [openMenuIndex]
   );
 
+  const isRouteActive = useCallback(
+    (route: RouteProps[0]) => {
+      if (route.label === "home") {
+        return pathname === "/home" || pathname === "/";
+      }
+
+      const routeLabel = route.label.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and");
+
+      return page.some((segment) => {
+        console.log({ segment, splited: segment.split("-") });
+        console.log(route.label);
+        console.log(segment.split("-").join(" ").includes(route.label));
+
+        const segmentInLowerCase = segment.toLowerCase();
+        const labelWords = route.label.toLowerCase().split(/[\s&]+/);
+
+        if (segmentInLowerCase === routeLabel) return true;
+
+        return labelWords.some((word) => segmentInLowerCase.includes(word) && word.length > 2);
+      });
+    },
+    [pathname, page]
+  );
+
+  const handleNavigation = useCallback(
+    (route: RouteProps[0], index: number) => {
+      if (route.label === "home") {
+        navigate("/home");
+      } else if (route.path) {
+        navigate(route.path);
+      } else if (route.menuComponent) {
+        // Handle menu toggle for routes with dropdown menus
+        handleMenuToggle(index, route);
+      } else {
+        // Generate path from label for routes without explicit path
+        const routePath = `/${route.label.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and")}`;
+        navigate(routePath);
+      }
+    },
+    [navigate, handleMenuToggle]
+  );
+
   return (
     <Fragment>
       <nav className="hidden lg:block fixed left-0 w-80 bg-lightgoldcolorsix h-[calc(100vh-5rem)] top-20 border-r border-gray-300 z-30 overflow-hidden">
@@ -83,7 +125,8 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
           <div className="flex flex-col items-center w-full">
             {React.Children.toArray(
               navigateRoutesOne.map((route, index) => {
-                const { label, Icon, current } = route;
+                const { label, Icon } = route;
+                const isActive = isRouteActive(route);
                 // const openMenu = navigateRoutesOne.find((route) => route.label === label)?.openMenu;
                 const isMenuOpen = openMenuIndex! === index;
 
@@ -103,24 +146,27 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                           buttonRefs.current[index] = el;
                         }
                       }}
-                      onClick={() => {
-                        route.label === "home" ? navigate("/home") : handleMenuToggle(index, route);
-                      }}
+                      onClick={() => handleNavigation(route, index)}
                       className={classNames(
-                        "flex items-center space-x-4 relative w-full py-4 px-7",
-                        current ? "hover:bg-gray-50" : "",
+                        "flex items-center space-x-4 relative w-full py-4 px-7 hover:bg-gray-50",
                         isMenuOpen && "bg-gray-50",
-                        page.includes(label) ||
-                          (page?.[0].split("-").includes(label) && !isMenuOpen && "bg-gray-50")
+                        isActive && !isMenuOpen && "bg-gray-50 border-r-4 border-goldcolor"
                       )}
-                      aria-current={current ? "page" : undefined}
+                      aria-current={isActive ? "page" : undefined}
                     >
                       <>
-                        <span className={classNames("h-6")}>{Icon}</span>
+                        <span
+                          className={classNames(
+                            "h-6",
+                            isActive ? "text-goldcolor" : "text-[#7B7B7B]"
+                          )}
+                        >
+                          {Icon}
+                        </span>
                         <span
                           className={classNames(
                             "text-base sm:text-lg font-satoshi capitalize",
-                            isMenuOpen ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
+                            isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
                           )}
                         >
                           {label}
