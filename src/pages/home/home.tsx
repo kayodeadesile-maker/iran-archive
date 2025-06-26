@@ -510,7 +510,7 @@ export default function Home() {
       {/* Donation start */}
       <section id="donation" className="mt-16">
         <div className="bg-darkbluecolortwo rounded-2xl p-6">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between max-w-5xl mx-auto">
+          <div className="flex flex-col gap-4 sm:gap-0 sm:flex-row sm:items-center sm:justify-between max-w-5xl mx-auto">
             <div>
               <h2 className="font-inter text-xl lg:text-3xl 2xl:text-4xl font-bold text-white">
                 Donate to preserve Yoruba heritage
@@ -557,11 +557,15 @@ export default function Home() {
       {/* NewsLetter start */}
       <section id="newsletter" className="mt-16">
         <div className="bg-lightgoldcolorfive rounded-2xl p-6 relative overflow-hidden">
-          <img className="absolute -bottom-9 w-full z-10" src={NewsletterBackgroundImage} />
+          <img
+            className="absolute -bottom-9 w-full z-10"
+            src={NewsletterBackgroundImage}
+            alt="backgroung image"
+          />
 
           <div className="flex items-center absolute right-0 top-0 h-full">
-            <img className="w-full z-10 h-full" src={NewsletterBoyImage} />
-            <img className="w-full z-10 h-full" src={NewsletterGirlImage} />
+            <img className="w-full z-10 h-full" src={NewsletterBoyImage} alt="boy image" />
+            <img className="w-full z-10 h-full" src={NewsletterGirlImage} alt="girl image" />
           </div>
           <div className="flex flex-col xl:flex-row xl:items-center xl:h-44 sm:gap-10 relative z-20 mx-auto max-w-5xl">
             <div className="">
