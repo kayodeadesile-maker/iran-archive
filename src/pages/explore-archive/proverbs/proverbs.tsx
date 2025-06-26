@@ -1,3 +1,3 @@
-export function Proverbs() {
+export default function Proverbs() {
   return <section></section>;
 }

@@ -159,7 +159,7 @@ export default function Home() {
   const quicklinks = [
     {
       label: "proverbs",
-      href: "",
+      href: "/explore-archive/proverbs",
     },
     {
       label: "history",

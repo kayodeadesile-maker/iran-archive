@@ -12,6 +12,7 @@ import {
   framerSidebarPanel,
   framerText,
 } from "@/utils/framer";
+import { useLocation, useNavigate } from "react-router-dom";
 
 type AppNavigationPropsType = {
   close: (focusableElement?: HTMLElement | React.MutableRefObject<HTMLElement | null>) => void;
@@ -19,9 +20,15 @@ type AppNavigationPropsType = {
 };
 
 export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const menuRefs = useRef<HTMLDivElement[]>([]);
   const buttonRefs = useRef<HTMLButtonElement[]>([]);
   const [openMenuIndex, setOpenMenuIndex] = useState<number | null>(null);
+
+  const page = pathname.split("/");
+
+  console.log(page);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -96,11 +103,15 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                           buttonRefs.current[index] = el;
                         }
                       }}
-                      onClick={() => handleMenuToggle(index, route)}
+                      onClick={() => {
+                        route.label === "home" ? navigate("/home") : handleMenuToggle(index, route);
+                      }}
                       className={classNames(
                         "flex items-center space-x-4 relative w-full py-4 px-7",
-                        current ? "hover:bg-gray-50 " : "",
-                        isMenuOpen && "bg-gray-50"
+                        current ? "hover:bg-gray-50" : "",
+                        isMenuOpen && "bg-gray-50",
+                        page.includes(label) ||
+                          (page?.[0].split("-").includes(label) && !isMenuOpen && "bg-gray-50")
                       )}
                       aria-current={current ? "page" : undefined}
                     >

@@ -1,6 +1,9 @@
 import { AppLayout } from "@/layouts/AppLayout";
 import Home from "@/pages/home/home";
-import { createBrowserRouter } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+
+const Proverbs = lazy(() => import("@/pages/explore-archive/proverbs/proverbs"));
 
 export const routes = createBrowserRouter([
   {
@@ -9,7 +12,86 @@ export const routes = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <Navigate to="/home" replace  />
+      },
+      {
+        path: "home",
         element: <Home />,
+      },
+      {
+        path: "explore-archive",
+        children: [
+          {
+            path: "proverbs",
+            element: (
+              <Suspense
+                fallback={<p className="font-medium font-satoshi text-gray-800">loading...</p>}
+              >
+                <Proverbs />
+              </Suspense>
+            ),
+          },
+          {
+            path: "historical-moments",
+            element: (
+              <Suspense
+                fallback={<p className="font-medium font-satoshi text-gray-800">loading...</p>}
+              >
+                <></>
+              </Suspense>
+            ),
+          },
+          {
+            path: "parables-and-wise-sayings",
+            element: (
+              <Suspense
+                fallback={<p className="font-medium font-satoshi text-gray-800">loading...</p>}
+              >
+                <></>
+              </Suspense>
+            ),
+          },
+          {
+            path: "plants-and-vegetables",
+            element: (
+              <Suspense
+                fallback={<p className="font-medium font-satoshi text-gray-800">loading...</p>}
+              >
+                <></>
+              </Suspense>
+            ),
+          },
+          {
+            path: "heros-and-legends",
+            element: (
+              <Suspense
+                fallback={<p className="font-medium font-satoshi text-gray-800">loading...</p>}
+              >
+                <></>
+              </Suspense>
+            ),
+          },
+          {
+            path: "oral-traditions",
+            element: (
+              <Suspense
+                fallback={<p className="font-medium font-satoshi text-gray-800">loading...</p>}
+              >
+                <></>
+              </Suspense>
+            ),
+          },
+          {
+            path: "visual-archive",
+            element: (
+              <Suspense
+                fallback={<p className="font-medium font-satoshi text-gray-800">loading...</p>}
+              >
+                <></>
+              </Suspense>
+            ),
+          },
+        ],
       },
     ],
   },
