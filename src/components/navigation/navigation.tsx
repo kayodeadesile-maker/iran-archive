@@ -114,7 +114,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
 
   return (
     <Fragment>
-      <nav className="hidden lg:block fixed left-0 w-80 bg-lightgoldcolorsix h-[calc(100vh-5rem)] top-20 border-r border-gray-300 z-30 overflow-hidden">
+      <nav className="no-translate hidden lg:block fixed left-0 w-80 bg-lightgoldcolorsix h-[calc(100vh-5rem)] top-20 border-r border-gray-300 z-30 overflow-hidden">
         <div>
           <div className="flex flex-col items-center w-full">
             {React.Children.toArray(
@@ -261,7 +261,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
         {open && (
           <DisclosurePanel
             static
-            className={classNames("fixed lg:hidden left-0 top-0 z-30 h-full w-full")}
+            className={classNames("no-translate fixed lg:hidden left-0 top-0 z-30 h-full w-full")}
           >
             <motion.div
               {...framerSidebarBackground(open)}

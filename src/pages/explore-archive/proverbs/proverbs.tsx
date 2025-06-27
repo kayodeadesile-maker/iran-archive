@@ -10,7 +10,10 @@ export default function Proverbs() {
     title: "Explore Archive | Proverbs",
     description:
       "Iran (Yoruba) an archive for preserving accient and present yoruba tradition assets.",
-    canonical: env.MODE === "production" ? "https://iran-opal.vercel.app/explore-archive/proverbs" : "http://localhost:5173/explore-archive/proverbs",
+    canonical:
+      env.MODE === "production"
+        ? "https://iran-opal.vercel.app/explore-archive/proverbs"
+        : "http://localhost:5173/explore-archive/proverbs",
     themeColor: "#000000",
     appleTouchIcon: "/iran-logo.png",
     lang: "yo",
@@ -40,13 +43,13 @@ export default function Proverbs() {
     ogType: "website",
     ogSiteName: "Iran Yoruba Archive",
   });
-  
+
   return (
     <div className="pt-10 px-4">
       <div className="max-w-6xl mx-auto">
         <div>
           <h1 className="text-xl font-inter font-bold text-gray-900 mb-1">
-            Yoruba Proverbs and Meaning (Òwe Yorùbá)
+            Yoruba Proverbs and Meaning <span className="auto-translate">(Òwe Yorùbá)</span>
           </h1>
           <p className="font-satoshi font-normal text-base sm:text-lg lg:text-xl text-shadecolorfour leading-relaxed max-w-3xl">
             Yoruba proverbs are sacred vessels of wisdom, passed from tongue to tongue across
@@ -93,7 +96,7 @@ const CategoryFilter = () => {
   ];
 
   return (
-    <nav className="border-t border-gray-400 mt-10">
+    <nav className="no-translate border-t border-gray-400 mt-10">
       <div className="py-4">
         <h2 className="font-satoshi font-normal text-base sm:text-lg uppercase">filter by: </h2>
         <div className="flex items-center gap-2 mt-3">
@@ -101,6 +104,7 @@ const CategoryFilter = () => {
             categories.map(({ label, value }) => {
               return (
                 <button
+                  key={`${label}`}
                   title={value}
                   type="button"
                   className={classNames(
@@ -127,7 +131,7 @@ export const ProverbAlphabetFilteringBoardComponent = () => {
 
   return (
     <div className="max-w-[47.5rem] mx-auto mt-10 rounded-2xl p-5 bg-lightgoldcolorfive w-full">
-      <h2 className="font-satoshi sm:text-lg font-semibold">
+      <h2 className="no-translate font-satoshi sm:text-lg font-semibold">
         Browse proverbs with letter's starting with...
       </h2>
 

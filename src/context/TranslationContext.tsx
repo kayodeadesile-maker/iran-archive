@@ -7,6 +7,7 @@ interface ITranslationContext {
   translationMethod: string;
   setTranslationMethod: React.Dispatch<React.SetStateAction<string>>;
   setIsYorubaMode: React.Dispatch<React.SetStateAction<boolean>>;
+  translateText: (text: string, targetLang?: string, sourceLang?: string) => Promise<string>;
 }
 
 export const TranslationContext = createContext<ITranslationContext>({} as ITranslationContext);
@@ -41,26 +42,35 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
           return translatedText;
         }
-      } catch (error: unknown) {
+      } catch (error: any) {
+        // toast.error(message);
         console.error("MyMemory translation failed:", error);
         return text;
       } finally {
         setIsTranslating(false);
       }
     },
-    []
+    [translationCache, setIsTranslating]
   );
 
-  const getTranslationMethod = () => {
+  const getTranslationMethod = useCallback(() => {
     switch (translationMethod) {
       case "mymemory":
         return translateWithMyMemory;
       // case "google":
       //   return translateWithGoogleFree;
-      // default:
-      //   return smartTranslate;
+      default:
+        return translateWithMyMemory;
     }
-  };
+  }, [translationMethod, translateWithMyMemory]);
+
+  const translateText = useCallback(
+    async (text: string, targetLang: string = "yo", sourceLang: string = "en") => {
+      const translateFn = getTranslationMethod();
+      return await translateFn(text, targetLang, sourceLang);
+    },
+    [getTranslationMethod]
+  );
 
   const translatePageContent = useCallback(async () => {
     if (!isYorubaMode) return;
@@ -69,7 +79,7 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
     try {
       const textElements = document.querySelectorAll(
-        "p, h1, h2, h3, h4, h5, h6, span:not(.no-translate)"
+        "div:not(.no-translate), nav:not(.no-translate), p:not(.no-translate):not(.auto-translate), h1:not(.no-translate):not(.auto-translate), h2:not(.no-translate):not(.auto-translate), h3:not(.no-translate):not(.auto-translate), h4:not(.no-translate):not(.auto-translate), h5:not(.no-translate):not(.auto-translate), h6:not(.no-translate):not(.auto-translate), span:not(.no-translate):not(.auto-translate)"
       );
 
       for (const element of textElements) {
@@ -89,7 +99,7 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
   }, [isYorubaMode, translationMethod]);
 
   const restoreOriginalContent = useCallback(() => {
-    const translatedElements = document.querySelectorAll("[data-original]");
+    const translatedElements = document.querySelectorAll("[data-original]:not(.no-translate)");
     translatedElements.forEach((element) => {
       const original = element.getAttribute("data-original");
       if (original) {
@@ -107,6 +117,32 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
     }
   }, [isYorubaMode, translatePageContent, restoreOriginalContent]);
 
+  useEffect(() => {
+    const autoTranslateContent = async () => {
+      const translateFn = getTranslationMethod()!;
+
+      try {
+        const textElements = document.querySelectorAll(".auto-translate:not(.no-translate)");
+
+        for (const element of textElements) {
+          if (element.children.length === 0 && element.textContent?.trim()) {
+            const originalText = element.textContent?.trim();
+
+            if (originalText.length > 1) {
+              const translatedText = await translateFn(originalText, "yo", "en");
+              element.textContent = translatedText;
+              element.setAttribute("data-original", originalText);
+            }
+          }
+        }
+      } catch (error: unknown) {
+        console.error("Auto-translation failed:", error);
+      }
+    };
+
+    autoTranslateContent();
+  }, [getTranslationMethod]);
+
   return (
     <TranslationContext.Provider
       value={{
@@ -115,6 +151,7 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
         setTranslationMethod,
         translationMethod,
         setIsYorubaMode,
+        translateText,
       }}
     >
       <>{children}</>

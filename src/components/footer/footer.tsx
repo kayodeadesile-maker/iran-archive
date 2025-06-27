@@ -68,7 +68,7 @@ const supportLinks = [
 
 export const Footer = () => {
   return (
-    <footer className="mt-20 lg:mt-40">
+    <footer className="no-translate mt-20 lg:mt-40">
       <div className="max-w-5xl mx-auto px-4 2xl:px-0">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-content-center w-full py-7 gap-8">
           <div className="w-auto text-center sm:text-left">
