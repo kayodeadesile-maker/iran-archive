@@ -4,13 +4,25 @@ import { AppNavigation } from "@/components/navigation/navigation";
 import { Outlet } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Footer } from "@/components/footer/footer";
+import { useTranslation } from "@/hooks/context/useTranslation";
+import { TranslationControlComponent } from "@/components/translation/translation-control";
 
 export const AppLayout = () => {
+  const { isTranslating, isYorubaMode, setIsYorubaMode, setTranslationMethod, translationMethod } =
+    useTranslation();
+
   return (
     <Disclosure as="div" className="flex flex-col h-screen">
       {({ open, close }) => {
         return (
           <Fragment>
+            <TranslationControlComponent
+              handleSetTranslationMethod={setTranslationMethod}
+              isTranslating={isTranslating}
+              isYorubaMode={isYorubaMode}
+              translationMethod={translationMethod}
+              handleSetYorubaMode={setIsYorubaMode}
+            />
             <header className="fixed h-20 inset-x-0 top-0 right-0 bg-navigationbackground border-b border-gray-300 z-20">
               <nav className="h-full px-4 relative flex items-center justify-between">
                 <div className="flex items-center">

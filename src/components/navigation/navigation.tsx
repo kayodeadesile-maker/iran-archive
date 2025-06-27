@@ -28,8 +28,6 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
 
   const page = pathname.split("/").filter(Boolean);
 
-  console.log(page);
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (openMenuIndex !== null) {
@@ -85,10 +83,6 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
       const routeLabel = route.label.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and");
 
       return page.some((segment) => {
-        console.log({ segment, splited: segment.split("-") });
-        console.log(route.label);
-        console.log(segment.split("-").join(" ").includes(route.label));
-
         const segmentInLowerCase = segment.toLowerCase();
         const labelWords = route.label.toLowerCase().split(/[\s&]+/);
 

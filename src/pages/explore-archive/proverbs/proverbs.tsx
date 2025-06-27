@@ -13,7 +13,7 @@ export default function Proverbs() {
     canonical: env.MODE === "production" ? "https://iran-opal.vercel.app/explore-archive/proverbs" : "http://localhost:5173/explore-archive/proverbs",
     themeColor: "#000000",
     appleTouchIcon: "/iran-logo.png",
-    lang: "en-NG",
+    lang: "yo",
     keywords: [
       "Learn",
       "Yoruba",
@@ -42,7 +42,7 @@ export default function Proverbs() {
   });
   
   return (
-    <div className="pt-10">
+    <div className="pt-10 px-4">
       <div className="max-w-6xl mx-auto">
         <div>
           <h1 className="text-xl font-inter font-bold text-gray-900 mb-1">
