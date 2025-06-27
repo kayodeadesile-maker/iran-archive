@@ -96,9 +96,11 @@ const CategoryFilter = () => {
   ];
 
   return (
-    <nav className="no-translate border-t border-gray-400 mt-10">
+    <nav className="border-t border-gray-400 mt-10">
       <div className="py-4">
-        <h2 className="font-satoshi font-normal text-base sm:text-lg uppercase">filter by: </h2>
+        <h2 className="no-translate font-satoshi font-normal text-base sm:text-lg uppercase">
+          filter by:{" "}
+        </h2>
         <div className="flex items-center gap-2 mt-3">
           {React.Children.toArray(
             categories.map(({ label, value }) => {
@@ -183,7 +185,7 @@ const AlphabetComponent = ({
       aria-label={`Filter proverbs starting with ${label}`}
       onClick={() => onClick(value)}
     >
-      {label}
+      <span className="auto-translate">{label}</span>
     </button>
   );
 };
