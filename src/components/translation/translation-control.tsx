@@ -1,4 +1,5 @@
 import { classNames } from "@/utils";
+import { CogIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
 interface TranslationControlProps {
@@ -16,8 +17,7 @@ export const TranslationControlComponent: React.FC<TranslationControlProps> = ({
   translationMethod,
   handleSetTranslationMethod,
 }) => {
-
-  console.log(isYorubaMode)
+  console.log(isYorubaMode);
 
   const [showSettings, setShowSettings] = useState(false);
 
@@ -32,30 +32,29 @@ export const TranslationControlComponent: React.FC<TranslationControlProps> = ({
           <span className="text-sm font-medium font-satoshi">
             {isYorubaMode ? "Yorùbá" : "English"}
           </span>
+          <button
+            onClick={() => handleSetYorubaMode(!isYorubaMode)}
+            className={classNames(
+              "relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
+              isYorubaMode ? "bg-blue-600" : "bg-gray-200",
+              isTranslating ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+            )}
+            disabled={isTranslating}
+          >
+            <span
+              className={classNames(
+                "inline-block h-4 w-4 transform rounded-full bg-white  transition-transform",
+                isYorubaMode ? "translate-x-6" : "translate-x-1"
+              )}
+            ></span>
+          </button>
         </div>
 
         <button
-          onClick={() => handleSetYorubaMode(!isYorubaMode)}
-          className={classNames(
-            "relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
-            isYorubaMode ? "bg-blue-600" : "bg-gray-200",
-            isTranslating ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
-          )}
-          disabled={isTranslating}
-        >
-          <span
-            className={classNames(
-              "inline-block h-4 w-4 transform rounded-full bg-white  transition-transform",
-              isYorubaMode ? "translate-x-6" : "translate-x-1"
-            )}
-          ></span>
-        </button>
-
-        <button
           onClick={() => setShowSettings(!showSettings)}
-          className="text-xs text-gray-500 hover:text-gray-700 flex items-center gap-1"
+          className="mt-3 text-xs text-gray-500 hover:text-gray-700 flex items-center gap-1"
         >
-          ⚙️ Translation Settings
+          <CogIcon className="h-5" /> Translation Settings
         </button>
 
         {showSettings && (
