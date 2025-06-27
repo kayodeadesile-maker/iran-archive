@@ -17,16 +17,14 @@ export const TranslationControlComponent: React.FC<TranslationControlProps> = ({
   translationMethod,
   handleSetTranslationMethod,
 }) => {
-  console.log(isYorubaMode);
-
   const [showSettings, setShowSettings] = useState(false);
 
   const translationMethods = [
-    { value: "mymemory", label: "MyMemory", description: "Free collaborative translation" },
+    { value: "mymemory", label: "My Memory", description: "Free collaborative translation" },
   ];
 
   return (
-    <div className="fixed top-4 right-4 z-50">
+    <div className="fixed top-22 right-4 z-50">
       <div className="bg-white rounded-lg shadow-lg border border-gray-400 p-4 min-w-[250px]">
         <div className="flex items-center justify-between mb-3">
           <span className="text-sm font-medium font-satoshi">
@@ -58,7 +56,7 @@ export const TranslationControlComponent: React.FC<TranslationControlProps> = ({
         </button>
 
         {showSettings && (
-          <div className="mt-3 pt-3 border-t">
+          <div className="mt-3 pt-3 border-t border-gray-400">
             <label className="block text-xs font-medium text-gray-700 mb-2">
               Translation Service:
             </label>
@@ -84,7 +82,7 @@ export const TranslationControlComponent: React.FC<TranslationControlProps> = ({
         {/* Status */}
         {isTranslating && (
           <div className="mt-3 pt-3 border-t text-xs text-blue-600 flex items-center gap-1">
-            <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-3 w-3 border-b border-t border-blue-600"></div>
             Translating to Yorùbá...
           </div>
         )}
