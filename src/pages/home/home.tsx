@@ -42,7 +42,7 @@ const QuickLinkCard = ({ href, label }: QuickLinkCardProps) => {
   return (
     <Link to={href} className="block flex-grow shrink-0 group">
       <div className="p-4 bg-goldcolor rounded-2xl group-hover:bg-goldcolor/90 transition-colors">
-        <p className="text-white text-sm sm:text-base font-medium font-satoshi capitalize text-center">
+        <p className="text-white text-sm sm:text-base font-medium font-satoshi capitalize text-center no-translate">
           {label}
         </p>
       </div>
@@ -63,8 +63,8 @@ const ArchiveMiniCardComponent = ({ title, Icon, description }: ArchiveMiniCardC
         {Icon}
       </span>
       <div className="space">
-        <h2 className="font-semibold font-inter text-base">{title}</h2>
-        <p className="font-normal font-satoshi text-sm">{description}</p>
+        <h2 className="font-semibold font-inter text-base no-translate">{title}</h2>
+        <p className="font-normal font-satoshi text-sm no-translate">{description}</p>
       </div>
     </div>
   );
@@ -94,11 +94,21 @@ const ArchiveCardComponent = ({
       </header>
 
       <div className="mt-4">
-        <h2 className={classNames(titleClass!, "sm:text-lg font-semibold font-inter capitalize")}>
+        <h2
+          className={classNames(
+            titleClass!,
+            "sm:text-lg font-semibold font-inter capitalize no-translate"
+          )}
+        >
           {title}
         </h2>
         {description && (
-          <p className={classNames(descriptionClass!, "text-sm font-normal font-satoshi")}>
+          <p
+            className={classNames(
+              descriptionClass!,
+              "text-sm font-normal font-satoshi no-translate"
+            )}
+          >
             {description}
           </p>
         )}
@@ -414,7 +424,7 @@ export default function Home() {
         {/* What people are reading start */}
         <section className="mt-8" id="people-interests">
           <div>
-            <h2 className="text-xl lg:text-2xl mb-2 font-semibold font-inter">
+            <h2 className="text-xl lg:text-2xl mb-2 font-semibold font-inter no-translate">
               See what people are reading
             </h2>
           </div>
@@ -425,8 +435,10 @@ export default function Home() {
         <section className="mt-16" id="contibute">
           <div>
             <header>
-              <h2 className="text-xl lg:text-2xl mb-2 font-semibold font-inter">Contribute</h2>
-              <p className="text-lg font-normal font-sourcesans">
+              <h2 className="text-xl lg:text-2xl mb-2 font-semibold font-inter no-translate">
+                Contribute
+              </h2>
+              <p className="text-lg font-normal font-sourcesans no-translate">
                 Be part of this historical journey.
               </p>
             </header>
@@ -434,7 +446,7 @@ export default function Home() {
               <ContributionCardComponent
                 actionComponent={
                   <button className="inline-flex items-center shrink-0 gap-4 rounded-md bg-white px-4 py-2.5">
-                    <span className="text-sm font-medium font-satoshi">Submit</span>
+                    <span className="text-sm font-medium font-satoshi no-translate">Submit</span>
                     <svg
                       width="9"
                       height="16"
@@ -459,7 +471,7 @@ export default function Home() {
               <ContributionCardComponent
                 actionComponent={
                   <button className="inline-flex items-center shrink-0 gap-4 rounded-md bg-white px-4 py-2.5">
-                    <span className="text-sm font-medium font-satoshi">Sign up</span>
+                    <span className="text-sm font-medium font-satoshi no-translate">Sign up</span>
                     <svg
                       width="9"
                       height="16"
@@ -484,7 +496,7 @@ export default function Home() {
               <ContributionCardComponent
                 actionComponent={
                   <button className="inline-flex items-center shrink-0 gap-4 rounded-md bg-white px-4 py-2.5">
-                    <span className="text-sm font-medium font-satoshi">Sign up</span>
+                    <span className="text-sm font-medium font-satoshi no-translate">Sign up</span>
                     <svg
                       width="9"
                       height="16"
@@ -516,11 +528,11 @@ export default function Home() {
           <div className="bg-darkbluecolortwo rounded-2xl p-6">
             <div className="flex flex-col gap-4 sm:gap-0 sm:flex-row sm:items-center sm:justify-between max-w-5xl mx-auto">
               <div>
-                <h2 className="font-inter text-xl lg:text-3xl 2xl:text-4xl font-bold text-white">
-                  Donate to preserve Yoruba heritage
+                <h2 className="font-inter text-xl lg:text-3xl 2xl:text-4xl font-bold text-white no-translate">
+                  Donate to preserve <span className="no-translate">Yoruba</span> heritage
                 </h2>
                 <div className="max-w-[29rem] my-3.5">
-                  <p className="text-lg font-normal font-satoshi text-white">
+                  <p className="text-lg font-normal font-satoshi text-white no-translate">
                     Your donation helps preserve the rich heritage of the Yoruba culture. Every
                     contribution moves us closer to building a lasting archive for generations to
                     come.
@@ -528,7 +540,7 @@ export default function Home() {
                 </div>
                 <Link to="" className="inline-block">
                   <div className="inline-flex items-center bg-accentblue px-8 py-2.5 space-x-4 rounded-lg">
-                    <span className="text-white text-base capitalize font-satoshi font-normal">
+                    <span className="text-white text-base capitalize font-satoshi font-normal no-translate">
                       donate
                     </span>
                     <svg
@@ -573,11 +585,11 @@ export default function Home() {
             </div>
             <div className="flex flex-col xl:flex-row xl:items-center xl:h-44 sm:gap-10 relative z-10 mx-auto max-w-5xl">
               <div className="">
-                <h2 className="font-inter text-xl lg:text-3xl 2xl:text-4xl font-bold text-gray-800">
+                <h2 className="font-inter text-xl lg:text-3xl 2xl:text-4xl font-bold text-gray-800 no-translate">
                   Subscribe to our newletter
                 </h2>
                 <div className="max-w-[29rem]">
-                  <p className="text-lg font-normal font-satoshi text-gray-800 my-2.5">
+                  <p className="text-lg font-normal font-satoshi text-gray-800 my-2.5 no-translate">
                     Subscribe to hear ancestral echoes guiding unity and carry timeless heritage
                     with you
                   </p>
@@ -598,7 +610,7 @@ export default function Home() {
                       className="block w-full px-4 py-3.5 rounded-xl bg-white  border font-normal font-avenirMT border-shadecolorsix  placeholder-textcolor text-gray-500 focus:ring-indigo-500 sm:text-sm outline-0 focus:ring-2"
                     />
                     <button className="inline-flex items-center bg-accentblue px-8 py-2.5 space-x-4 rounded-lg mt-3">
-                      <span className="text-white text-base capitalize font-satoshi font-normal">
+                      <span className="text-white text-base capitalize font-satoshi font-normal no-translate">
                         Subscribe
                       </span>
                       <svg
@@ -647,8 +659,8 @@ const ContributionCardComponent = (card: ContributionCardProps) => {
 
       <div className="mt-2 p-4 flex items-start justify-between">
         <div>
-          <h2 className="sm:text-lg font-semibold capitalize font-inter">{title}</h2>
-          <p className="text-sm font-normal font-satoshi">{description}</p>
+          <h2 className="sm:text-lg font-semibold capitalize font-inter no-translate">{title}</h2>
+          <p className="text-sm font-normal font-satoshi no-translate">{description}</p>
         </div>
 
         {card.actionComponent && typeof card.actionComponent === "function" ? (
