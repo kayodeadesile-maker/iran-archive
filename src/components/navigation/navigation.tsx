@@ -196,26 +196,28 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
               navigateRoutesTwo.map((route, index) => {
                 const { label, Icon } = route;
                 const isActive = isRouteActive(route);
+                const adjustedIndex = index + navigateRoutesOne.length;
+
                 // const openMenu = navigateRoutesOne.find((route) => route.label === label)?.openMenu;
-                const isMenuOpen = openMenuIndex! === index;
+                const isMenuOpen = openMenuIndex! === adjustedIndex;
 
                 return (
                   <div
                     ref={(el) => {
                       if (el) {
-                        menuRefs.current[index] = el;
+                        menuRefs.current[adjustedIndex] = el;
                       }
                     }}
-                    key={`${label}-${index}`}
+                    key={`${label}-${adjustedIndex}`}
                     className="relative w-full"
                   >
                     <button
                       ref={(el) => {
                         if (el) {
-                          buttonRefs.current[index] = el;
+                          buttonRefs.current[adjustedIndex] = el;
                         }
                       }}
-                      onClick={() => handleNavigation(route, index)}
+                      onClick={() => handleNavigation(route, adjustedIndex)}
                       className={classNames(
                         "flex items-center space-x-4 relative w-full py-4 px-7 hover:bg-gray-50",
                         isMenuOpen && "bg-gray-50",
