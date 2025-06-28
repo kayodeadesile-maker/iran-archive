@@ -1,5 +1,6 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import axios from "axios";
+import { LocalStorage } from "@/utils";
 
 interface ITranslationContext {
   isTranslating: boolean;
@@ -7,6 +8,7 @@ interface ITranslationContext {
   translationMethod: string;
   setTranslationMethod: React.Dispatch<React.SetStateAction<string>>;
   setIsYorubaMode: React.Dispatch<React.SetStateAction<boolean>>;
+  detectUserLanguage: () => void;
   translateText: (text: string, targetLang?: string, sourceLang?: string) => Promise<string>;
 }
 
@@ -17,6 +19,30 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [translationCache, setTranslationCache] = useState(new Map());
   const [isYorubaMode, setIsYorubaMode] = useState(false);
   const [translationMethod, setTranslationMethod] = useState("mymemory");
+  // const [userLanguagePreference, setUserLanguagePreference] = useState(null);
+  // const observerRef = useRef(null);
+
+  const detectUserLanguage = useCallback(() => {
+    const savedPrefrence = LocalStorage.get("language-preference");
+
+    if (savedPrefrence) {
+      return savedPrefrence;
+    }
+
+    const browserLanguage = navigator.language || navigator.languages[0];
+    // const langCode = browserLanguage.split("-")[0].toLowerCase();
+
+    const yorubaIndicators = ["yo", "yoruba"];
+    const nigerianIndicators = ["en-ng", "ng"];
+
+    if (yorubaIndicators.some((indicator) => browserLanguage.toLowerCase().includes(indicator)))
+      return "yo";
+
+    if (nigerianIndicators.some((indicator) => browserLanguage.toLowerCase().includes(indicator)))
+      return "auto-yo";
+
+    return "en";
+  }, []);
 
   const translateWithMyMemory = useCallback(
     async (text: string, targetLang: string = "yo", sourceLang: string = "en") => {
@@ -151,6 +177,7 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
         setTranslationMethod,
         translationMethod,
         setIsYorubaMode,
+        detectUserLanguage,
         translateText,
       }}
     >
