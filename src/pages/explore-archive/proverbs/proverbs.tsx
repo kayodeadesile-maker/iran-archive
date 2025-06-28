@@ -4,6 +4,7 @@ import { classNames } from "@/utils";
 import ProverbCoverImage from "@/assets/proverbs-cover-image.jpg";
 import { useSearchEngineOptimization } from "@/hooks/seo/useSeo";
 import { HeartIcon } from "@heroicons/react/24/outline";
+import { PaginationComponent } from "@/components/pagination/Pagination";
 
 export default function Proverbs() {
   const env = import.meta.env;
@@ -118,6 +119,16 @@ export default function Proverbs() {
             })
           )}
         </ul>
+
+        <PaginationComponent
+          hasNextPage={true}
+          next={() => console.log("next")}
+          prev={() => console.log("previous")}
+          page={1}
+          totalItems={50}
+          totalPages={100}
+          setPage={(v) => console.log(v)}
+        />
       </div>
     </div>
   );
@@ -262,7 +273,10 @@ const ProverbListItemComponent: React.FC<ProverbListItemProps> = ({
   id,
 }) => {
   return (
-    <li className="even:bg-lightgoldcolorfive odd:bg-lightgoldcolorsix px-4 py-2.5 border border-gray-200" role="button">
+    <li
+      className="even:bg-lightgoldcolorfive odd:bg-lightgoldcolorsix px-4 py-2.5 border border-gray-200"
+      role="button"
+    >
       <div className="flex justify-between items-center">
         <span className="text-sm sm:text-base lg:text-lg font-satoshi font-normal">{content}</span>
         <div className="inline-flex items-center space-x-2">
