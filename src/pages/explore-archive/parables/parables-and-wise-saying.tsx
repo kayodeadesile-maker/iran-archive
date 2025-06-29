@@ -297,18 +297,21 @@ const ProverbListItemComponent: React.FC<ProverbListItemProps> = ({
   onClick,
 }) => {
   return (
-    <li
-      className="even:bg-lightgoldcolorfive odd:bg-lightgoldcolorsix px-4 py-2.5 border border-gray-200"
-      role="button"
-      onClick={(event) => {
-        event.preventDefault();
-        event.stopPropagation();
-
-        onClick();
-      }}
-    >
+    <li className="even:bg-lightgoldcolorfive odd:bg-lightgoldcolorsix px-4 py-2.5 border border-gray-200">
       <div className="flex justify-between items-center">
-        <span className="text-sm sm:text-base lg:text-lg font-satoshi font-normal">{content}</span>
+        <button
+          type="button"
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            onClick();
+          }}
+        >
+          <span className="text-sm sm:text-base lg:text-lg font-satoshi font-normal">
+            {content}
+          </span>
+        </button>
         <div className="inline-flex items-center space-x-2">
           <button type="button" className="cursor-pointer">
             <span className="flex items-center justify-center h-8 w-8 rounded-full bg-lightgoldcolorthree">
