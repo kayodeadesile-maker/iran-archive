@@ -7,6 +7,12 @@ const Proverbs = lazy(() => import("@/pages/explore-archive/proverbs/proverbs"))
 const ParablesAndWiseSayings = lazy(
   () => import("@/pages/explore-archive/parables/parables-and-wise-saying")
 );
+const ProverbsExplaination = lazy(
+  () => import("@/pages/explore-archive/proverbs/pages/proverb-explanation")
+);
+const ParablesbDetailExplaination = lazy(
+  () => import("@/pages/explore-archive/parables/pages/parables-explaination")
+);
 
 export const routes = createBrowserRouter([
   {
@@ -26,13 +32,33 @@ export const routes = createBrowserRouter([
         children: [
           {
             path: "proverbs",
-            element: (
-              <Suspense
-                fallback={<p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>}
-              >
-                <Proverbs />
-              </Suspense>
-            ),
+            children: [
+              {
+                index: true,
+
+                element: (
+                  <Suspense
+                    fallback={
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
+                    }
+                  >
+                    <Proverbs />
+                  </Suspense>
+                ),
+              },
+              {
+                path: ":proverId",
+                element: (
+                  <Suspense
+                    fallback={
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
+                    }
+                  >
+                    <ProverbsExplaination />
+                  </Suspense>
+                ),
+              },
+            ],
           },
           {
             path: "historical-moments",
@@ -46,13 +72,32 @@ export const routes = createBrowserRouter([
           },
           {
             path: "parables-and-wise-sayings",
-            element: (
-              <Suspense
-                fallback={<p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>}
-              >
-                <ParablesAndWiseSayings />
-              </Suspense>
-            ),
+            children: [
+              {
+                index: true,
+                element: (
+                  <Suspense
+                    fallback={
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
+                    }
+                  >
+                    <ParablesAndWiseSayings />
+                  </Suspense>
+                ),
+              },
+              {
+                path: ":parablaId",
+                element: (
+                  <Suspense
+                    fallback={
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
+                    }
+                  >
+                    <ParablesbDetailExplaination />
+                  </Suspense>
+                ),
+              },
+            ],
           },
           {
             path: "plants-and-vegetables",

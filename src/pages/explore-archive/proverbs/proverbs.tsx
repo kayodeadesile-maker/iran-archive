@@ -1,15 +1,26 @@
 import React, { useCallback, useState } from "react";
-import { alphabets } from "./alphabets";
+import { alphabets } from "@/utils/alphabets";
 import { classNames } from "@/utils";
 import ProverbCoverImage from "@/assets/proverbs-cover-image.jpg";
 import { useSearchEngineOptimization } from "@/hooks/seo/useSeo";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { PaginationComponent } from "@/components/pagination/Pagination";
+import { useNavigate } from "react-router-dom";
+import { SuggestionComponent } from "@/components/suggestion/suggestion";
+
+const FILTERS = ["wisdom", "patient", "respect", "hard-work", "relationships", "caution"] as const;
+type Filters = (typeof FILTERS)[number];
 
 export default function Proverbs() {
   const env = import.meta.env;
+  const navigate = useNavigate();
 
+  const [filter, setFilter] = useState<Filters>("wisdom");
   const [isFavourite, setIsFavourite] = useState<{ [key: string]: boolean }>({});
+
+  const handleFilter = useCallback((filter: Filters) => {
+    setFilter(filter);
+  }, []);
 
   const handleMarkAsFavourite = useCallback((key: string) => {
     setIsFavourite((prev) => ({ ...prev, [key]: true }));
@@ -81,7 +92,7 @@ export default function Proverbs() {
   });
 
   return (
-    <div className="pt-10 px-4">
+    <section className="pt-10 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="relative rounded-3xl overflow-hidden">
           <img
@@ -90,7 +101,7 @@ export default function Proverbs() {
             title="proverbs cover image"
             className="h-full w-full absolute inset-0 object-cover"
           />
-          <div className="flex flex-col min-h-[340px] justify-center relative z-10 p-4 xl:p-6">
+          <div className="flex flex-col min-h-[200px] lg:min-h-[340px] justify-center relative z-10 p-4 xl:p-6">
             <h1 className="text-xl sm:text-4xl lg:text-5xl font-inter font-bold text-white mb-1 auto-translate">
               Òwe Yorùbá
             </h1>
@@ -101,7 +112,7 @@ export default function Proverbs() {
         </div>
 
         <ProverbAlphabetFilteringBoardComponent />
-        <CategoryFilter />
+        <CategoryFilter handleFilter={handleFilter} filter={filter} />
 
         <ul className="space-y-3">
           {React.Children.toArray(
@@ -109,6 +120,7 @@ export default function Proverbs() {
               return (
                 <ProverbListItemComponent
                   content={content}
+                  onClick={() => navigate(`${content}-${index}-${id}`)}
                   isFavourite={!!isFavourite[`${content}-${index}-${id}`]}
                   handleMarkAsFavourite={handleMarkAsFavourite}
                   handleMarkAsNotFavourite={handleMarkAsNotFavourite}
@@ -129,12 +141,21 @@ export default function Proverbs() {
           totalPages={100}
           setPage={(v) => console.log(v)}
         />
+
+        <SuggestionComponent
+          meaning="You help the vulnerable with all your capacity, or to satisfactory. If you don’t, your effort might not reflect because they can’t help themselves"
+          title="Proverb of the Day"
+          suggestionTitle="Àgbàtàn là gbòlè; tá a bá dá aṣọ fún òlè, a pàláró; tá a bá làjà fún òlè, a ṣìndé lẹ́ni"
+        />
       </div>
-    </div>
+    </section>
   );
 }
 
-const CategoryFilter = () => {
+const CategoryFilter: React.FC<{
+  filter: Filters;
+  handleFilter: (filter: Filters) => void;
+}> = ({ filter, handleFilter }) => {
   const categories = [
     {
       value: "wisdom",
@@ -166,9 +187,9 @@ const CategoryFilter = () => {
     <nav className="border-t border-gray-400 mt-10">
       <div className="py-4">
         <h2 className="no-translate font-satoshi font-normal text-base sm:text-lg uppercase">
-          filter by:{" "}
+          filter by: <span className="lowercase font-medium text-gray-600">{filter}</span>
         </h2>
-        <div className="flex items-center gap-2 mt-3">
+        <div className="flex items-center gap-2 mt-3 flex-wrap">
           {React.Children.toArray(
             categories.map(({ label, value }) => {
               return (
@@ -176,8 +197,9 @@ const CategoryFilter = () => {
                   key={`${label}`}
                   title={value}
                   type="button"
+                  onClick={() => handleFilter(value as Filters)}
                   className={classNames(
-                    "w-full px-3 py-2.5 bg-shadecolornine text-center font-satoshi font-medium capitalize rounded-[5px] focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 border border-gray-400"
+                    "w-auto grow px-3 py-2.5 cursor-pointer bg-shadecolornine text-center font-satoshi font-medium capitalize rounded-[5px] focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 border border-gray-400"
                   )}
                 >
                   {label}
@@ -263,6 +285,7 @@ interface ProverbListItemProps {
   isFavourite: boolean;
   handleMarkAsFavourite: (value: string) => void;
   handleMarkAsNotFavourite: (value: string) => void;
+  onClick: () => void;
 }
 
 const ProverbListItemComponent: React.FC<ProverbListItemProps> = ({
@@ -271,11 +294,18 @@ const ProverbListItemComponent: React.FC<ProverbListItemProps> = ({
   handleMarkAsFavourite,
   handleMarkAsNotFavourite,
   id,
+  onClick,
 }) => {
   return (
     <li
       className="even:bg-lightgoldcolorfive odd:bg-lightgoldcolorsix px-4 py-2.5 border border-gray-200"
       role="button"
+      onClick={(event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        onClick();
+      }}
     >
       <div className="flex justify-between items-center">
         <span className="text-sm sm:text-base lg:text-lg font-satoshi font-normal">{content}</span>

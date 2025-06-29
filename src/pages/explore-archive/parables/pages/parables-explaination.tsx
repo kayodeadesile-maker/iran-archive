@@ -5,7 +5,7 @@ import { ArrowLeftIcon, HeartIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function ProverbDetailExplaination() {
+export default function ParablesbDetailExplaination() {
   const env = import.meta.env;
   const navigate = useNavigate();
   const [isFavourite, setIsFavourite] = useState<boolean>(false);
@@ -65,7 +65,6 @@ export default function ProverbDetailExplaination() {
           <span className="font-satoshi font-normal italic text-2xl inline-block mb-2">
             Proverb (Owe):
           </span>
-
           <div className="border-t border-gray-400 py-2">
             <div className="mb-2">
               <h1 className="font-inter font-semibold text-3xl">
@@ -242,7 +241,7 @@ export default function ProverbDetailExplaination() {
 
           <SuggestionComponent
             meaning="You help the vulnerable with all your capacity, or to satisfactory. If you don’t, your effort might not reflect because they can’t help themselves"
-            title="Popular Proverb"
+            title="Popular Parable and Wise Saying"
             suggestionTitle="Àgbàtàn là gbòlè; tá a bá dá aṣọ fún òlè, a pàláró; tá a bá làjà fún òlè, a ṣìndé lẹ́ni"
           />
         </article>
