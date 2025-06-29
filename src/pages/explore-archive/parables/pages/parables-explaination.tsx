@@ -1,4 +1,5 @@
 import { SuggestionComponent } from "@/components/suggestion/suggestion";
+import { UsageComponent } from "@/components/usage/usage";
 import { useSearchEngineOptimization } from "@/hooks/seo/useSeo";
 import { classNames } from "@/utils";
 import { ArrowLeftIcon, HeartIcon } from "@heroicons/react/24/outline";
@@ -236,6 +237,7 @@ export default function ParablesbDetailExplaination() {
                   </p>
                 </div>
               </div>
+              <UsageComponent />
             </div>
           </div>
 

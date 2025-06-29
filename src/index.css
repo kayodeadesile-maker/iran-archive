@@ -230,9 +230,9 @@
   --color-shadecolorsix: #a0a7bc;
 
   --font-avenirMT: "Avenri Montserrat", sans;
-  --font-sourcesans: "Source Sans 3", sans-serif;
-  --font-satoshi: "Satoshi", sans-serif;
-  --font-inter: "Inter", sans-serif;
+  --font-sourcesans: "Source Sans 3", system-ui, sans-serif;
+  --font-satoshi: "Satoshi", system-ui, sans-serif;
+  --font-inter: "Inter", system-ui, sans-serif;
 }
 
 /* Theme Configuration */
