@@ -211,14 +211,18 @@
   --color-accentblue: #006eff;
   --color-textblack: #0a0b0e;
   --color-goldcolor: #2b1f0e;
+
   --color-lightgoldcolor: #c79852;
+  --color-lightgoldcolorone: #956d30;
   --color-lightgoldcolorthree: #d8b787;
   --color-lightgoldcolorfour: #e6d1b2;
   --color-lightgoldcolorfive: #f1e5d4;
   --color-lightgoldcolorsix: #f9f4ec;
   --color-lightbluecolorfive: #e5f0ff;
+
   --color-darkbrowncolorsix: #ffe3e3;
   --color-darkbluecolortwo: #001633;
+
   --color-shadecolorfour: #3a4156;
   --color-shadecolorseven: #c0c5d2;
   --color-shadecoloreight: #dfe2e9;
