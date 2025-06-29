@@ -119,7 +119,7 @@ export default function ParablesAndWiseSayings() {
   ];
 
   return (
-    <section className="pt-10">
+    <section className="pt-10 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="relative rounded-3xl overflow-hidden">
           <img

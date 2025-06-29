@@ -41,7 +41,7 @@ export const TranslationControlComponent: React.FC<TranslationControlProps> = ({
       </button>
 
       {showTranslation && (
-        <div className="bg-white rounded-lg shadow-lg border border-gray-400 p-4 min-w-[250px] relative">
+        <div className="bg-white rounded-lg shadow-lg border border-gray-400 p-4 min-w-[250px] relative transition-all">
           <div className="flex items-center justify-between mb-3">
             <span className="text-sm font-medium font-satoshi">
               {isYorubaMode ? "Yorùbá" : "English"}
