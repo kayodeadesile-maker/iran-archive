@@ -336,14 +336,18 @@ const ProverbListItemComponent: React.FC<ProverbListItemProps> = ({
             type="button"
             className="cursor-pointer"
             onClick={() =>
-              isFavourite ? handleMarkAsNotFavourite(id) : handleMarkAsFavourite(id)!
+              isFavourite
+                ? handleMarkAsNotFavourite(id)
+                : handleMarkAsFavourite(id)!
             }
           >
-            <span className="flex items-center justify-center h-8 w-8 rounded-full bg-lightgoldcolorthree">
+            <span className="flex items-center justify-center h-8 w-8 rounded-full bg-white border border-lightgoldcolorthree">
               <HeartIcon
                 className={classNames(
                   "shrink-0 w-1/2 h-1/2",
-                  isFavourite ? "stroke-none fill-white" : "stroke-white"
+                  isFavourite
+                    ? "stroke-none fill-lightgoldcolorthree"
+                    : "stroke-lightgoldcolorthree"
                 )}
                 strokeWidth={2.5}
               />
