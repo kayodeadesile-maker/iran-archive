@@ -128,7 +128,7 @@ export default function ParablesAndWiseSayings() {
             title="Parables cover image"
             className="h-full w-full absolute inset-0 object-cover"
           />
-          <div className="flex flex-col min-h-[340px] justify-center relative z-10 p-4 xl:p-6">
+          <div className="flex flex-col min-h-[200px] md:min-h-[250px] xl:min-h-[340px] justify-center relative z-10 p-4 md:p-6">
             <h1 className="text-xl sm:text-4xl lg:text-5xl font-inter font-bold text-white mb-1 auto-translate">
               Àkànlò Èdè ati Ọ̀rọ̀ Ọlọ́gbọ́n
             </h1>
@@ -189,7 +189,7 @@ const CategoryFilter: React.FC<{
         <h2 className="no-translate font-satoshi font-normal text-base sm:text-lg uppercase">
           filter by: <span className="lowercase font-medium text-gray-600">{filter}</span>
         </h2>
-        <div className="flex items-center gap-2 mt-3">
+        <div className="flex items-center gap-2 mt-3 flex-wrap">
           {React.Children.toArray(
             categories.map(({ label, value }) => {
               return (
@@ -199,7 +199,7 @@ const CategoryFilter: React.FC<{
                   type="button"
                   onClick={() => handleFilter(value as Filters)}
                   className={classNames(
-                    "w-full px-3 py-2.5 cursor-pointer bg-shadecolornine text-center font-satoshi font-medium capitalize rounded-[5px] focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 border border-gray-400"
+                    "w-auto grow px-3 py-2.5 cursor-pointer bg-shadecolornine text-center font-satoshi font-medium capitalize rounded-[5px] focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 border border-gray-400"
                   )}
                 >
                   {label}

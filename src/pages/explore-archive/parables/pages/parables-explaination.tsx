@@ -1,6 +1,8 @@
 import { SuggestionComponent } from "@/components/suggestion/suggestion";
+import { SpeechControls } from "@/components/translation/speech-control";
 import { UsageComponent } from "@/components/usage/usage";
 import { useSearchEngineOptimization } from "@/hooks/seo/useSeo";
+// import { useSpeech } from "@/hooks/speech/useSpeech";
 import { classNames } from "@/utils";
 import { ArrowLeftIcon, HeartIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
@@ -10,6 +12,7 @@ export default function ParablesbDetailExplaination() {
   const env = import.meta.env;
   const navigate = useNavigate();
   const [isFavourite, setIsFavourite] = useState<boolean>(false);
+  // useSpeech();
 
   useSearchEngineOptimization({
     title: "Explore Archive | Proverbs",
@@ -79,32 +82,9 @@ export default function ParablesbDetailExplaination() {
               </p>
             </div>
 
-            <div className="flex items-center justify-between max-w-md mt-5">
+            <div className="flex flex-col sm:items-center sm:flex-row sm:justify-between xl:gap-0 mt-5">
               <div className="flex items-center gap-2">
-                <button className="cursor-pointer" title="listen to proverb" type="button">
-                  <span className="flex items-center justify-center h-9 w-9 rounded-[5px] bg-lightgoldcolorfive">
-                    <svg
-                      width="17"
-                      height="16"
-                      viewBox="0 0 17 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M1.83333 3.98867C1.47971 3.98867 1.14057 4.12914 0.890524 4.37919C0.640476 4.62924 0.5 4.96838 0.5 5.322L0.5 10.6553C0.5 11.009 0.640476 11.3481 0.890524 11.5981C1.14057 11.8482 1.47971 11.9887 1.83333 11.9887H3.7L8.5 15.9733V0L3.7 3.98867H1.83333Z"
-                        fill="#0A0B0E"
-                      />
-                      <path
-                        d="M13.833 7.98867C13.832 7.10494 13.4804 6.25771 12.8555 5.63281C12.2306 5.00792 11.3834 4.65639 10.4997 4.65533H9.83301V5.98867H10.4997C11.0301 5.98867 11.5388 6.19938 11.9139 6.57445C12.289 6.94953 12.4997 7.45824 12.4997 7.98867C12.4997 8.5191 12.289 9.02781 11.9139 9.40288C11.5388 9.77796 11.0301 9.98867 10.4997 9.98867H9.83301V11.322H10.4997C11.3834 11.3209 12.2306 10.9694 12.8555 10.3445C13.4804 9.71963 13.832 8.8724 13.833 7.98867Z"
-                        fill="#0A0B0E"
-                      />
-                      <path
-                        d="M10.4997 1.98868H9.83301V3.32201H10.4997C11.7374 3.32201 12.9243 3.81368 13.7995 4.68885C14.6747 5.56402 15.1663 6.751 15.1663 7.98868C15.1663 9.22636 14.6747 10.4133 13.7995 11.2885C12.9243 12.1637 11.7374 12.6553 10.4997 12.6553H9.83301V13.9887H10.4997C12.091 13.9887 13.6171 13.3565 14.7423 12.2313C15.8675 11.1061 16.4997 9.57998 16.4997 7.98868C16.4997 6.39738 15.8675 4.87126 14.7423 3.74604C13.6171 2.62082 12.091 1.98868 10.4997 1.98868Z"
-                        fill="#0A0B0E"
-                      />
-                    </svg>
-                  </span>
-                </button>
+                <SpeechControls content="Ogbon ọlọ́gbon ní kì í jẹ́ kí a pè àgbà ní wèrè" />
 
                 <button
                   onClick={() => setIsFavourite(!isFavourite)}
@@ -126,8 +106,8 @@ export default function ParablesbDetailExplaination() {
               </div>
 
               <div className="inline-flex items-center gap-3">
-                <p className="font-satoshi font-medium text-lg">Share on:</p>
-                <div className="flex items-center gap-4">
+                <p className="font-satoshi font-medium text-lg shrink-0">Share on:</p>
+                <div className="flex items-center gap-2 lg:gap-4">
                   <Link to="">
                     <span className="flex items-center justify-center h-8 w-8">
                       <svg
@@ -227,16 +207,6 @@ export default function ParablesbDetailExplaination() {
                 </ul>
               </div>
 
-              <div className="rounded-2xl overflow-hidden mt-10">
-                <header className="px-4 py-3.5 bg-lightgoldcolorfive">
-                  <h2 className="font-inter text-xl font-semibold">Usage</h2>
-                </header>
-                <div className="p-5 bg-lightgoldcolorsix">
-                  <p className="font-satoshi font-normal text-lg">
-                    You can use this proverb when someone want to ignore and elderly advice.{" "}
-                  </p>
-                </div>
-              </div>
               <UsageComponent />
             </div>
           </div>
