@@ -123,7 +123,7 @@ export function SpeechControls({ content }: { content: string }) {
           id="voice-select"
           value={selectedVoice?.name || ""}
           onChange={handleVoiceChange}
-          className="min-w-[200px] px-2 py-1.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="max-w-[250px] px-2 py-1.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
         >
           {yorubaVoices?.length! > 0 && (
             <optgroup label="Yoruba Voices">

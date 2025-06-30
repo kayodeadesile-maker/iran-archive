@@ -2,7 +2,7 @@ import { Disclosure, DisclosureButton } from "@headlessui/react";
 import { Fragment } from "react";
 import { AppNavigation } from "@/components/navigation/navigation";
 import { Outlet } from "react-router-dom";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 import { Footer } from "@/components/footer/footer";
 import { useTranslation } from "@/hooks/context/useTranslation";
 import { TranslationControlComponent } from "@/components/translation/translation-control";
@@ -43,11 +43,7 @@ export const AppLayout = () => {
 
                 <DisclosureButton className="absolute right-4 top-6 lg:hidden">
                   <span className="sr-only">Close Side menu</span>
-                  {open ? (
-                    <XMarkIcon className="h-8 w-8 text-goldcolor" />
-                  ) : (
-                    <Bars3Icon className="h-8 w-8 text-goldcolor" />
-                  )}
+                  <Bars3Icon className="h-8 w-8 text-goldcolor" />
                 </DisclosureButton>
               </nav>
             </header>

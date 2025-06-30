@@ -265,7 +265,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
           >
             <motion.div
               {...framerSidebarBackground(open)}
-              className="absolute inset-0 bg-black bg-opacity-50 -z-10"
+              className="absolute inset-0 bg-black/20 bg-opacity-50 -z-10"
               onClick={() => close()}
             />
 
