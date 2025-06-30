@@ -158,7 +158,7 @@ export default function Home() {
     ogSiteName: "Iran Yoruba Archive",
   });
 
-  const [serachText, setSearchText] = useState<string>("");
+  const [searchText, setSearchText] = useState<string>("");
   const { ref: containerRef, inView: containerInView } = useInView({
     triggerOnce: false,
     threshold: 0.1,
@@ -220,9 +220,9 @@ export default function Home() {
     <article className="px-4 min-h-screen">
       <div className="max-w-6xl mx-auto pt-10">
         {/* Search bar start */}
-        <SeearcComponent
-          searchText={serachText}
-          handleSearch={(serachText) => setSearchText(serachText)}
+        <SearchComponent
+          searchText={searchText}
+          handleSearch={(searchText) => setSearchText(searchText)}
           handleClearSearch={() => setSearchText("")}
         />
         {/* Search bar end */}
@@ -679,7 +679,7 @@ type SearchComponentProps = {
   handleClearSearch: () => void;
 };
 
-const SeearcComponent = ({ searchText, handleClearSearch, handleSearch }: SearchComponentProps) => {
+const SearchComponent = ({ searchText, handleClearSearch, handleSearch }: SearchComponentProps) => {
   return (
     <fieldset className="max-w-2xl mx-auto mt-10">
       <label htmlFor="search" className="sr-only"></label>
