@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 export function SpeechControls({ content }: { content: string }) {
   const { speak, cancel, speaking, supported, voices } = useSpeechSynthesis();
+  const [isFirstTime, setIsFirstTime] = useState(true);
   const [selectedVoice, setSelectedVoice] =
     useState<SpeechSynthesisVoice | null>(null);
   const [yorubaVoices, setYorubaVoices] = useState<
@@ -48,14 +49,18 @@ export function SpeechControls({ content }: { content: string }) {
   };
 
   useEffect(() => {
-    if (!supported) {
-      toast.warning(
-        "Speech synthesis is not supported in your browser. Please try a different browser or device."
-      );
+    if (isFirstTime) {
+      setIsFirstTime(false);
+    } else {
+      if (!supported) {
+        toast.warning(
+          "Speech synthesis is not supported in your browser. Please try a different browser or device."
+        );
 
-      return;
+        return;
+      }
     }
-  }, [supported]);
+  }, [isFirstTime, supported]);
 
   /**
    *  {yorubaVoices?.length === 0 && (
