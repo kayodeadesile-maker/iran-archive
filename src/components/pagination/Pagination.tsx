@@ -57,7 +57,7 @@ export const PaginationComponent = ({
       </div>
 
       <div className="flex text-gray-600 dark:text-white items-center gap-3">
-        <span className="font-satoshi font-medium capitalize text-sm">page</span>
+        <span className="font-satoshi font-medium text-sm">Page</span>
         <fieldset>
           <label htmlFor="page" className="sr-only">
             page number

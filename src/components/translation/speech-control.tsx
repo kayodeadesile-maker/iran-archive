@@ -5,8 +5,11 @@ import { toast } from "react-toastify";
 
 export function SpeechControls({ content }: { content: string }) {
   const { speak, cancel, speaking, supported, voices } = useSpeechSynthesis();
-  const [selectedVoice, setSelectedVoice] = useState<SpeechSynthesisVoice | null>(null);
-  const [yorubaVoices, setYorubaVoices] = useState<SpeechSynthesisVoice[] | null>(null);
+  const [selectedVoice, setSelectedVoice] =
+    useState<SpeechSynthesisVoice | null>(null);
+  const [yorubaVoices, setYorubaVoices] = useState<
+    SpeechSynthesisVoice[] | null
+  >(null);
 
   useEffect(() => {
     if (voices.length > 0) {
@@ -52,7 +55,7 @@ export function SpeechControls({ content }: { content: string }) {
 
       return;
     }
-  }, []);
+  }, [supported]);
 
   /**
    *  {yorubaVoices?.length === 0 && (
@@ -116,7 +119,10 @@ export function SpeechControls({ content }: { content: string }) {
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="voice-select" className="block text-sm font-medium text-gray-700 sr-only">
+        <label
+          htmlFor="voice-select"
+          className="block text-sm font-medium text-gray-700 sr-only"
+        >
           Voice Selection
         </label>
         <select
@@ -125,7 +131,7 @@ export function SpeechControls({ content }: { content: string }) {
           onChange={handleVoiceChange}
           className="max-w-[250px] px-2 py-1.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
         >
-          {yorubaVoices?.length! > 0 && (
+          {yorubaVoices && yorubaVoices.length! > 0 && (
             <optgroup label="Yoruba Voices">
               {yorubaVoices?.map((voice) => (
                 <option key={voice.name} value={voice.name}>
