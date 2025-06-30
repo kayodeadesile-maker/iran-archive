@@ -101,7 +101,7 @@ export default function Proverbs() {
             title="proverbs cover image"
             className="h-full w-full absolute inset-0 object-cover"
           />
-          <div className="flex flex-col min-h-[200px] lg:min-h-[340px] justify-center relative z-10 p-4 xl:p-6">
+          <div className="flex flex-col min-h-[250px] lg:min-h-[340px] justify-center relative z-10 p-4 xl:p-6">
             <h1 className="text-xl sm:text-4xl lg:text-5xl font-inter font-bold text-white mb-1 auto-translate">
               Òwe Yorùbá
             </h1>

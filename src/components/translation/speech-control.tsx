@@ -7,8 +7,6 @@ export function SpeechControls({ content }: { content: string }) {
   const { speak, cancel, speaking, supported, voices } = useSpeechSynthesis();
   const [selectedVoice, setSelectedVoice] = useState<SpeechSynthesisVoice | null>(null);
   const [yorubaVoices, setYorubaVoices] = useState<SpeechSynthesisVoice[] | null>(null);
-  const [rate, setRate] = useState(1);
-  const [pitch, setPitch] = useState(1);
 
   useEffect(() => {
     if (voices.length > 0) {
@@ -27,6 +25,7 @@ export function SpeechControls({ content }: { content: string }) {
         setSelectedVoice(voices[0]);
       }
     }
+    console.log(voices);
   }, [voices]);
 
   const handleSpeak = () => {
@@ -34,8 +33,6 @@ export function SpeechControls({ content }: { content: string }) {
       speak({
         text: content,
         voice: selectedVoice,
-        rate: rate,
-        pitch: pitch,
       });
     }
   };
@@ -126,7 +123,7 @@ export function SpeechControls({ content }: { content: string }) {
           id="voice-select"
           value={selectedVoice?.name || ""}
           onChange={handleVoiceChange}
-          className="w-[200px] px-2 py-1.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="min-w-[200px] px-2 py-1.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
         >
           {yorubaVoices?.length! > 0 && (
             <optgroup label="Yoruba Voices">
@@ -146,43 +143,6 @@ export function SpeechControls({ content }: { content: string }) {
             ))}
           </optgroup>
         </select>
-      </div>
-
-      {/* Speech Controls */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        {/* Rate Control */}
-        <div>
-          <label htmlFor="rate-slider" className="block text-sm font-medium text-gray-700">
-            Speed: {rate.toFixed(1)}x
-          </label>
-          <input
-            id="rate-slider"
-            type="range"
-            min="0.5"
-            max="2"
-            step="0.1"
-            value={rate}
-            onChange={(e) => setRate(parseFloat(e.target.value))}
-            className="w-auto h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
-          />
-        </div>
-
-        {/* Pitch Control */}
-        <div>
-          <label htmlFor="pitch-slider" className="block text-sm font-medium text-gray-700">
-            Pitch: {pitch.toFixed(1)}
-          </label>
-          <input
-            id="pitch-slider"
-            type="range"
-            min="0"
-            max="2"
-            step="0.1"
-            value={pitch}
-            onChange={(e) => setPitch(parseFloat(e.target.value))}
-            className="w-auto h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
-          />
-        </div>
       </div>
     </div>
   );

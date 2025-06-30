@@ -128,7 +128,7 @@ export default function ParablesAndWiseSayings() {
             title="Parables cover image"
             className="h-full w-full absolute inset-0 object-cover"
           />
-          <div className="flex flex-col min-h-[200px] md:min-h-[250px] xl:min-h-[340px] justify-center relative z-10 p-4 md:p-6">
+          <div className="flex flex-col min-h-[250px] lg:min-h-[340px] justify-center relative z-10 p-4 md:p-6">
             <h1 className="text-xl sm:text-4xl lg:text-5xl font-inter font-bold text-white mb-1 auto-translate">
               Àkànlò Èdè ati Ọ̀rọ̀ Ọlọ́gbọ́n
             </h1>

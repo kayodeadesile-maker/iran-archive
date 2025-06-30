@@ -82,7 +82,7 @@ export default function ParablesbDetailExplaination() {
               </p>
             </div>
 
-            <div className="flex flex-col sm:items-center sm:flex-row sm:justify-between xl:gap-0 mt-5">
+            <div className="flex flex-col gap-4 sm:items-center sm:flex-row sm:justify-between xl:gap-0 mt-5">
               <div className="flex items-center gap-2">
                 <SpeechControls content="Ogbon ọlọ́gbon ní kì í jẹ́ kí a pè àgbà ní wèrè" />
 

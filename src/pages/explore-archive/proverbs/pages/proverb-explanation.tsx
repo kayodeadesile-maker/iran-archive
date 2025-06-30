@@ -22,7 +22,7 @@ export default function ProverbDetailExplaination() {
         : "http://localhost:5173/explore-archive/proverbs",
     themeColor: "#000000",
     appleTouchIcon: "/iran-logo.png",
-    lang: "yo",
+    lang: "yo-ng",
     keywords: [
       "Learn",
       "Yoruba",
@@ -81,7 +81,7 @@ export default function ProverbDetailExplaination() {
               </p>
             </div>
 
-            <div className="flex items-center justify-between max-w-md mt-5">
+            <div className="flex flex-col gap-4 sm:items-center sm:flex-row sm:justify-between xl:gap-0 mt-5">
               <div className="flex items-center gap-2">
                 <SpeechControls content="Ogbon ọlọ́gbon ní kì í jẹ́ kí a pè àgbà ní wèrè" />
 
