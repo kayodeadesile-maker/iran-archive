@@ -9,12 +9,20 @@ interface ITranslationContext {
   setTranslationMethod: React.Dispatch<React.SetStateAction<string>>;
   setIsYorubaMode: React.Dispatch<React.SetStateAction<boolean>>;
   detectUserLanguage: () => void;
-  translateText: (text: string, targetLang?: string, sourceLang?: string) => Promise<string>;
+  translateText: (
+    text: string,
+    targetLang?: string,
+    sourceLang?: string
+  ) => Promise<string>;
 }
 
-export const TranslationContext = createContext<ITranslationContext>({} as ITranslationContext);
+export const TranslationContext = createContext<ITranslationContext>(
+  {} as ITranslationContext
+);
 
-export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [isTranslating, setIsTranslating] = useState(false);
   const [translationCache, setTranslationCache] = useState(new Map());
   const [isYorubaMode, setIsYorubaMode] = useState(false);
@@ -35,17 +43,29 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
     const yorubaIndicators = ["yo", "yoruba"];
     const nigerianIndicators = ["en-ng", "ng"];
 
-    if (yorubaIndicators.some((indicator) => browserLanguage.toLowerCase().includes(indicator)))
+    if (
+      yorubaIndicators.some((indicator) =>
+        browserLanguage.toLowerCase().includes(indicator)
+      )
+    )
       return "yo";
 
-    if (nigerianIndicators.some((indicator) => browserLanguage.toLowerCase().includes(indicator)))
+    if (
+      nigerianIndicators.some((indicator) =>
+        browserLanguage.toLowerCase().includes(indicator)
+      )
+    )
       return "auto-yo";
 
     return "en";
   }, []);
 
   const translateWithMyMemory = useCallback(
-    async (text: string, targetLang: string = "yo", sourceLang: string = "en") => {
+    async (
+      text: string,
+      targetLang: string = "yo",
+      sourceLang: string = "en"
+    ) => {
       const cacheKey = `${text}-${sourceLang}-${targetLang}`;
 
       if (translationCache.has(cacheKey)) {
@@ -64,7 +84,9 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
         if (status === 200) {
           const translatedText = data.responseData.translatedText;
 
-          setTranslationCache((prev) => new Map(prev.set(cacheKey, translatedText)));
+          setTranslationCache(
+            (prev) => new Map(prev.set(cacheKey, translatedText))
+          );
 
           return translatedText;
         }
@@ -91,7 +113,11 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
   }, [translationMethod, translateWithMyMemory]);
 
   const translateText = useCallback(
-    async (text: string, targetLang: string = "yo", sourceLang: string = "en") => {
+    async (
+      text: string,
+      targetLang: string = "yo",
+      sourceLang: string = "en"
+    ) => {
       const translateFn = getTranslationMethod();
       return await translateFn(text, targetLang, sourceLang);
     },
@@ -122,10 +148,12 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
     } catch (error: unknown) {
       console.error("Page translation failed:", error);
     }
-  }, [isYorubaMode, translationMethod]);
+  }, [getTranslationMethod, isYorubaMode]);
 
   const restoreOriginalContent = useCallback(() => {
-    const translatedElements = document.querySelectorAll("[data-original]:not(.no-translate)");
+    const translatedElements = document.querySelectorAll(
+      "[data-original]:not(.no-translate)"
+    );
     translatedElements.forEach((element) => {
       const original = element.getAttribute("data-original");
       if (original) {
@@ -148,14 +176,20 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
       const translateFn = getTranslationMethod()!;
 
       try {
-        const textElements = document.querySelectorAll(".auto-translate:not(.no-translate)");
+        const textElements = document.querySelectorAll(
+          ".auto-translate:not(.no-translate)"
+        );
 
         for (const element of textElements) {
           if (element.children.length === 0 && element.textContent?.trim()) {
             const originalText = element.textContent?.trim();
 
             if (originalText.length > 1) {
-              const translatedText = await translateFn(originalText, "yo", "en");
+              const translatedText = await translateFn(
+                originalText,
+                "yo",
+                "en"
+              );
               element.textContent = translatedText;
               element.setAttribute("data-original", originalText);
             }
