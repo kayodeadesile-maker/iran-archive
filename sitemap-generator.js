@@ -1,7 +1,10 @@
 import fs from "fs";
 import path from "path";
+import dotenv from "dotenv";
+dotenv.config({ path: ".env" });
 
 const env = process.env.NODE_ENV || "development";
+console.log(process.env.NODE_ENV);
 /**
  * @type Record<string, any>
  */
