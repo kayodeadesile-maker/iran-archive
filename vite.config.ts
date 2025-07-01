@@ -22,7 +22,7 @@ export default defineConfig({
             "/explore-archive/proverbs",
             "/explore-archive/parables-and-wise-sayings",
           ],
-          filename:"sitemap_index"
+          filename:"sitemap_index.xml"
     }) as any, // Cast to any to avoid type issues with vite-sitemap
   ],
   server: {
