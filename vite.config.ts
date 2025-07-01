@@ -17,7 +17,7 @@ export default defineConfig({
         process.env.NODE_ENV === "production"
           ? process.env.VITE_SITEMAP_PROD
           : process.env.VITE_SITEMAP_DEV,
-          url:[
+          urls:[
             "/home",
             "/explore-archive/proverbs",
             "/explore-archive/parables-and-wise-sayings",
