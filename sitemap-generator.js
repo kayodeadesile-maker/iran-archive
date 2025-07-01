@@ -3,7 +3,7 @@ import path from "path";
 import dotenv from "dotenv";
 dotenv.config({ path: ".env" });
 
-const env = process.env.VITE_NODE_ENV || "development";
+const env = process.env.VITE_NODE_ENV;
 console.log(process.env.VITE_NODE_ENV);
 /**
  * @type Record<string, any>
