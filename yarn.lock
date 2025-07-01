@@ -2470,6 +2470,11 @@ use-sync-external-store@^1.4.0, use-sync-external-store@^1.5.0:
   resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.5.0.tgz#55122e2a3edd2a6c106174c27485e0fd59bcfca0"
   integrity sha512-Rb46I4cGGVBmjamjphe8L/UnvJD+uPPtTkNvX5mZgqdbavhI4EbgIWJiIHXJ8bc/i9EQGPRh4DwEURJ552Do0A==
 
+vite-sitemap@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/vite-sitemap/-/vite-sitemap-1.3.0.tgz#be6187643cafa381ffe5d75171f0b53d8c8f9419"
+  integrity sha512-w6VNWxqDvJ0VP+PXs4D5N6vu2pOGalTa79OmgA7RDb9OCDoHXVFYYjcI+MXrXNhg5No0r31FIDKE28560YqOiQ==
+
 vite@^6.3.5:
   version "6.3.5"
   resolved "https://registry.yarnpkg.com/vite/-/vite-6.3.5.tgz#fec73879013c9c0128c8d284504c6d19410d12a3"
