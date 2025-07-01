@@ -3,15 +3,15 @@ import path from "path";
 import dotenv from "dotenv";
 dotenv.config({ path: ".env" });
 
-const env = process.env.VITE_NODE_ENV;
+// const env = process.env.VITE_NODE_ENV;
 console.log(process.env.VITE_NODE_ENV);
 /**
  * @type Record<string, any>
  */
 const config = {
-  baseUrl: env === "production" ? "https://iran-opal.vercel.app" : "http://localhost:5173",
+  // baseUrl: env === "production" ? "https://iran-opal.vercel.app" : "http://localhost:5173",
   outputPath: "./public/sitemap.xml",
-
+  baseUrl: "https://iran-opal.vercel.app", 
   routes: [],
 };
 
