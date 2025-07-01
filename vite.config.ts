@@ -17,6 +17,11 @@ export default defineConfig({
         process.env.NODE_ENV === "production"
           ? process.env.VITE_SITEMAP_PROD
           : process.env.VITE_SITEMAP_DEV,
+          url:[
+            "/home",
+            "/explore-archive/proverbs",
+            "/explore-archive/parables-and-wise-sayings",
+          ]
     }) as any, // Cast to any to avoid type issues with vite-sitemap
   ],
   server: {
