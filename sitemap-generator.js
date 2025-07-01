@@ -64,57 +64,97 @@ function writeSitemap() {
  * @param {string} routesPath
  * @returns {Array<{url: string, changefreq: string, priority: string, lastmod: string}>}
  */
-const discoveredRoutes = (routesPath = "./src/pages") => {
-  /**
-   * @type Array<{url: string, changefreq: string, priority: string, lastmod: string}>
-   */
-  const routes = [];
+function discoveredRoutes(routesDir = "./src/pages") {
+  const discoveredRoutes = [];
 
-  if (fs.existsSync(routesPath)) {
-    const files = fs.readdirSync(routesPath, { recursive: true });
+  if (fs.existsSync(routesDir)) {
+    const files = fs.readdirSync(routesDir, { recursive: true });
 
     files.forEach((file) => {
-      const filePath = path.join(routesPath, file);
-
-      // Check if the file is a valid page (tsx, jsx, ts, or js)
       if (
-        file.endsWith(".tsx") ||
+        file.endsWith(".js") ||
         file.endsWith(".jsx") ||
         file.endsWith(".ts") ||
-        file.endsWith(".js")
+        file.endsWith(".tsx")
       ) {
-        // Convert file path to URL path
-        let route = filePath
-          .replace(routesPath, "") // Remove base path
-          .replace(/\.(tsx|jsx|ts|js)$/, "") // Remove file extension
-          .replace(/\/index$/, "") // Remove trailing /index
-          .replace(/\\/g, "/"); // Normalize separators for Windows
+        let route = file
+          .replace(/\.(js|jsx|ts|tsx)$/, "")
+          .replace(/home$/, "")
+          .replace(/\\/g, "/");
 
-        // Ensure route starts with a slash and handle root route
-        route = route === "" ? "/" : `/${route}`;
-
-        routes.push({
-          url: route,
-          changefreq: "monthly",
-          priority: "0.6",
-          lastmod: fs.statSync(filePath).mtime.toISOString().split("T")[0],
-        });
+        if (route && !route.startsWith("_")) {
+          route = route === "" ? "/" : `/${route}`;
+          discoveredRoutes.push({
+            url: route,
+            changefreq: "monthly",
+            priority: "0.6",
+            lastmod: fs.statSync(path.join(routesDir, file)).mtime.toISOString().split("T")[0],
+          });
+        }
       }
     });
-  } else {
-    console.warn(`⚠️ Directory ${routesPath} does not exist. Adding fallback route.`);
-    // Add a fallback root route if no pages are found
-    // routes.push({
-    //   url: "/",
-    //   changefreq: "monthly",
-    //   priority: "1.0",
-    //   lastmod: new Date().toISOString().split("T")[0],
-    // });
   }
 
-  console.log("Discovered routes:", routes);
-  return routes;
-};
+  return discoveredRoutes;
+}
+// const discoveredRoutes = (routesPath = "./src/pages") => {
+//   /**
+//    * @type Array<{url: string, changefreq: string, priority: string, lastmod: string}>
+//    */
+//   const routes = [];
+//   const normalizedRoutesPath = path.resolve(routesPath);
+
+//   if (fs.existsSync(routesPath)) {
+//     const files = fs.readdirSync(normalizedRoutesPath, { recursive: true, withFileTypes: true });
+
+//     files.forEach((file) => {
+//       if (file.isFile()) {
+//         const filePath = path.join(normalizedRoutesPath, file.name);
+//         const relativePath = path.relative(normalizedRoutesPath, filePath);
+
+//         // Check if the file is a valid page (tsx, jsx, ts, or js)
+//         if (
+//           file.name.endsWith(".tsx") ||
+//           file.name.endsWith(".jsx") ||
+//           file.name.endsWith(".ts") ||
+//           file.name.endsWith(".js")
+//         ) {
+//           // Convert file path to URL path
+//           let route = relativePath // Remove base path
+//             .replace(/\.(tsx|jsx|ts|js)$/, "") // Remove file extension
+//             .replace(/\/index$/, "") // Remove trailing /index
+//             .replace(/\\/g, "/"); // Normalize separators for Windows
+
+//           // Ensure route starts with a slash and handle root route
+//           route = route === "" ? "/" : `/${route}`;
+
+//           // Assign priority based on route depth
+//           const depth = route.split("/").length - 1;
+//           const priority = depth === 1 ? "1.0" : depth === 2 ? "0.8" : "0.6";
+
+//           routes.push({
+//             url: route,
+//             changefreq: "monthly",
+//             priority,
+//             lastmod: fs.statSync(filePath).mtime.toISOString().split("T")[0],
+//           });
+//         }
+//       }
+//     });
+//   } else {
+//     console.warn(`⚠️ Directory ${routesPath} does not exist. Adding fallback route.`);
+//     // Add a fallback root route if no pages are found
+//     routes.push({
+//       url: "/",
+//       changefreq: "monthly",
+//       priority: "1.0",
+//       lastmod: new Date().toISOString().split("T")[0],
+//     });
+//   }
+
+//   console.log("Discovered routes:", routes);
+//   return routes;
+// };
 
 // Run the script if it's the main module
 if (import.meta.url === new URL(import.meta.url).href) {
