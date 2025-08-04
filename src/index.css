@@ -1,0 +1,209 @@
+@import "tailwindcss";
+/* Inter Font Family */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*Avenir  */
+@font-face {
+  font-family: "Avenri Montserrat";
+  src: url("./assets/fonts/Montserrat-Black.ttf");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "Avenri Montserrat";
+  src: url("./assets/fonts/Montserrat-ExtraBold.ttf");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Avenri Montserrat";
+  src: url("./assets/fonts/Montserrat-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Avenri Montserrat";
+  src: url("./assets/fonts/Montserrat-SemiBold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Avenri Montserrat";
+  src: url("./assets/fonts/Montserrat-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Avenri Montserrat";
+  src: url("./assets/fonts/Montserrat-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Avenri Montserrat";
+  src: url("./assets/fonts/Montserrat-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Avenri Montserrat";
+  src: url("./assets/fonts/Montserrat-ExtraLight.ttf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Avenri Montserrat";
+  src: url("./assets/fonts/Montserrat-Thin.ttf");
+  font-weight: 100;
+}
+
+/* Satoshi */
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Satoshi-Black.otf") format("opentype");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Satoshi-Bold.otf") format("opentype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Satoshi-Medium.otf") format("opentype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Satoshi-Regular.otf") format("opentype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Satoshi-Light.otf") format("opentype");
+  font-weight: 300;
+}
+
+/* INTER FONTS */
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-ExtraLight.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-ExtraBold.ttf");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Black.ttf");
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* Theme Variables */
+@theme {
+  /* colors */
+  --color-lightgoldcolorsix: #f9f4ec;
+  --color-textcolor: #a0a7bc;
+  --color-navigationbackground: #e6d1b2;
+  --color-accentblue: #006eff;
+  --color-textblack: #0a0b0e;
+  --color-goldcolor: #2b1f0e;
+
+  --color-lightgoldcolor: #c79852;
+  --color-lightgoldcolorone: #956d30;
+  --color-lightgoldcolorthree: #d8b787;
+  --color-lightgoldcolorfour: #e6d1b2;
+  --color-lightgoldcolorfive: #f1e5d4;
+  --color-lightgoldcolorsix: #f9f4ec;
+  --color-lightbluecolorfive: #e5f0ff;
+
+  --color-darkbrowncolorsix: #ffe3e3;
+  --color-darkbluecolortwo: #001633;
+
+  --color-shadecolorfour: #3a4156;
+  --color-shadecolorseven: #c0c5d2;
+  --color-shadecoloreight: #dfe2e9;
+  --color-shadecolornine: #eff0f4;
+  --color-shadecolorsix: #a0a7bc;
+
+  --font-avenirMT: "Avenri Montserrat", sans;
+  --font-sourcesans: "Source Sans 3", system-ui, sans-serif;
+  --font-satoshi: "Satoshi", system-ui, sans-serif;
+  --font-inter: "Inter", system-ui, sans-serif;
+}
+
+/* Theme Configuration */
+/* @theme {
+  --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-Nunito: "Nunito", ui-sans-serif, system-ui, sans-serif;
+} */
+
+@layer base {
+  body {
+    @apply antialiased;
+  }
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  -webkit-appearance: none;
+}
+
+@layer components {
+}
