@@ -41,7 +41,7 @@ type QuickLinkCardProps = {
 const QuickLinkCard = ({ href, label }: QuickLinkCardProps) => {
   return (
     <Link to={href} className="block flex-grow shrink-0 group">
-      <div className="p-4 bg-goldcolor rounded-2xl group-hover:bg-goldcolor/90 transition-colors">
+      <div className="p-4 bg-goldcolor rounded-full group-hover:bg-goldcolor/90 transition-colors">
         <p className="text-white text-sm sm:text-base font-medium font-satoshi capitalize text-center no-translate">
           {label}
         </p>
