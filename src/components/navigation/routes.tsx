@@ -9,7 +9,7 @@ export type RouteProps = {
   Icon: any;
   path?: string;
   menuComponent?:
-    | React.ComponentType<{ buttonRef?: React.RefObject<HTMLButtonElement> }>
+    | React.ComponentType<{ buttonRef?: React.RefObject<HTMLButtonElement>; onClose?: () => void }>
     | JSX.Element;
   current: boolean;
   openMenu?: () => void;

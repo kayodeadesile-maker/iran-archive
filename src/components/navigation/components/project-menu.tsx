@@ -6,10 +6,12 @@ import { cardVariants, gridVariant, menuVariants, titleVariants } from "@/utils/
 
 type ProjectAndResearchMenuComponentProps = {
   buttonRef?: React.RefObject<HTMLButtonElement>;
+  onClose?: () => void;
 };
 
 export const ProjectAndResearchMenuComponent = ({
   buttonRef,
+  onClose,
 }: ProjectAndResearchMenuComponentProps) => {
   const [menuPosition, setMenuPosition] = React.useState<{ top: number; left: number }>({
     top: 0,
@@ -102,14 +104,13 @@ export const ProjectAndResearchMenuComponent = ({
           className="grid grid-cols-3 mt-3 gap-4"
         >
           {React.Children.toArray(
-            links.map(({ href, backgroundClass, title, direction }, index) => {
+            links.map(({ href, ...rest }, index) => {
               return (
                 <MenuCardComponent
+                  key={`${href}-${index}}`}
                   href={href}
-                  backgroundClass={backgroundClass}
-                  title={title}
-                  direction={direction}
-                  index={index}
+                  onClose={onClose}
+                  {...rest}
                 />
               );
             })
@@ -126,6 +127,7 @@ type MenuCardComponentProps = {
   href: string;
   direction: string;
   index?: number;
+  onClose?: () => void;
 };
 
 const MenuCardComponent = ({
@@ -134,9 +136,11 @@ const MenuCardComponent = ({
   title,
   index,
   direction,
+  onClose,
 }: MenuCardComponentProps) => {
   return (
     <motion.div
+      onClick={onClose}
       key={`${title}-${index}`}
       variants={{
         ...cardVariants,

@@ -6,9 +6,13 @@ import { cardVariants, gridVariant, menuVariants, titleVariants } from "@/utils/
 
 type ExploreArchiveMenuComponentProps = {
   buttonRef?: React.RefObject<HTMLButtonElement>;
+  onClose?: () => void;
 };
 
-export const ExploreArchiveMenuComponent = ({ buttonRef }: ExploreArchiveMenuComponentProps) => {
+export const ExploreArchiveMenuComponent = ({
+  buttonRef,
+  onClose,
+}: ExploreArchiveMenuComponentProps) => {
   const [menuPosition, setMenuPosition] = React.useState<{ top: number; left: number }>({
     top: 0,
     left: 0,
@@ -124,15 +128,13 @@ export const ExploreArchiveMenuComponent = ({ buttonRef }: ExploreArchiveMenuCom
           className="grid grid-cols-3 mt-3 gap-4"
         >
           {React.Children.toArray(
-            links.map(({ href, backgroundClass, title, direction }, index) => {
+            links.map(({ href, ...rest }, index) => {
               return (
                 <MenuCardComponent
                   key={`${href}-${index}`}
                   href={href}
-                  index={index}
-                  direction={direction}
-                  backgroundClass={backgroundClass}
-                  title={title}
+                  {...rest}
+                  onClose={onClose}
                 />
               );
             })
@@ -149,6 +151,7 @@ type MenuCardComponentProps = {
   href: string;
   index?: number;
   direction: string;
+  onClose?: () => void;
 };
 
 const MenuCardComponent = ({
@@ -157,9 +160,11 @@ const MenuCardComponent = ({
   direction,
   title,
   index = 0,
+  onClose,
 }: MenuCardComponentProps) => {
   return (
     <motion.div
+      onClick={onClose}
       key={`${title}-${index}`}
       variants={{
         ...cardVariants,

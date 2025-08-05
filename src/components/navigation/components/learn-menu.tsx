@@ -6,9 +6,10 @@ import { cardVariants, gridVariant, menuVariants, titleVariants } from "@/utils/
 
 type LearnYorubaMenuComponentProps = {
   buttonRef?: React.RefObject<HTMLButtonElement>;
+  onClose?: () => void;
 };
 
-export const LearnYorubaMenuComponent = ({ buttonRef }: LearnYorubaMenuComponentProps) => {
+export const LearnYorubaMenuComponent = ({ buttonRef, onClose }: LearnYorubaMenuComponentProps) => {
   const [menuPosition, setMenuPosition] = React.useState<{ top: number; left: number }>({
     top: 0,
     left: 0,
@@ -124,14 +125,14 @@ export const LearnYorubaMenuComponent = ({ buttonRef }: LearnYorubaMenuComponent
           className="grid grid-cols-3 mt-3 gap-4"
         >
           {React.Children.toArray(
-            links.map(({ href, backgroundClass, title, direction }, index) => {
+            links.map(({ href, ...rest }, index) => {
               return (
                 <MenuCardComponent
+                  key={`${href}-${index}`}
                   href={href}
-                  backgroundClass={backgroundClass}
                   index={index}
-                  direction={direction}
-                  title={title}
+                  onClose={onClose}
+                  {...rest}
                 />
               );
             })
@@ -148,6 +149,7 @@ type MenuCardComponentProps = {
   href: string;
   index: number;
   direction: string;
+  onClose?: () => void;
 };
 
 const MenuCardComponent = ({
@@ -156,9 +158,11 @@ const MenuCardComponent = ({
   title,
   direction,
   index,
+  onClose,
 }: MenuCardComponentProps) => {
   return (
     <motion.div
+      onClick={onClose}
       key={`${title}-${index}`}
       variants={{
         ...cardVariants,

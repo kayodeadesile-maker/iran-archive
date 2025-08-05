@@ -1,17 +1,7 @@
 import { classNames } from "@/utils";
 import { DisclosurePanel } from "@headlessui/react";
-import React, {
-  Fragment,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import {
-  navigateRoutesOne,
-  navigateRoutesTwo,
-  type RouteProps,
-} from "./routes";
+import React, { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import { navigateRoutesOne, navigateRoutesTwo, type RouteProps } from "./routes";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
 import LogoImage from "@/assets/Iran-logo.png";
@@ -25,9 +15,7 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 
 type AppNavigationPropsType = {
-  close: (
-    focusableElement?: HTMLElement | React.MutableRefObject<HTMLElement | null>
-  ) => void;
+  close: (focusableElement?: HTMLElement | React.MutableRefObject<HTMLElement | null>) => void;
   open: boolean;
 };
 
@@ -77,11 +65,13 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
     (index: number, route: RouteProps[0]) => {
       if (route.menuComponent && openMenuIndex !== index) {
         setOpenMenuIndex(openMenuIndex === index ? null : index);
+      } else {
+        setOpenMenuIndex(null);
       }
 
-      if (route.openMenu && !route.menuComponent) {
-        route.openMenu();
-      }
+      // if (route.openMenu && !route.menuComponent) {
+      //   route.openMenu();
+      // }
     },
     [openMenuIndex]
   );
@@ -92,10 +82,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
         return pathname === "/home" || pathname === "/";
       }
 
-      const routeLabel = route.label
-        .toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace(/&/g, "and");
+      const routeLabel = route.label.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and");
 
       return page.some((segment) => {
         const segmentInLowerCase = segment.toLowerCase();
@@ -103,9 +90,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
 
         if (segmentInLowerCase === routeLabel) return true;
 
-        return labelWords.some(
-          (word) => segmentInLowerCase.includes(word) && word.length > 2
-        );
+        return labelWords.some((word) => segmentInLowerCase.includes(word) && word.length > 2);
       });
     },
     [pathname, page]
@@ -113,22 +98,19 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
 
   const handleNavigation = useCallback(
     (route: RouteProps[0], index: number) => {
-      if (route.label === "home") {
-        navigate("/home");
-      } else if (route.path) {
-        navigate(route.path);
-      } else if (route.menuComponent) {
+      if (route.menuComponent) {
         // Handle menu toggle for routes with dropdown menus
         handleMenuToggle(index, route);
+      } else {
+        // Close any open menus when navigating
+        setOpenMenuIndex(null);
+
+        if (route.label === "home") {
+          navigate("/home");
+        } else if (route.path) {
+          navigate(route.path);
+        }
       }
-      // else {
-      //   // Generate path from label for routes without explicit path
-      //   const routePath = `/${route.label
-      //     .toLowerCase()
-      //     .replace(/\s+/g, "-")
-      //     .replace(/&/g, "and")}`;
-      //   navigate(routePath);
-      // }
     },
     [navigate, handleMenuToggle]
   );
@@ -142,8 +124,9 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
               navigateRoutesOne.map((route, index) => {
                 const { label, Icon } = route;
                 const isActive = isRouteActive(route);
+                const isMenuOpen = openMenuIndex === index;
+
                 // const openMenu = navigateRoutesOne.find((route) => route.label === label)?.openMenu;
-                const isMenuOpen = openMenuIndex! === index;
 
                 return (
                   <div
@@ -161,13 +144,13 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                           buttonRefs.current[index] = el;
                         }
                       }}
-                      onClick={() => handleNavigation(route, index)}
+                      onClick={() => {
+                        handleNavigation(route, index);
+                      }}
                       className={classNames(
                         "flex items-center space-x-4 relative w-full py-4 px-7 hover:bg-gray-50",
                         isMenuOpen && "bg-gray-50",
-                        isActive &&
-                          !isMenuOpen &&
-                          "bg-gray-50 border-r-4 border-goldcolor"
+                        isActive && !isMenuOpen && "bg-gray-50 border-r-4 border-goldcolor"
                       )}
                       aria-current={isActive ? "page" : undefined}
                     >
@@ -183,9 +166,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                         <span
                           className={classNames(
                             "text-base sm:text-lg font-satoshi capitalize no-translate",
-                            isActive
-                              ? "text-goldcolor font-medium"
-                              : "text-[#0C0C0D] font-normal"
+                            isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
                           )}
                         >
                           {label}
@@ -198,6 +179,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                         {typeof route.menuComponent === "function" ? (
                           <route.menuComponent
                             buttonRef={{ current: buttonRefs.current[index] }}
+                            onClose={() => setOpenMenuIndex(null)}
                           />
                         ) : (
                           route.menuComponent
@@ -218,9 +200,9 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                 const { label, Icon } = route;
                 const isActive = isRouteActive(route);
                 const adjustedIndex = index + navigateRoutesOne.length;
+                const isMenuOpen = openMenuIndex === index;
 
                 // const openMenu = navigateRoutesOne.find((route) => route.label === label)?.openMenu;
-                const isMenuOpen = openMenuIndex! === adjustedIndex;
 
                 return (
                   <div
@@ -242,9 +224,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                       className={classNames(
                         "flex items-center space-x-4 relative w-full py-4 px-7 hover:bg-gray-50",
                         isMenuOpen && "bg-gray-50",
-                        isActive &&
-                          !isMenuOpen &&
-                          "bg-gray-50 border-r-4 border-goldcolor"
+                        isActive && !isMenuOpen && "bg-gray-50 border-r-4 border-goldcolor"
                       )}
                       aria-current={isActive ? "page" : undefined}
                     >
@@ -260,9 +240,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                         <span
                           className={classNames(
                             "text-base sm:text-lg font-satoshi capitalize no-translate",
-                            isActive
-                              ? "text-goldcolor font-medium"
-                              : "text-[#0C0C0D] font-normal"
+                            isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
                           )}
                         >
                           {label}
@@ -274,7 +252,8 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                       <div className="w-full">
                         {typeof route.menuComponent === "function" ? (
                           <route.menuComponent
-                            buttonRef={{ current: buttonRefs.current[index] }}
+                            buttonRef={{ current: buttonRefs.current[adjustedIndex] }}
+                            onClose={() => setOpenMenuIndex(null)}
                           />
                         ) : (
                           route.menuComponent
@@ -294,9 +273,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
         {open && (
           <DisclosurePanel
             static
-            className={classNames(
-              "no-translate fixed lg:hidden left-0 top-0 z-30 h-full w-full"
-            )}
+            className={classNames("no-translate fixed lg:hidden left-0 top-0 z-30 h-full w-full")}
           >
             <motion.div
               {...framerSidebarBackground(open)}
@@ -310,10 +287,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                 "relative h-full w-full sm:max-w-sm bg-lightgoldcolorsix overflow-y-scroll"
               )}
             >
-              <button
-                className="absolute right-4 top-6 lg:hidden z-30"
-                onClick={() => close()}
-              >
+              <button className="absolute right-4 top-6 lg:hidden z-30" onClick={() => close()}>
                 <span className="sr-only">Close Side menu</span>
                 <XMarkIcon className="h-8 w-8 text-goldcolor" />
               </button>
@@ -382,10 +356,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                     navigateRoutesTwo.map(({ label, Icon, current }, idx) => (
                       <motion.button
                         key={`${label}-${idx}`}
-                        {...framerNavItems(
-                          idx + navigateRoutesOne.length,
-                          open
-                        )}
+                        {...framerNavItems(idx + navigateRoutesOne.length, open)}
                         className={classNames(
                           "flex items-center space-x-4 relative w-full py-4 px-7",
                           current ? "hover:bg-gray-50 " : ""
@@ -404,10 +375,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                           </motion.div>
 
                           <motion.div
-                            {...framerText(
-                              idx + navigateRoutesOne.length,
-                              open
-                            )}
+                            {...framerText(idx + navigateRoutesOne.length, open)}
                             className={classNames(
                               "text-base sm:text-lg font-satoshi font-medium capitalize no-translate"
                               // isActive ? "text-goldcolor font-medium" : "text-[#0C0C0D] font-normal"
