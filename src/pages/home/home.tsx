@@ -176,27 +176,27 @@ export default function Home() {
     },
     {
       label: "history",
-      href: "",
+      href: "/explore-archive/historical-moments",
     },
     {
       label: "vegetables",
-      href: "",
+      href: "/explore-archive/plants-and-vegetables",
     },
     {
       label: "herbs",
-      href: "",
+      href: "/explore-archive/plants-and-vegetables",
     },
     {
       label: "plants",
-      href: "",
+      href: "/explore-archive/plants-and-vegetables",
     },
     {
       label: "heroes",
-      href: "",
+      href: "/explore-archive/heroes-and-legends",
     },
     {
       label: "naming traditions",
-      href: "",
+      href: "/explore-archive/oral-traditions",
     },
   ];
 
@@ -263,7 +263,9 @@ export default function Home() {
         {/* Featured Archive start */}
         <section className="mt-8" id="featured-archive">
           <div>
-            <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-inter no-translate">Featured Archives</h1>
+            <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-inter no-translate">
+              Featured Archives
+            </h1>
 
             <div className="grid grd-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
               <ArchiveCardComponent
@@ -289,7 +291,9 @@ export default function Home() {
         {/* Learn Yoruba start */}
         <section className="mt-8" id="learn-yoruba">
           <div>
-            <h2 className="text-xl lg:text-2xl mb-2 font-semibold font-inter no-translate">Learn Yoruba</h2>
+            <h2 className="text-xl lg:text-2xl mb-2 font-semibold font-inter no-translate">
+              Learn Yoruba
+            </h2>
 
             <div className="grid grd-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               <ArchiveCardComponent
