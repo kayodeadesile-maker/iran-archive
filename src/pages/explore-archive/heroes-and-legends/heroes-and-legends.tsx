@@ -4,6 +4,13 @@ import warriorsIcon from "@/assets/svgs/warriors-icon.svg";
 import heroesIcon from "@/assets/svgs/heroes-icon.svg";
 import legendsIcon from "@/assets/svgs/legends-icon.svg";
 import iconsIcon from "@/assets/svgs/icons-icon.svg";
+import moremi from "@/assets/legends/moremi.jpg";
+import awolowo from "@/assets/legends/awolowo.jpg";
+import basorunGaa from "@/assets/legends/basorun-gaa.jpg";
+import felaKuti from "@/assets/legends/fela-kuti.jpg";
+import ayinlaOmowura from "@/assets/legends/ayinla-omowura.jpg";
+import ogundareFoyanmu from "@/assets/legends/ogundare-foyanmu.jpg";
+import funmiKuti from "@/assets/legends/funmilayo-kuti.jpg";
 
 const HEROES_CATEGORIES: HeroesCategoryProps[] = [
   {
@@ -32,11 +39,51 @@ const HEROES_CATEGORIES: HeroesCategoryProps[] = [
     altName: "Icons",
   },
 ];
+const HEROES: HeroProps[] = [
+  {
+    heroName: "Moremi",
+    heroImage: moremi,
+    heroDescription:
+      "Legendary Yoruba Queen, Heroine, liberator and warlord...",
+  },
+  {
+    heroName: "Awolowo",
+    heroImage: awolowo,
+    heroDescription: "Politician, stateman, visionary, revolutionary...",
+  },
+  {
+    heroName: "Basorun Gaa",
+    heroImage: basorunGaa,
+    heroDescription:
+      "Nobleman, known for his military prowess, warlord in the old Oyo...",
+  },
+  {
+    heroName: "Fela Anikulapo Kuti",
+    heroImage: felaKuti,
+  },
+  {
+    heroName: "Ayinla Omowura",
+    heroImage: ayinlaOmowura,
+  },
+  {
+    heroName: "Ogundare Foyanmu",
+    heroImage: ogundareFoyanmu,
+  },
+  {
+    heroName: "Funmilayo Ransome Kuti",
+    heroImage: funmiKuti,
+  },
+];
 
 interface HeroesCategoryProps {
   categoryName: string;
   iconSrc: string;
   altName?: string;
+}
+interface HeroProps {
+  heroName: string;
+  heroImage: string;
+  heroDescription?: string;
 }
 
 const HeroesCategory = ({
