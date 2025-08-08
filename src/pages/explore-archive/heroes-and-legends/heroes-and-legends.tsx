@@ -1,7 +1,184 @@
-export default function HerosAndLegends() {
+import heroesCoverImage from "@/assets/heroes-and-legend-cover-image.jpg";
+import monarchIcon from "@/assets/svgs/monarch-icon.svg";
+import warriorsIcon from "@/assets/svgs/warriors-icon.svg";
+import heroesIcon from "@/assets/svgs/heroes-icon.svg";
+import legendsIcon from "@/assets/svgs/legends-icon.svg";
+import iconsIcon from "@/assets/svgs/icons-icon.svg";
+import moremi from "@/assets/legends/moremi.jpg";
+import awolowo from "@/assets/legends/awolowo.jpg";
+import basorunGaa from "@/assets/legends/basorun-gaa.jpg";
+import felaKuti from "@/assets/legends/fela-kuti.jpg";
+import ayinlaOmowura from "@/assets/legends/ayinla-omowura.jpg";
+import ogundareFoyanmu from "@/assets/legends/ogundare-foyanmu.jpg";
+import funmiKuti from "@/assets/legends/funmilayo-kuti.jpg";
+
+const HEROES_CATEGORIES: HeroesCategoryProps[] = [
+  {
+    categoryName: "Monarchs",
+    iconSrc: monarchIcon,
+    altName: "Monarchs",
+  },
+  {
+    categoryName: "Warriors",
+    iconSrc: warriorsIcon,
+    altName: "Warriors",
+  },
+  {
+    categoryName: "Heroes",
+    iconSrc: heroesIcon,
+    altName: "Heroes",
+  },
+  {
+    categoryName: "Legends",
+    iconSrc: legendsIcon,
+    altName: "Legends",
+  },
+  {
+    categoryName: "Icons",
+    iconSrc: iconsIcon,
+    altName: "Icons",
+  },
+];
+const HEROES: HeroProps[] = [
+  {
+    heroName: "Moremi",
+    heroImage: moremi,
+    heroDescription:
+      "Legendary Yoruba Queen, Heroine, liberator and warlord...",
+  },
+  {
+    heroName: "Awolowo",
+    heroImage: awolowo,
+    heroDescription: "Politician, stateman, visionary, revolutionary...",
+  },
+  {
+    heroName: "Basorun Gaa",
+    heroImage: basorunGaa,
+    heroDescription:
+      "Nobleman, known for his military prowess, warlord in the old Oyo...",
+  },
+  {
+    heroName: "Fela Anikulapo Kuti",
+    heroImage: felaKuti,
+  },
+  {
+    heroName: "Ayinla Omowura",
+    heroImage: ayinlaOmowura,
+  },
+  {
+    heroName: "Ogundare Foyanmu",
+    heroImage: ogundareFoyanmu,
+  },
+  {
+    heroName: "Funmilayo Ransome Kuti",
+    heroImage: funmiKuti,
+  },
+];
+
+interface HeroesCategoryProps {
+  categoryName: string;
+  iconSrc: string;
+  altName?: string;
+}
+interface HeroProps {
+  heroName: string;
+  heroImage: string;
+  heroDescription?: string;
+}
+
+const HeroesCategory = ({
+  categoryName,
+  iconSrc,
+  altName = categoryName,
+}: HeroesCategoryProps) => {
+  return (
+    <button className="flex flex-col items-center space-x-2 bg-lightgoldcolorfive w-[168px] h-[96px] p-4 rounded-xl cursor-pointer justify-center">
+      <img src={iconSrc} alt={altName} />
+      <span>{categoryName}</span>
+    </button>
+  );
+};
+
+const HeroesAndLegends = () => {
   return (
     <section className="pt-10 px-4">
-      <div className="max-w-6xl mx-auto">Heros and Legengs</div>
+      <div className="max-w-6xl mx-auto flex flex-col gap-10">
+        <div className="relative rounded-3xl overflow-hidden">
+          <img
+            src={heroesCoverImage}
+            alt="proverbs cover image"
+            title="proverbs cover image"
+            className="h-full w-full absolute inset-0 object-cover"
+          />
+          <div className="flex flex-col min-h-[250px] lg:min-h-[340px] justify-center relative z-10 p-4 xl:p-6">
+            <h1 className="text-xl sm:text-4xl lg:text-5xl font-inter font-bold text-white mb-1 auto-translate">
+              Reincarnating the Dead,
+              <br /> Celebrating Living Legends.
+            </h1>
+            <p className="font-satoshi font-normal text-base sm:text-lg lg:text-2xl text-shadecolorseven leading-relaxed max-w-3xl">
+              Telling the stories that shaped us, from ancient warriors to
+              present-day icons.
+            </p>
+          </div>
+          <div className="absolute inset-0 bg-[rgba(10,11,14,0.5)]"></div>
+        </div>
+        <div className="bg-lightgoldcolorsix p-4 rounded-xl">
+          <p className="mb-4">Sort by category</p>
+          <div className="grid grid-cols-5">
+            {HEROES_CATEGORIES.map((cat) => (
+              <HeroesCategory
+                categoryName={cat.categoryName}
+                iconSrc={monarchIcon}
+                altName={cat.altName}
+              />
+            ))}
+          </div>
+        </div>
+        <div>
+          <h2 className="text-xl sm:text-4xl lg:text-3xl font-bold mb-5">
+            Top Picks
+          </h2>
+          <div className="flex flex-row gap-10 justify-between">
+            {HEROES.slice(0, 3).map((h) => (
+              <div className="w-[307px] h-[272px] relative flex items-end p-4 rounded-2xl overflow-hidden">
+                <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(79,89,116,0.3),_rgba(10,11,14,1))]"></div>
+                <img
+                  src={h.heroImage}
+                  alt=""
+                  className="h-full w-full absolute inset-0 object-cover -z-1"
+                />
+                <div className="z-1">
+                  <p className="text-white bold">{h.heroName}</p>
+                  <p className="text-white text-xs">{h.heroDescription}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h2 className="text-xl sm:text-4xl lg:text-3xl font-bold mb-5">
+            Popular
+          </h2>
+          {Array.from({ length: 4 }).map(() => (
+            <div className="grid grid-cols-4 gap-10 my-5">
+              {HEROES.slice(3).map((h) => (
+                <div className="w-[233px] h-[232px] relative flex items-end p-4 rounded-2xl overflow-hidden">
+                  <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(79,89,116,0.3),_rgba(10,11,14,1))]"></div>
+                  <img
+                    src={h.heroImage}
+                    alt=""
+                    className="h-full w-full absolute inset-0 object-cover -z-1"
+                  />
+
+                  <p className="text-white z-1">{h.heroName}</p>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
-}
+};
+
+export default HeroesAndLegends;

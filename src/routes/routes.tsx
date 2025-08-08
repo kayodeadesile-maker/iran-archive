@@ -31,7 +31,7 @@ const HistoricalMomentsAndEvents = lazy(
 );
 
 // Heros and Legends Imports
-const HerosAndLegends = lazy(
+const HeroesAndLegends = lazy(
   () => import("@/pages/explore-archive/heroes-and-legends/heroes-and-legends")
 );
 
@@ -165,7 +165,7 @@ export const routes = createBrowserRouter([
               <Suspense
                 fallback={<p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>}
               >
-                <HerosAndLegends />
+                <HeroesAndLegends/>
               </Suspense>
             ),
           },
