@@ -27,7 +27,7 @@ export const PaginationComponent = ({
       <div className="flex items-center justify-between max-w-sm w-full mx-auto gap-3">
         <button
           className={classNames(
-            "flex items-center text-xs gap-2 font-medium font-satoshi bg-black disabled:bg-black/20 px-3 py-2.5 rounded-[5px]",
+            "flex items-center text-xs gap-2 font-medium font-satoshi bg-black disabled:bg-black/20 px-3 py-2.5 rounded-[5px] cursor-pointer disabled:cursor-not-allowed",
             page !== 1 ? "text-white" : "text-gray-600"
           )}
           title="previous transaction"
@@ -42,7 +42,7 @@ export const PaginationComponent = ({
 
         <button
           className={classNames(
-            "flex items-center text-xs gap-2 bg-black disabled:bg-black/20 font-medium font-satoshi px-3 py-2.5 rounded-[5px]",
+            "flex items-center text-xs gap-2 bg-black disabled:bg-black/20 font-medium font-satoshi px-3 py-2.5 rounded-[5px] cursor-pointer disabled:cursor-not-allowed",
             hasNextPage ? "text-white" : "text-gray-600"
           )}
           title="previous transaction"

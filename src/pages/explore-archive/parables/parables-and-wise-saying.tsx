@@ -3,7 +3,7 @@ import { classNames } from "@/utils";
 import React, { useCallback, useState } from "react";
 import { alphabets } from "@/utils/alphabets";
 import { HeartIcon } from "@heroicons/react/24/outline";
-import { PaginationComponent } from "@/components/pagination/Pagination";
+import { PaginationComponent } from "@/components/common/pagination/Pagination";
 import ParableCoverImage from "@/assets/parables-cover-image.png";
 import { useNavigate } from "react-router-dom";
 import { SuggestionComponent } from "@/components/suggestion/suggestion";
@@ -35,9 +35,7 @@ const categories = [
   },
 ];
 
-const FILTERS = ["wisdom", "patient", "respect", "hard-work", "relationships", "caution"] as const;
-
-type Filters = (typeof FILTERS)[number];
+type Filters = "wisdom" | "patient" | "respect" | "hard-work" | "relationships" | "caution";
 
 export default function ParablesAndWiseSayings() {
   const env = import.meta.env;

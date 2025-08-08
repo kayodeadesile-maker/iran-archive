@@ -10,7 +10,6 @@ import SubmitArchiveImage from "@/assets/submit-archive.jpg";
 import VolunteerImage from "@/assets/volunteer-image.jpg";
 import FieldAgentImage from "@/assets/field-agent.jpg";
 
-import IllustrationImage from "@/assets/illustration.svg";
 import NewsletterBackgroundImage from "@/assets/newsletter-background-image.svg";
 import NewsletterBoyImage from "@/assets/newsletter-boy-image.svg";
 import NewsletterGirlImage from "@/assets/newsletter-girl-image.svg";
@@ -19,6 +18,7 @@ import { classNames } from "@/utils";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useSearchEngineOptimization } from "@/hooks/seo/useSeo";
+import { DonationComponent } from "@/components/common/donation/Donation";
 
 const FeaturedImages = {
   historical: HistoricalImage,
@@ -41,7 +41,7 @@ type QuickLinkCardProps = {
 const QuickLinkCard = ({ href, label }: QuickLinkCardProps) => {
   return (
     <Link to={href} className="block flex-grow shrink-0 group">
-      <div className="p-4 bg-goldcolor rounded-2xl group-hover:bg-goldcolor/90 transition-colors">
+      <div className="p-4 bg-goldcolor rounded-full group-hover:bg-goldcolor/90 transition-colors">
         <p className="text-white text-sm sm:text-base font-medium font-satoshi capitalize text-center no-translate">
           {label}
         </p>
@@ -176,27 +176,27 @@ export default function Home() {
     },
     {
       label: "history",
-      href: "",
+      href: "/explore-archive/historical-moments",
     },
     {
       label: "vegetables",
-      href: "",
+      href: "/explore-archive/plants-and-vegetables",
     },
     {
       label: "herbs",
-      href: "",
+      href: "/explore-archive/plants-and-vegetables",
     },
     {
       label: "plants",
-      href: "",
+      href: "/explore-archive/plants-and-vegetables",
     },
     {
       label: "heroes",
-      href: "",
+      href: "/explore-archive/heroes-and-legends",
     },
     {
       label: "naming traditions",
-      href: "",
+      href: "/explore-archive/oral-traditions",
     },
   ];
 
@@ -263,7 +263,9 @@ export default function Home() {
         {/* Featured Archive start */}
         <section className="mt-8" id="featured-archive">
           <div>
-            <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-inter no-translate">Featured Archives</h1>
+            <h1 className="text-xl lg:text-2xl mb-2 font-semibold font-inter no-translate">
+              Featured Archives
+            </h1>
 
             <div className="grid grd-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
               <ArchiveCardComponent
@@ -289,7 +291,9 @@ export default function Home() {
         {/* Learn Yoruba start */}
         <section className="mt-8" id="learn-yoruba">
           <div>
-            <h2 className="text-xl lg:text-2xl mb-2 font-semibold font-inter no-translate">Learn Yoruba</h2>
+            <h2 className="text-xl lg:text-2xl mb-2 font-semibold font-inter no-translate">
+              Learn Yoruba
+            </h2>
 
             <div className="grid grd-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               <ArchiveCardComponent
@@ -524,50 +528,7 @@ export default function Home() {
         {/* Contribute end*/}
 
         {/* Donation start */}
-        <section id="donation" className="mt-16">
-          <div className="bg-darkbluecolortwo rounded-2xl p-6">
-            <div className="flex flex-col gap-4 sm:gap-0 sm:flex-row sm:items-center sm:justify-between max-w-5xl mx-auto">
-              <div>
-                <h2 className="font-inter text-xl lg:text-3xl 2xl:text-4xl font-bold text-white no-translate">
-                  Donate to preserve <span className="no-translate">Yoruba</span> heritage
-                </h2>
-                <div className="max-w-[29rem] my-3.5">
-                  <p className="text-lg font-normal font-satoshi text-white no-translate">
-                    Your donation helps preserve the rich heritage of the Yoruba culture. Every
-                    contribution moves us closer to building a lasting archive for generations to
-                    come.
-                  </p>
-                </div>
-                <Link to="" className="inline-block">
-                  <div className="inline-flex items-center bg-accentblue px-8 py-2.5 space-x-4 rounded-lg">
-                    <span className="text-white text-base capitalize font-satoshi font-normal no-translate">
-                      donate
-                    </span>
-                    <svg
-                      width="11"
-                      height="20"
-                      viewBox="0 0 11 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M1.11075 18.5245L9.61382 10.0214L1.11075 1.51831"
-                        stroke="white"
-                        strokeWidth="1.25"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                </Link>
-              </div>
-
-              <div className="w-60">
-                <img src={IllustrationImage} alt="illustration" className="h-full w-full" />
-              </div>
-            </div>
-          </div>
-        </section>
+       <DonationComponent />
         {/* Donation end */}
 
         {/* NewsLetter start */}

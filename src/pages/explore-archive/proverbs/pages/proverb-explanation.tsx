@@ -1,6 +1,6 @@
 import { SuggestionComponent } from "@/components/suggestion/suggestion";
 import { SpeechControls } from "@/components/translation/speech-control";
-import { UsageComponent } from "@/components/usage/usage";
+import { UsageComponent } from "@/components/common/usage/Usage";
 import { useSearchEngineOptimization } from "@/hooks/seo/useSeo";
 import { classNames } from "@/utils";
 import { ArrowLeftIcon, HeartIcon } from "@heroicons/react/24/outline";

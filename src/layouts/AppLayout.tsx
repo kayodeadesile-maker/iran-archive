@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { AppNavigation } from "@/components/navigation/navigation";
 import { Outlet } from "react-router-dom";
 import { Bars3Icon } from "@heroicons/react/24/outline";
-import { Footer } from "@/components/footer/footer";
+import { Footer } from "@/components/common/footer/Footer";
 import { useTranslation } from "@/hooks/context/useTranslation";
 import { TranslationControlComponent } from "@/components/translation/translation-control";
 
@@ -23,7 +23,7 @@ export const AppLayout = () => {
               translationMethod={translationMethod}
               handleSetYorubaMode={setIsYorubaMode}
             />
-            <header className="fixed h-20 inset-x-0 top-0 right-0 bg-navigationbackground border-b border-gray-300 z-20">
+            <header className="fixed h-20 inset-x-0 top-0 right-0 bg-navigationbackground border-b border-gray-300 z-30">
               <nav className="h-full px-4 relative flex items-center justify-between">
                 <div className="flex items-center">
                   <div className="flex-1 lg:flex-none h-16 lg:justify-start flex justiffy-center items-center">
