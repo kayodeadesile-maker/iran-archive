@@ -11,6 +11,8 @@ import felaKuti from "@/assets/legends/fela-kuti.jpg";
 import ayinlaOmowura from "@/assets/legends/ayinla-omowura.jpg";
 import ogundareFoyanmu from "@/assets/legends/ogundare-foyanmu.jpg";
 import funmiKuti from "@/assets/legends/funmilayo-kuti.jpg";
+import { classNames } from "@/utils";
+import { PaginationComponent } from "@/components/pagination/Pagination";
 
 const HEROES_CATEGORIES: HeroesCategoryProps[] = [
   {
@@ -92,9 +94,9 @@ const HeroesCategory = ({
   altName = categoryName,
 }: HeroesCategoryProps) => {
   return (
-    <button className="flex flex-col items-center space-x-2 bg-lightgoldcolorfive w-[168px] h-[96px] p-4 rounded-xl cursor-pointer justify-center">
+    <button className="flex flex-col col-span-1 items-center space-y-2 bg-lightgoldcolorfive h-24 p-4 w-full rounded-xl cursor-pointer justify-center">
       <img src={iconSrc} alt={altName} />
-      <span>{categoryName}</span>
+      <span className="font-satoshi font-medium text-lg">{categoryName}</span>
     </button>
   );
 };
@@ -111,26 +113,39 @@ const HeroesAndLegends = () => {
             className="h-full w-full absolute inset-0 object-cover"
           />
           <div className="flex flex-col min-h-[250px] lg:min-h-[340px] justify-center relative z-10 p-4 xl:p-6">
-            <h1 className="text-xl sm:text-4xl lg:text-5xl font-inter font-bold text-white mb-1 auto-translate">
+            <h1 className="text-xl sm:text-4xl lg:text-5xl font-inter font-bold text-white mb-1 auto-translate leading-xs-normal">
               Reincarnating the Dead,
               <br /> Celebrating Living Legends.
             </h1>
-            <p className="font-satoshi font-normal text-base sm:text-lg lg:text-2xl text-shadecolorseven leading-relaxed max-w-3xl">
-              Telling the stories that shaped us, from ancient warriors to
+            <p className="font-satoshi font-normal text-base sm:text-lg lg:text-2xl text-shadecolorseven leading-relaxed">
+              Telling the stories that shaped us,{" "}
+              <br className="hidden sm:block" /> from ancient warriors to
               present-day icons.
             </p>
           </div>
-          <div className="absolute inset-0 bg-[rgba(10,11,14,0.5)]"></div>
+          <div className="absolute inset-0 bg-black/50"></div>
         </div>
         <div className="bg-lightgoldcolorsix p-4 rounded-xl">
-          <p className="mb-4">Sort by category</p>
-          <div className="grid grid-cols-5">
-            {HEROES_CATEGORIES.map((cat) => (
-              <HeroesCategory
-                categoryName={cat.categoryName}
-                iconSrc={monarchIcon}
-                altName={cat.altName}
-              />
+          <h3 className="mb-3 font-inter text-lg font-medium">
+            Sort by category
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 xl:grid-cols-5">
+            {HEROES_CATEGORIES.map((cat, idx) => (
+              <div
+                className={classNames(
+                  idx == 2
+                    ? "sm:col-span-2 lg:col-span-2"
+                    : "sm:col-span-1 lg:col-span-2",
+                  idx > 2 && "lg:col-span-3",
+                  "xl:col-span-1"
+                )}
+              >
+                <HeroesCategory
+                  categoryName={cat.categoryName}
+                  iconSrc={monarchIcon}
+                  altName={cat.altName}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -138,9 +153,12 @@ const HeroesAndLegends = () => {
           <h2 className="text-xl sm:text-4xl lg:text-3xl font-bold mb-5">
             Top Picks
           </h2>
-          <div className="flex flex-row gap-10 justify-between">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 xl:gap-6">
             {HEROES.slice(0, 3).map((h) => (
-              <div className="w-[307px] h-[272px] relative flex items-end p-4 rounded-2xl overflow-hidden">
+              <div
+                className="w-full h-[17rem] relative flex items-end p-4 rounded-2xl overflow-hidden"
+                key={h.heroName}
+              >
                 <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(79,89,116,0.3),_rgba(10,11,14,1))]"></div>
                 <img
                   src={h.heroImage}
@@ -159,23 +177,37 @@ const HeroesAndLegends = () => {
           <h2 className="text-xl sm:text-4xl lg:text-3xl font-bold mb-5">
             Popular
           </h2>
-          {Array.from({ length: 4 }).map(() => (
-            <div className="grid grid-cols-4 gap-10 my-5">
-              {HEROES.slice(3).map((h) => (
-                <div className="w-[233px] h-[232px] relative flex items-end p-4 rounded-2xl overflow-hidden">
-                  <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(79,89,116,0.3),_rgba(10,11,14,1))]"></div>
-                  <img
-                    src={h.heroImage}
-                    alt=""
-                    className="h-full w-full absolute inset-0 object-cover -z-1"
-                  />
+          <div className="space-y-2">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
+                key={i}
+              >
+                {HEROES.slice(3).map((h) => (
+                  <div className="h-[232px] relative flex items-end p-4 rounded-2xl overflow-hidden">
+                    <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(79,89,116,0.3),_rgba(10,11,14,1))]"></div>
+                    <img
+                      src={h.heroImage}
+                      alt=""
+                      className="h-full w-full absolute inset-0 object-cover -z-1"
+                    />
 
-                  <p className="text-white z-1">{h.heroName}</p>
-                </div>
-              ))}
-            </div>
-          ))}
+                    <p className="text-white z-1">{h.heroName}</p>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
+        <PaginationComponent
+          hasNextPage={true}
+          next={() => console.log("next")}
+          prev={() => console.log("previous")}
+          page={1}
+          totalItems={50}
+          totalPages={100}
+          setPage={(v) => console.log(v)}
+        />
       </div>
     </section>
   );
