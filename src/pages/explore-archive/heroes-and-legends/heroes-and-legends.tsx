@@ -13,7 +13,6 @@ import ogundareFoyanmu from "@/assets/legends/ogundare-foyanmu.jpg";
 import funmiKuti from "@/assets/legends/funmilayo-kuti.jpg";
 import { classNames } from "@/utils";
 import { PaginationComponent } from "@/components/common/pagination/Pagination";
-import { DonationComponent } from "@/components/common/donation/Donation";
 
 const HEROES_CATEGORIES: HeroesCategoryProps[] = [
   {
@@ -74,14 +73,6 @@ const HEROES: HeroProps[] = [
     heroName: "Funmilayo Ransome Kuti",
     heroImage: funmiKuti,
   },
-  {
-    heroName: "Ayinla Omowura",
-    heroImage: ayinlaOmowura,
-  },
-  {
-    heroName: "Ogundare Foyanmu",
-    heroImage: ogundareFoyanmu,
-  },
 ];
 
 interface HeroesCategoryProps {
@@ -97,11 +88,9 @@ interface HeroProps {
 
 const HeroesCategory = ({ categoryName, iconSrc, altName = categoryName }: HeroesCategoryProps) => {
   return (
-    <button className="flex flex-col items-center gap-4 bg-lightgoldcolorfive h-[96px] w-full p-4 rounded-xl cursor-pointer">
+    <button className="flex flex-col col-span-1 items-center space-y-2 bg-lightgoldcolorfive h-24 p-4 w-full rounded-xl cursor-pointer justify-center">
       <img src={iconSrc} alt={altName} />
-      <span className="text-lg font-medium font-satoshi capitalize inline-block">
-        {categoryName}
-      </span>
+      <span className="font-satoshi font-medium text-lg">{categoryName}</span>
     </button>
   );
 };
@@ -109,7 +98,7 @@ const HeroesCategory = ({ categoryName, iconSrc, altName = categoryName }: Heroe
 const HeroesAndLegends = () => {
   return (
     <section className="pt-10 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto flex flex-col gap-10">
         <div className="relative rounded-3xl overflow-hidden">
           <img
             src={heroesCoverImage}
@@ -122,22 +111,22 @@ const HeroesAndLegends = () => {
               Reincarnating the Dead,
               <br /> Celebrating Living Legends.
             </h1>
-            <p className="font-satoshi font-normal text-base sm:text-lg lg:text-2xl text-shadecolorseven leading-relaxed max-w-3xl">
-              Telling the stories that shaped us, from ancient warriors to present-day icons.
+            <p className="font-satoshi font-normal text-base sm:text-lg lg:text-2xl text-shadecolorseven leading-relaxed">
+              Telling the stories that shaped us, <br className="hidden sm:block" /> from ancient
+              warriors to present-day icons.
             </p>
           </div>
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
-
-        {/* Category Filter  start */}
-        <div className="bg-lightgoldcolorsix p-4 rounded-xl mt-20">
-          <p className="mb-4 font-inter font-medim text-lg">Sort by category</p>
-          <div className="grid grid-cols-4 lg:grid-cols-5 gap-3">
+        <div className="bg-lightgoldcolorsix p-4 rounded-xl">
+          <h3 className="mb-3 font-inter text-lg font-medium">Sort by category</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 xl:grid-cols-5">
             {HEROES_CATEGORIES.map((cat, idx) => (
               <div
                 className={classNames(
-                  "block flex-grow shrink-0 group",
-                  idx === 2 ? "col-span-4 lg:col-span-1" : "col-span-2 lg:col-span-1"
+                  idx == 2 ? "sm:col-span-2 lg:col-span-2" : "sm:col-span-1 lg:col-span-2",
+                  idx > 2 && "lg:col-span-3",
+                  "xl:col-span-1"
                 )}
               >
                 <HeroesCategory
@@ -149,18 +138,14 @@ const HeroesAndLegends = () => {
             ))}
           </div>
         </div>
-        {/* Category Filter  start */}
-
-        {/* Horizontal dividing line start */}
-        <hr className="my-10 border-[1.5px] border-lightgoldcolorone" />
-        {/* Horizontal dividing line end */}
-
-        {/* Top Picks  start */}
-        <div className="mt-5">
+        <div>
           <h2 className="text-xl sm:text-4xl lg:text-3xl font-bold mb-5">Top Picks</h2>
-          <div className="grid grd-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 gap-y-5 mt-4">
-            {HEROES.map((h) => (
-              <div className="w-auto h-[272px] relative flex items-end p-4 rounded-2xl overflow-hidden">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 xl:gap-6">
+            {HEROES.slice(0, 3).map((h) => (
+              <div
+                className="w-full h-[17rem] relative flex items-end p-4 rounded-2xl overflow-hidden"
+                key={h.heroName}
+              >
                 <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(79,89,116,0.3),_rgba(10,11,14,1))]"></div>
                 <img
                   src={h.heroImage}
@@ -168,54 +153,43 @@ const HeroesAndLegends = () => {
                   className="h-full w-full absolute inset-0 object-cover -z-1"
                 />
                 <div className="z-1">
-                  <p className="text-white text-xl font-medium font-satoshi capitalize">
-                    {h.heroName}
-                  </p>
-                  <p className="text-white font-normal font-satoshi text-lg">{h.heroDescription}</p>
+                  <p className="text-white bold">{h.heroName}</p>
+                  <p className="text-white text-xs">{h.heroDescription}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        {/* Top Picks end */}
-
-        {/* <div>
+        <div>
           <h2 className="text-xl sm:text-4xl lg:text-3xl font-bold mb-5">Popular</h2>
-          {Array.from({ length: 4 }).map(() => (
-            <div className="grid grd-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 gap-y-5 mt-4">
-              {HEROES.slice(3).map((h) => (
-                <div className="w-[233px] h-[232px] relative flex items-end p-4 rounded-2xl overflow-hidden">
-                  <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(79,89,116,0.3),_rgba(10,11,14,1))]"></div>
-                  <img
-                    src={h.heroImage}
-                    alt=""
-                    className="h-full w-full absolute inset-0 object-cover -z-1"
-                  />
+          <div className="space-y-2">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4" key={i}>
+                {HEROES.slice(3).map((h) => (
+                  <div className="h-[232px] relative flex items-end p-4 rounded-2xl overflow-hidden">
+                    <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(79,89,116,0.3),_rgba(10,11,14,1))]"></div>
+                    <img
+                      src={h.heroImage}
+                      alt=""
+                      className="h-full w-full absolute inset-0 object-cover -z-1"
+                    />
 
-                  <p className="text-white z-1">{h.heroName}</p>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div> */}
-
-        {/* Pagination start */}
-        <div className="mt-20">
-          <PaginationComponent
-            hasNextPage={true}
-            next={() => console.log("next")}
-            prev={() => console.log("previous")}
-            page={1}
-            totalItems={50}
-            totalPages={100}
-            setPage={(v) => console.log(v)}
-          />
+                    <p className="text-white z-1">{h.heroName}</p>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
-        {/* Pagination end */}
-
-        {/* Donation start */}
-        <DonationComponent />
-        {/* Donation end */}
+        <PaginationComponent
+          hasNextPage={true}
+          next={() => console.log("next")}
+          prev={() => console.log("previous")}
+          page={1}
+          totalItems={50}
+          totalPages={100}
+          setPage={(v) => console.log(v)}
+        />
       </div>
     </section>
   );
