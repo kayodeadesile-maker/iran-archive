@@ -18,6 +18,9 @@ const ParablesbDetailExplaination = lazy(
 const IndigenousPlants = lazy(
   () => import("@/pages/explore-archive/plants/plants")
 );
+const HeroesAndLegends = lazy(
+  () => import("@/pages/explore-archive/heroes-and-legends/heroes-and-legends")
+);
 
 export const routes = createBrowserRouter([
   {
@@ -137,7 +140,7 @@ export const routes = createBrowserRouter([
             ],
           },
           {
-            path: "heros-and-legends",
+            path: "heroes-and-legends",
             element: (
               <Suspense
                 fallback={
@@ -146,7 +149,7 @@ export const routes = createBrowserRouter([
                   </p>
                 }
               >
-                <></>
+                <HeroesAndLegends/>
               </Suspense>
             ),
           },
