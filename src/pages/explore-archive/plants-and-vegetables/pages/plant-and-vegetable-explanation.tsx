@@ -104,5 +104,14 @@ export default function PlantAndVegetableExplanation() {
 }
 
 const PlantAndVegetableCarousel = () => {
-  return <div className=""></div>;
+  return (
+    <div className="h-80 mb-20">
+      <div className="rounded-3xl bg-green h-full p-4 sm:p-6 xl:p-8">
+        <div className="">
+          <h3 className="font-inter font-bold text-white">Èwúro (Vernonia amygdalina)</h3>
+          <p className="text-lg font-normal font-satoshi">Bitter Leaf</p>
+        </div>
+      </div>
+    </div>
+  );
 };
