@@ -259,7 +259,7 @@ const CategoriesFilter = () => {
       >
         Sort by category
       </motion.h2>
-      <div className="grid grid-cols-4 lg:grid-cols-5 gap-3 mt-3">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-5 gap-3 mt-3">
         {React.Children.toArray(
           categories.map((category, idx) => {
             return (
@@ -276,7 +276,9 @@ const CategoriesFilter = () => {
                 }}
                 className={classNames(
                   "block flex-grow shrink-0 group",
-                  idx === 2 ? "col-span-4 lg:col-span-1" : "col-span-2 lg:col-span-1"
+                  idx === 2 ? "sm:col-span-2" : "sm:col-span-1 lg:col-span-2",
+                  idx > 2 && "lg:col-span-3",
+                  "xl:col-span-1"
                 )}
               >
                 <CategoryCard {...category} />
