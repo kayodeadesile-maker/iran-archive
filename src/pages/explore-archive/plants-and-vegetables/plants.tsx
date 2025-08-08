@@ -55,7 +55,7 @@ const Plants = () => {
         {/* Pagination end */}
 
         {/* Donation start */}
-        <DonationComponent/>
+        <DonationComponent />
         {/* Donation end */}
       </div>
     </section>
@@ -339,7 +339,7 @@ interface TopPickPlantCardProps {
   description: string;
 }
 
-const TopPickPlacntCard = (props: TopPickPlantCardProps) => {
+const TopPickPlantCard = (props: TopPickPlantCardProps) => {
   const { image, yorubaName, englishName, description } = props;
 
   return (
@@ -368,7 +368,7 @@ const TopPickPlants = () => {
       <div className="grid grd-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6 mt-4">
         {React.Children.toArray(
           top_picks.map((pick, idx) => {
-            return <TopPickPlacntCard key={`${pick.yorubaName}-${idx}`} {...pick} />;
+            return <TopPickPlantCard key={`${pick.yorubaName}-${idx}`} {...pick} />;
           })
         )}
       </div>
