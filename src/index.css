@@ -163,6 +163,7 @@
   --color-accentblue: #006eff;
   --color-textblack: #0a0b0e;
   --color-goldcolor: #2b1f0e;
+  --color-primarygoldcolor: #2b1f0e;
 
   --color-lightgoldcolor: #c79852;
   --color-lightgoldcolorone: #956d30;
@@ -182,6 +183,9 @@
   --color-shadecolorsix: #a0a7bc;
 
   --color-green: #0c3924;
+  --color-lightgreen: #358b62;
+
+  --text-3xxl: 2rem;
 
   --leading-xs-normal: 1.25;
 
