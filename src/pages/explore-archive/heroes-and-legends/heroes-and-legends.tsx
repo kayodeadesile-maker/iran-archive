@@ -92,7 +92,7 @@ const HeroesCategory = ({
   altName = categoryName,
 }: HeroesCategoryProps) => {
   return (
-    <button className="flex flex-col items-center space-x-2 bg-lightgoldcolorfive w-[168px] h-[96px] p-4 rounded-xl cursor-pointer">
+    <button className="flex flex-col items-center space-x-2 bg-lightgoldcolorfive w-[168px] h-[96px] p-4 rounded-xl cursor-pointer justify-center">
       <img src={iconSrc} alt={altName} />
       <span>{categoryName}</span>
     </button>
