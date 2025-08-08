@@ -3,27 +3,44 @@ import Home from "@/pages/home/home";
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
+// Proverbs Imports
 const Proverbs = lazy(() => import("@/pages/explore-archive/proverbs/proverbs"));
-const ParablesAndWiseSayings = lazy(
-  () => import("@/pages/explore-archive/parables/parables-and-wise-saying")
-);
 const ProverbsExplaination = lazy(
   () => import("@/pages/explore-archive/proverbs/pages/proverb-explanation")
+);
+
+// Parables Imports
+const ParablesAndWiseSayings = lazy(
+  () => import("@/pages/explore-archive/parables/parables-and-wise-saying")
 );
 const ParablesbDetailExplaination = lazy(
   () => import("@/pages/explore-archive/parables/pages/parables-explaination")
 );
-const IndigenousPlants = lazy(() => import("@/pages/explore-archive/plants/plants"));
+
+// Plants and Vegatbles Imports
+const IndigenousPlants = lazy(() => import("@/pages/explore-archive/plants-and-vegetables/plants"));
+const PlantAndVegetableExplanation = lazy(
+  () =>
+    import("@/pages/explore-archive/plants-and-vegetables/pages/plant-and-vegetable-explanation")
+);
+
+// Historical Moments and Events Imports
 const HistoricalMomentsAndEvents = lazy(
   () =>
     import("@/pages/explore-archive/historical-moments-and-events/historical-moments-and-events")
 );
+
+// Heros and Legends Imports
 const HerosAndLegends = lazy(
   () => import("@/pages/explore-archive/heroes-and-legends/heroes-and-legends")
 );
+
+// Oral Tradition Imports
 const OralTraditions = lazy(
   () => import("@/pages/explore-archive/oral-traditions/oral-traditions")
 );
+
+// Visual Archive Imports
 const VisualArchive = lazy(() => import("@/pages/explore-archive/visual-archive/visual-archive"));
 
 export const routes = createBrowserRouter([
@@ -124,6 +141,19 @@ export const routes = createBrowserRouter([
                     }
                   >
                     <IndigenousPlants />
+                  </Suspense>
+                ),
+              },
+              {
+                path: ":plantId",
+
+                element: (
+                  <Suspense
+                    fallback={
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
+                    }
+                  >
+                    <PlantAndVegetableExplanation />
                   </Suspense>
                 ),
               },
