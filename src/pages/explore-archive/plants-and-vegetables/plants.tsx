@@ -79,33 +79,33 @@ const PlantsOverview = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-6">
-        <div className="grid grid-cols-2 gap-3 row-span-2">
-          <div className="col-span-2 overflow-hidden rounded-3xl w-2/3 place-self-end-safe h-full">
-            <img src={PlantOne} alt="plant one" className="object-cover object-center h-full" />
-          </div>
-
-          <div className="col-span-2 grid grid-cols-2 gap-3">
-            <div className="col-span-1 bg-[#0C3924] text-white rounded-2xl lg:rounded-3xl flex flex-col p-3 justify-center h-2/3 md:h-1/2 xl:h-auto place-self-end-safe">
-              <h2 className="font-satoshi text-lg font-medium">100%</h2>
-              <p className="font-satoshi text-base md:text-lg font-normal">Native Yoruba</p>
-            </div>
-
-            <div className="col-span-1 overflow-hidden rounded-3xl">
-              <img
-                src={PlantTwo}
-                alt="plant two"
-                className="h-full object-cover object-center w-full"
-              />
-            </div>
-          </div>
+      <div className="grid grid-cols-3 grid-rows-2 gap-3 h-96 xl:h-[400px] min-w-0">
+        <div className="col-span-2 row-span-1 overflow-hidden rounded-3xl">
+          <img
+            src={PlantOne}
+            alt="plant one"
+            className="object-cover object-center h-full w-full"
+          />
         </div>
 
-        <div className="row-span-2 overflow-hidden rounded-3xl">
+        <div className="col-span-1 row-span-2 overflow-hidden rounded-3xl">
           <img
             src={EweAbamodaImage}
             alt="ewe abamoda"
-            className="h-full object-cover object-center"
+            className="h-full w-full object-cover object-center"
+          />
+        </div>
+
+        <div className="col-span-1 bg-[#0C3924] text-white rounded-2xl lg:rounded-3xl flex flex-col p-3 justify-center h-2/3 md:h-2/3 place-self-end-safe">
+          <h2 className="font-satoshi text-lg font-medium">100%</h2>
+          <p className="font-satoshi text-base md:text-lg font-normal">Native Yoruba</p>
+        </div>
+
+        <div className="col-span-1 row-span-1 overflow-hidden rounded-3xl">
+          <img
+            src={PlantTwo}
+            alt="plant two"
+            className="h-full object-cover object-center w-full"
           />
         </div>
       </div>
@@ -113,7 +113,6 @@ const PlantsOverview = () => {
   );
 };
 
-// Categorie Folter component
 const categories = [
   {
     label: "medicine",
