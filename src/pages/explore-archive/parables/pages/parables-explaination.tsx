@@ -62,7 +62,7 @@ export default function ParablesbDetailExplaination() {
           onClick={() => navigate("/explore-archive/proverbs/")}
         >
           <ArrowLeftIcon className="size-4 shrink-0" />
-          back
+          Back
         </button>
 
         <article className="">
