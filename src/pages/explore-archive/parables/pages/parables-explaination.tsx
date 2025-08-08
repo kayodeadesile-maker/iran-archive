@@ -1,6 +1,6 @@
 import { SuggestionComponent } from "@/components/suggestion/suggestion";
 import { SpeechControls } from "@/components/translation/speech-control";
-import { UsageComponent } from "@/components/usage/usage";
+import { UsageComponent } from "@/components/common/usage/Usage";
 import { useSearchEngineOptimization } from "@/hooks/seo/useSeo";
 // import { useSpeech } from "@/hooks/speech/useSpeech";
 import { classNames } from "@/utils";

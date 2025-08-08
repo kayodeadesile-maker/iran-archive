@@ -4,7 +4,7 @@ import { classNames } from "@/utils";
 import ProverbCoverImage from "@/assets/proverbs-cover-image.jpg";
 import { useSearchEngineOptimization } from "@/hooks/seo/useSeo";
 import { HeartIcon } from "@heroicons/react/24/outline";
-import { PaginationComponent } from "@/components/pagination/Pagination";
+import { PaginationComponent } from "@/components/common/pagination/Pagination";
 import { useNavigate } from "react-router-dom";
 import { SuggestionComponent } from "@/components/suggestion/suggestion";
 
@@ -336,9 +336,7 @@ const ProverbListItemComponent: React.FC<ProverbListItemProps> = ({
             type="button"
             className="cursor-pointer"
             onClick={() =>
-              isFavourite
-                ? handleMarkAsNotFavourite(id)
-                : handleMarkAsFavourite(id)!
+              isFavourite ? handleMarkAsNotFavourite(id) : handleMarkAsFavourite(id)!
             }
           >
             <span className="flex items-center justify-center h-8 w-8 rounded-full bg-white border border-lightgoldcolorthree">

@@ -5,7 +5,7 @@ interface SuggestionComponentProps {
   title: string;
   suggestionTitle: string;
   meaning: string;
-  socialLinks?: {}[];
+  // socialLinks?: {}[];
 }
 
 export const SuggestionComponent: React.FC<SuggestionComponentProps> = ({
