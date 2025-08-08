@@ -135,9 +135,46 @@ const HeroesAndLegends = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-xl sm:text-4xl lg:text-3xl font-bold">
+          <h2 className="text-xl sm:text-4xl lg:text-3xl font-bold mb-5">
             Top Picks
           </h2>
+          <div className="flex flex-row gap-10 justify-between">
+            {HEROES.slice(0, 3).map((h) => (
+              <div className="w-[307px] h-[272px] relative flex items-end p-4 rounded-2xl overflow-hidden">
+                <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(79,89,116,0.3),_rgba(10,11,14,1))]"></div>
+                <img
+                  src={h.heroImage}
+                  alt=""
+                  className="h-full w-full absolute inset-0 object-cover -z-1"
+                />
+                <div className="z-1">
+                  <p className="text-white bold">{h.heroName}</p>
+                  <p className="text-white text-xs">{h.heroDescription}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h2 className="text-xl sm:text-4xl lg:text-3xl font-bold mb-5">
+            Popular
+          </h2>
+          {Array.from({ length: 4 }).map(() => (
+            <div className="grid grid-cols-4 gap-10 my-5">
+              {HEROES.slice(3).map((h) => (
+                <div className="w-[233px] h-[232px] relative flex items-end p-4 rounded-2xl overflow-hidden">
+                  <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(79,89,116,0.3),_rgba(10,11,14,1))]"></div>
+                  <img
+                    src={h.heroImage}
+                    alt=""
+                    className="h-full w-full absolute inset-0 object-cover -z-1"
+                  />
+
+                  <p className="text-white z-1">{h.heroName}</p>
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </section>
