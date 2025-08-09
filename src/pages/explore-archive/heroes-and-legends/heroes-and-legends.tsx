@@ -14,6 +14,7 @@ import funmiKuti from "@/assets/legends/funmilayo-kuti.jpg";
 import { classNames } from "@/utils";
 import { PaginationComponent } from "@/components/common/pagination/Pagination";
 import { DonationComponent } from "@/components/common/donation/Donation";
+import { useNavigate } from "react-router-dom";
 
 const HEROES_CATEGORIES: HeroesCategoryProps[] = [
   {
@@ -103,6 +104,7 @@ const HeroesCategory = ({
 };
 
 const HeroesAndLegends = () => {
+  const navigate = useNavigate()
   return (
     <section className="pt-10 px-4">
       <div className="max-w-6xl mx-auto flex flex-col gap-10">
@@ -156,8 +158,11 @@ const HeroesAndLegends = () => {
           </h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 xl:gap-6">
             {HEROES.slice(0, 3).map((h) => (
-              <div
-                className="w-full h-[17rem] relative flex items-end p-4 rounded-2xl overflow-hidden"
+              <button
+                onClick={() =>
+                  navigate("/explore-archive/heroes-and-legends/heroOrLegendId")
+                }
+                className="w-full h-[17rem] relative flex items-end p-4 rounded-2xl overflow-hidden cursor-pointer"
                 key={h.heroName}
               >
                 <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(79,89,116,0.3),_rgba(10,11,14,1))]"></div>
@@ -170,7 +175,7 @@ const HeroesAndLegends = () => {
                   <p className="text-white bold text-xl">{h.heroName}</p>
                   <p className="text-white text-xs">{h.heroDescription}</p>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -185,7 +190,14 @@ const HeroesAndLegends = () => {
                 key={i}
               >
                 {HEROES.slice(3).map((h) => (
-                  <div className="h-[232px] relative flex items-end p-4 rounded-2xl overflow-hidden">
+                  <button
+                    onClick={() =>
+                      navigate(
+                        "/explore-archive/heroes-and-legends/heroOrLegendId"
+                      )
+                    }
+                    className="h-[232px] relative flex items-end p-4 rounded-2xl overflow-hidden cursor-pointer"
+                  >
                     <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(79,89,116,0.3),_rgba(10,11,14,1))]"></div>
                     <img
                       src={h.heroImage}
@@ -194,7 +206,7 @@ const HeroesAndLegends = () => {
                     />
 
                     <p className="text-white z-1 text-xl">{h.heroName}</p>
-                  </div>
+                  </button>
                 ))}
               </div>
             ))}
