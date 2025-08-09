@@ -200,7 +200,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                 const { label, Icon } = route;
                 const isActive = isRouteActive(route);
                 const adjustedIndex = index + navigateRoutesOne.length;
-                const isMenuOpen = openMenuIndex === index;
+                const isMenuOpen = openMenuIndex === adjustedIndex;
 
                 // const openMenu = navigateRoutesOne.find((route) => route.label === label)?.openMenu;
 
