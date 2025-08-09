@@ -148,7 +148,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                         handleNavigation(route, index);
                       }}
                       className={classNames(
-                        "flex items-center space-x-4 relative w-full py-4 px-7 hover:bg-gray-50",
+                        "flex items-center space-x-4 relative w-full py-4 px-7 hover:bg-gray-50 cursor-pointer",
                         isMenuOpen && "bg-gray-50",
                         isActive && !isMenuOpen && "bg-gray-50 border-r-4 border-goldcolor"
                       )}
@@ -222,7 +222,7 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
                       }}
                       onClick={() => handleNavigation(route, adjustedIndex)}
                       className={classNames(
-                        "flex items-center space-x-4 relative w-full py-4 px-7 hover:bg-gray-50",
+                        "flex items-center space-x-4 relative w-full py-4 px-7 hover:bg-gray-50 cursor-pointer",
                         isMenuOpen && "bg-gray-50",
                         isActive && !isMenuOpen && "bg-gray-50 border-r-4 border-goldcolor"
                       )}
