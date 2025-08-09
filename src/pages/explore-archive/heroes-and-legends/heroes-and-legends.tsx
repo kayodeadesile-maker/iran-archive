@@ -13,6 +13,7 @@ import ogundareFoyanmu from "@/assets/legends/ogundare-foyanmu.jpg";
 import funmiKuti from "@/assets/legends/funmilayo-kuti.jpg";
 import { classNames } from "@/utils";
 import { PaginationComponent } from "@/components/common/pagination/Pagination";
+import { DonationComponent } from "@/components/common/donation/Donation";
 
 const HEROES_CATEGORIES: HeroesCategoryProps[] = [
   {
@@ -45,7 +46,8 @@ const HEROES: HeroProps[] = [
   {
     heroName: "Moremi",
     heroImage: moremi,
-    heroDescription: "Legendary Yoruba Queen, Heroine, liberator and warlord...",
+    heroDescription:
+      "Legendary Yoruba Queen, Heroine, liberator and warlord...",
   },
   {
     heroName: "Awolowo",
@@ -55,7 +57,8 @@ const HEROES: HeroProps[] = [
   {
     heroName: "Basorun Gaa",
     heroImage: basorunGaa,
-    heroDescription: "Nobleman, known for his military prowess, warlord in the old Oyo...",
+    heroDescription:
+      "Nobleman, known for his military prowess, warlord in the old Oyo...",
   },
   {
     heroName: "Fela Anikulapo Kuti",
@@ -86,7 +89,11 @@ interface HeroProps {
   heroDescription?: string;
 }
 
-const HeroesCategory = ({ categoryName, iconSrc, altName = categoryName }: HeroesCategoryProps) => {
+const HeroesCategory = ({
+  categoryName,
+  iconSrc,
+  altName = categoryName,
+}: HeroesCategoryProps) => {
   return (
     <button className="flex flex-col col-span-1 items-center space-y-2 bg-lightgoldcolorfive h-24 p-4 w-full rounded-xl cursor-pointer justify-center">
       <img src={iconSrc} alt={altName} />
@@ -112,19 +119,24 @@ const HeroesAndLegends = () => {
               <br /> Celebrating Living Legends.
             </h1>
             <p className="font-satoshi font-normal text-base sm:text-lg lg:text-2xl text-shadecolorseven leading-relaxed">
-              Telling the stories that shaped us, <br className="hidden sm:block" /> from ancient
-              warriors to present-day icons.
+              Telling the stories that shaped us,{" "}
+              <br className="hidden sm:block" /> from ancient warriors to
+              present-day icons.
             </p>
           </div>
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
         <div className="bg-lightgoldcolorsix p-4 rounded-xl">
-          <h3 className="mb-3 font-inter text-lg font-medium">Sort by category</h3>
+          <h3 className="mb-3 font-inter text-lg font-medium">
+            Sort by category
+          </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 xl:grid-cols-5">
             {HEROES_CATEGORIES.map((cat, idx) => (
               <div
                 className={classNames(
-                  idx == 2 ? "sm:col-span-2 lg:col-span-2" : "sm:col-span-1 lg:col-span-2",
+                  idx == 2
+                    ? "sm:col-span-2 lg:col-span-2"
+                    : "sm:col-span-1 lg:col-span-2",
                   idx > 2 && "lg:col-span-3",
                   "xl:col-span-1"
                 )}
@@ -139,7 +151,9 @@ const HeroesAndLegends = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-xl sm:text-4xl lg:text-3xl font-bold mb-5">Top Picks</h2>
+          <h2 className="text-xl sm:text-4xl lg:text-3xl font-bold mb-5">
+            Top Picks
+          </h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 xl:gap-6">
             {HEROES.slice(0, 3).map((h) => (
               <div
@@ -153,7 +167,7 @@ const HeroesAndLegends = () => {
                   className="h-full w-full absolute inset-0 object-cover -z-1"
                 />
                 <div className="z-1">
-                  <p className="text-white bold">{h.heroName}</p>
+                  <p className="text-white bold text-xl">{h.heroName}</p>
                   <p className="text-white text-xs">{h.heroDescription}</p>
                 </div>
               </div>
@@ -161,10 +175,15 @@ const HeroesAndLegends = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-xl sm:text-4xl lg:text-3xl font-bold mb-5">Popular</h2>
+          <h2 className="text-xl sm:text-4xl lg:text-3xl font-bold mb-5">
+            Popular
+          </h2>
           <div className="space-y-2">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4" key={i}>
+              <div
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
+                key={i}
+              >
                 {HEROES.slice(3).map((h) => (
                   <div className="h-[232px] relative flex items-end p-4 rounded-2xl overflow-hidden">
                     <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(79,89,116,0.3),_rgba(10,11,14,1))]"></div>
@@ -174,22 +193,27 @@ const HeroesAndLegends = () => {
                       className="h-full w-full absolute inset-0 object-cover -z-1"
                     />
 
-                    <p className="text-white z-1">{h.heroName}</p>
+                    <p className="text-white z-1 text-xl">{h.heroName}</p>
                   </div>
                 ))}
               </div>
             ))}
           </div>
         </div>
-        <PaginationComponent
-          hasNextPage={true}
-          next={() => console.log("next")}
-          prev={() => console.log("previous")}
-          page={1}
-          totalItems={50}
-          totalPages={100}
-          setPage={(v) => console.log(v)}
-        />
+        <div className="mt-20">
+          <PaginationComponent
+            hasNextPage={true}
+            next={() => console.log("next")}
+            prev={() => console.log("previous")}
+            page={1}
+            totalItems={50}
+            totalPages={100}
+            setPage={(v) => console.log(v)}
+          />
+        </div>
+        {/* Donation Start */}
+        <DonationComponent />
+        {/* Donation End */}
       </div>
     </section>
   );
