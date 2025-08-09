@@ -15,6 +15,7 @@ import EwerokoImage from "@/assets/plants/eweroko.jpg";
 import EfoYanrinImage from "@/assets/plants/efo-yanrin.jpg";
 import { PaginationComponent } from "@/components/common/pagination/Pagination";
 import { DonationComponent } from "@/components/common/donation/Donation";
+import { useNavigate } from "react-router-dom";
 
 const Plants = () => {
   return (
@@ -65,51 +66,238 @@ const Plants = () => {
 export default Plants;
 
 const PlantsOverview = () => {
+  // Animation variants
+  const containerVariants = {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const titleVariants = {
+    initial: {
+      opacity: 0,
+      y: 60,
+      scale: 0.9,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+    },
+  };
+
+  const subtitleVariants = {
+    initial: {
+      opacity: 0,
+      y: 30,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+    },
+  };
+
+  const gridVariants = {
+    initial: {
+      opacity: 0,
+      scale: 0.95,
+    },
+    animate: {
+      opacity: 1,
+      scale: 1,
+    },
+  };
+
+  const imageVariants = {
+    initial: {
+      opacity: 0,
+      scale: 1.1,
+      y: 20,
+    },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+    },
+  };
+
+  const cardVariants = {
+    initial: {
+      opacity: 0,
+      y: 30,
+      scale: 0.9,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+    },
+  };
+
   return (
-    <div className="flex flex-col xl:flex-row justify-between gap-y-9 gap-4">
-      <div className="space-y-2 shrink-0 xl:max-w-xl 2xl:max-w-2xl xl:w-full">
+    <motion.div
+      variants={containerVariants}
+      initial="initial"
+      animate="animate"
+      className="flex flex-col xl:flex-row justify-between gap-y-9 gap-4"
+    >
+      <motion.div
+        variants={containerVariants}
+        initial="initial"
+        animate="animate"
+        className="space-y-2 shrink-0 xl:max-w-xl 2xl:max-w-2xl xl:w-full"
+      >
         <div className="mx-auto sm:mx-0">
-          <h1 className="text-5xl sm:text-6xl xl:text-7xl 2xl:text-8xl font-bold font-inter leading-[1.25]">
+          <motion.h1
+            animate="animate"
+            variants={{
+              ...titleVariants,
+              animate: {
+                ...titleVariants.animate,
+                transition: {
+                  duration: 0.8,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                },
+              },
+            }}
+            initial="initial"
+            className="text-5xl sm:text-6xl xl:text-7xl 2xl:text-8xl font-bold font-inter leading-[1.25]"
+          >
             Where Roots Speak
-          </h1>
+          </motion.h1>
         </div>
 
-        <p className="font-satoshi font-normal text-2xl leading-normal text-shadecolorfour">
+        <motion.p
+          variants={{
+            ...subtitleVariants,
+            animate: {
+              ...subtitleVariants.animate,
+              transition: {
+                duration: 0.6,
+                ease: "easeOut",
+                delay: 0.3,
+              },
+            },
+          }}
+          className="font-satoshi font-normal text-2xl leading-normal text-shadecolorfour"
+        >
           Uncovering the Forgotten <br className="hidden lg:block" /> Plants of Our Land
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
-      <div className="grid grid-cols-3 grid-rows-2 gap-3 h-96 xl:h-[400px] min-w-0">
-        <div className="col-span-2 row-span-1 overflow-hidden rounded-3xl">
+      <motion.div
+        variants={{
+          ...gridVariants,
+          animate: {
+            ...gridVariants.animate,
+            transition: {
+              duration: 0.7,
+              ease: "easeOut",
+              staggerChildren: 0.1,
+              delayChildren: 0.4,
+            },
+          },
+        }}
+        className="grid grid-cols-3 grid-rows-2 gap-3 h-96 xl:h-[400px] min-w-0"
+      >
+        <motion.div
+          variants={{
+            ...imageVariants,
+            animate: {
+              ...imageVariants.animate,
+              transition: {
+                duration: 0.6,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              },
+            },
+          }}
+          className="col-span-2 row-span-1 overflow-hidden rounded-3xl"
+        >
           <img
             src={PlantOne}
             alt="plant one"
             className="object-cover object-center h-full w-full"
           />
-        </div>
+        </motion.div>
 
-        <div className="col-span-1 row-span-2 overflow-hidden rounded-3xl">
+        <motion.div
+          variants={{
+            ...imageVariants,
+            animate: {
+              ...imageVariants.animate,
+              transition: {
+                duration: 0.6,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              },
+            },
+          }}
+          className="col-span-1 row-span-2 overflow-hidden rounded-3xl"
+        >
           <img
             src={EweAbamodaImage}
             alt="ewe abamoda"
             className="h-full w-full object-cover object-center"
           />
-        </div>
+        </motion.div>
 
-        <div className="col-span-1 bg-[#0C3924] text-white rounded-2xl lg:rounded-3xl flex flex-col p-3 justify-center h-2/3 md:h-2/3 place-self-end-safe">
-          <h2 className="font-satoshi text-lg font-medium">100%</h2>
-          <p className="font-satoshi text-base md:text-lg font-normal">Native Yoruba</p>
-        </div>
+        <motion.div
+          variants={{
+            ...cardVariants,
+            animate: {
+              ...cardVariants.animate,
+              transition: {
+                duration: 0.6,
+                ease: "easeOut",
+              },
+            },
+          }}
+          className="col-span-1 bg-[#0C3924] text-white rounded-2xl lg:rounded-3xl flex flex-col p-3 justify-center h-2/3 md:h-2/3 place-self-end-safe"
+        >
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+            className="font-satoshi text-lg font-medium"
+          >
+            100%
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.5 }}
+            className="font-satoshi text-base md:text-lg font-normal"
+          >
+            Native Yoruba
+          </motion.p>
+        </motion.div>
 
-        <div className="col-span-1 row-span-1 overflow-hidden rounded-3xl">
+        <motion.div
+          variants={{
+            ...imageVariants,
+            animate: {
+              ...imageVariants.animate,
+              transition: {
+                duration: 0.6,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              },
+            },
+          }}
+          className="col-span-1 row-span-1 overflow-hidden rounded-3xl"
+        >
           <img
             src={PlantTwo}
             alt="plant two"
             className="h-full object-cover object-center w-full"
           />
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };
 
@@ -343,8 +531,13 @@ interface TopPickPlantCardProps {
 const TopPickPlantCard = (props: TopPickPlantCardProps) => {
   const { image, yorubaName, englishName, description } = props;
 
+  const navigate = useNavigate();
+
   return (
-    <div className="group relative overflow-hidden h-[20rem] border border-gray-300 w-full col-span-1 rounded-2xl before:absolute before:content-[' '] before:block before:inset-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black/5 before:to-black before:z-10">
+    <div
+      onClick={() => navigate("/explore-archive/plants-and-vegetables/:plantId")}
+      className="group relative overflow-hidden h-[20rem] border border-gray-300 w-full col-span-1 rounded-2xl before:absolute before:content-[' '] before:block before:inset-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black/5 before:to-black before:z-10"
+    >
       <img
         src={image}
         alt={yorubaName}
@@ -470,8 +663,13 @@ const popularPlants = [
 const PopularPlantCard = (props: PopularPlantCardProps) => {
   const { image, yorubaName, englishName } = props;
 
+  const navigate = useNavigate();
+
   return (
-    <div className="group relative overflow-hidden h-[16rem] border border-gray-300 w-full col-span-1 rounded-2xl before:absolute before:content-[' '] before:block before:inset-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black/5 before:to-black before:z-10">
+    <div
+      onClick={() => navigate("/explore-archive/plants-and-vegetables/:plantId")}
+      className="group relative overflow-hidden h-[16rem] border border-gray-300 w-full col-span-1 rounded-2xl before:absolute before:content-[' '] before:block before:inset-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black/5 before:to-black before:z-10"
+    >
       <img
         src={image}
         alt={yorubaName}

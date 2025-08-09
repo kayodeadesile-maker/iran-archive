@@ -3,6 +3,7 @@ import { classNames } from "@/utils";
 import { ArrowLeftIcon, HeartIcon, StopIcon } from "@heroicons/react/24/outline";
 import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import EwuroImage from "@/assets/plants/ewuro.jpg";
 
@@ -157,35 +158,258 @@ const PlantAndVegetableCarousel = () => {
     };
   }, [currentCarouselView, handleKeyDown]);
 
+  const containerVariants = {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+    },
+  };
+
+  const carosuelTitleVariants = {
+    initial: {
+      y: 30,
+      opacity: 0,
+      scale: 0.9,
+    },
+
+    animate: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+    },
+  };
+
+  const carosuelSubtitleVariants = {
+    initial: {
+      y: 30,
+      opacity: 0,
+    },
+
+    animate: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
+  const carosuelImageVariants = {
+    initial: {
+      opacity: 0,
+      scale: 0.55,
+    },
+
+    animate: {
+      opacity: 1,
+      scale: 1,
+    },
+  };
+
+  const listsContainer = {
+    initial: { opacity: 0, scale: 0.55 },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const listItems = (delay: number) => {
+    return {
+      initial: { opacity: 0, y: 20 },
+      animate: { opacity: 1, y: 0 },
+      transition: {
+        delay: 0.5 + delay / 10,
+      },
+    };
+  };
+
+  const imageContainerVariants = {
+    initial: {
+      opacity: 0,
+      scale: 0.8,
+      rotateY: -15,
+    },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      rotateY: 0,
+    },
+  };
+
+  const floatingIndicatorVariants = {
+    initial: {
+      opacity: 0,
+      scale: 0,
+      x: -20,
+    },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+    },
+  };
+
+  const imageVariants = {
+    initial: {
+      scale: 1.2,
+    },
+    animate: {
+      scale: 1,
+    },
+  };
+
   return (
-    <div>
+    <div className="mt-4">
       <div className="space-y-7">
-        <div className="rounded-3xl bg-green p-4 sm:p-6 xl:p-8 flex flex-col justify-between sm:flex-row sm:items-center gap-2">
+        <motion.div
+          animate="animate"
+          initial="initial"
+          variants={{
+            ...containerVariants,
+            animate: {
+              ...containerVariants.animate,
+              transition: {
+                duration: 0.8,
+                staggerChildren: 0.15,
+                delayChildren: 0.1,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              },
+            },
+          }}
+          className="rounded-3xl bg-green p-4 sm:p-6 xl:p-8 flex flex-col justify-between sm:flex-row sm:items-center gap-2"
+        >
           <div className="flex justify-center h-full flex-col space-y-2">
-            <h3 className="font-inter font-bold text-white text-3xl sm:text-3xxl lg:text-2xl xl:text-5xl">
+            <motion.h3
+              variants={{
+                ...carosuelTitleVariants,
+                animate: {
+                  ...carosuelTitleVariants.animate,
+                  transition: {
+                    duration: 0.7,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    delay: 0.2,
+                  },
+                },
+              }}
+              className="font-inter font-bold text-white text-3xl sm:text-3xxl lg:text-2xl xl:text-5xl"
+            >
               Èwúro (Vernonia amygdalina)
-            </h3>
-            <p className="text-xl sm:text-2xl xl:text-3xl text-shadecolorsix font-normal font-satoshi">
+            </motion.h3>
+            <motion.p
+              variants={{
+                ...carosuelSubtitleVariants,
+                animate: {
+                  ...carosuelSubtitleVariants.animate,
+                  transition: {
+                    duration: 0.6,
+                    ease: "easeOut",
+                    delay: 0.4,
+                  },
+                },
+              }}
+              className="text-xl sm:text-2xl xl:text-3xl text-shadecolorsix font-normal font-satoshi"
+            >
               Bitter Leaf
-            </p>
+            </motion.p>
           </div>
 
-          <div className="relative 2xl:mr-[5rem] shrink-0 self-end">
-            <div className="absolute bg-lightgreen rounded-xl p-4 pl-8 w-xs -left-[10rem] xl:-left-[16rem] bottom-3 ">
-              <div className="flex items-center justify-center rounded-full size-8 bg-white -top-5 -left-2 absolute">
-                <span className="size-5 rounded-full bg-lightgreen" />
-              </div>
-              <ul className="list-disc text-lg text-white font-satoshi font-normal ">
-                <li>Used in culinary</li>
-                <li>Medicinal use</li>
-                <li>Native to Yoruba land</li>
-              </ul>
-            </div>
-            <div className="border border-white overflow-hidden h-[22rem] rounded-[6rem] w-[12rem]">
-              <img src={EwuroImage} alt="" className="object-cover object-center w-full h-full" />
-            </div>
-          </div>
-        </div>
+          <motion.div
+            variants={{
+              ...imageContainerVariants,
+              animate: {
+                ...imageContainerVariants.animate,
+                transition: {
+                  duration: 0.8,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  delay: 0.3,
+                },
+              },
+            }}
+            className="relative 2xl:mr-[5rem] shrink-0 self-end"
+          >
+            <motion.div
+              variants={{
+                ...floatingIndicatorVariants,
+                animate: {
+                  ...floatingIndicatorVariants.animate,
+                  transition: {
+                    duration: 0.5,
+                    ease: "backOut",
+                    delay: 0.8,
+                  },
+                },
+              }}
+              className="flex items-center justify-center rounded-full size-8 bg-white bottom-28 z-10 -left-[10rem] xl:-left-[16rem] absolute"
+            >
+              <motion.span
+                animate={{
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="size-5 rounded-full bg-lightgreen"
+              />
+            </motion.div>
+
+            <motion.div
+              variants={{
+                ...listsContainer,
+                animate: {
+                  ...listsContainer.animate,
+                  transition: {
+                    ...listsContainer.animate.transition,
+                  },
+                },
+              }}
+              className="absolute bg-lightgreen rounded-xl p-4 pl-8 w-xs -left-[10rem] xl:-left-[16rem] bottom-3 "
+            >
+              <motion.ul className="list-disc text-lg text-white font-satoshi font-normal">
+                {["Used in culinary", "Medicinal use", "Native to Yoruba land"].map(
+                  (item, index) => {
+                    return (
+                      <motion.li key={index} variants={{ ...listItems(index) }}>
+                        {item}
+                      </motion.li>
+                    );
+                  }
+                )}
+              </motion.ul>
+            </motion.div>
+            <motion.div
+              variants={{
+                ...carosuelImageVariants,
+                animate: {
+                  ...carosuelImageVariants.animate,
+                  transition: {},
+                },
+              }}
+              className="border border-white overflow-hidden h-[22rem] rounded-[6rem] w-[12rem]"
+            >
+              <motion.img
+                variants={{
+                  ...imageVariants,
+                  animate: {
+                    ...imageVariants.animate,
+                    transition: {
+                      duration: 1.2,
+                      ease: "easeOut",
+                      delay: 0.5,
+                    },
+                  },
+                }}
+                src={EwuroImage}
+                alt=""
+                className="object-cover object-center w-full h-full"
+              />
+            </motion.div>
+          </motion.div>
+        </motion.div>
         <StepIndicators
           handleCarouselViewChange={handleCarouselViewChange}
           currentCarouselView={currentCarouselView}
