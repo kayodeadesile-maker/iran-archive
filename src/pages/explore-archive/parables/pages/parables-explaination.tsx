@@ -7,6 +7,7 @@ import { classNames } from "@/utils";
 import { ArrowLeftIcon, HeartIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import RandomCoverImage from "@/assets/random-cover-image.jpg";
 
 export default function ParablesbDetailExplaination() {
   const env = import.meta.env;
@@ -212,6 +213,7 @@ export default function ParablesbDetailExplaination() {
           </div>
 
           <SuggestionComponent
+            imageSrc={RandomCoverImage}
             meaning="You help the vulnerable with all your capacity, or to satisfactory. If you don’t, your effort might not reflect because they can’t help themselves"
             title="Popular Parable and Wise Saying"
             suggestionTitle="Àgbàtàn là gbòlè; tá a bá dá aṣọ fún òlè, a pàláró; tá a bá làjà fún òlè, a ṣìndé lẹ́ni"
