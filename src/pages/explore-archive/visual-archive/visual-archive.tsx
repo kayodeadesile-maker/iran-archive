@@ -1,5 +1,13 @@
 import VisualCoverImage from "@/assets/visuals/visual-cover-image.jpg";
 
+import IllustratedCoverImage from "@/assets/visuals/illustrated-cover-image.jpg";
+import PhotoGalleryCoverImage from "@/assets/visuals/gallery-cover-image.jpg";
+import VidoeFilesCoverImage from "@/assets/visuals/video-cover-image.jpg";
+import YorubaArtifactsCoverImage from "@/assets/visuals/artifacts-cover-image.jpg";
+import AudioFilesCoverImage from "@/assets/visuals/audio-cover-image.jpg";
+import HeritageSitesCoverImage from "@/assets/visuals/heritage-cover-image.jpg";
+import { classNames } from "@/utils";
+
 const VisualArchive = () => {
   return (
     <section className="pt-10 px-4">
@@ -13,10 +21,10 @@ const VisualArchive = () => {
             className="h-full w-full absolute inset-0 object-cover"
           />
           <div className="flex flex-col min-h-[250px] lg:min-h-[350px] justify-center relative z-10 p-4 xl:p-6">
-            <h1 className="text-xl sm:text-4xl lg:text-5xl font-inter font-bold text-white mb-1 auto-translate leading-xs-normal">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-inter font-bold text-white mb-1 auto-translate leading-xs-normal">
               In the dust of their journey, <br className="hidden sm:block" /> stories rise.
             </h1>
-            <p className="font-satoshi font-normal text-base sm:text-lg lg:text-2xl text-shadecolorseven leading-relaxed max-w-3xl">
+            <p className="font-satoshi font-normal text-lg sm:text-xl lg:text-2xl text-shadecolorseven leading-relaxed max-w-3xl">
               Explore Yoruba heritage through a different lens
             </p>
           </div>
@@ -35,12 +43,71 @@ const VisualArchive = () => {
 
 export default VisualArchive;
 
+const categories = [
+  {
+    label: "illustrated stories",
+    image: IllustratedCoverImage,
+  },
+  {
+    label: "photo gallery",
+    image: PhotoGalleryCoverImage,
+  },
+  {
+    label: "video files",
+    image: VidoeFilesCoverImage,
+  },
+  {
+    label: "yoruba artifacts",
+    image: YorubaArtifactsCoverImage,
+  },
+  {
+    label: "audio files",
+    image: AudioFilesCoverImage,
+  },
+  {
+    label: "heritage sitess",
+    image: HeritageSitesCoverImage,
+  },
+];
+
 const Categories = () => {
   return (
     <section className="mt-20">
       <h2 className="text-xl lg:text-2xl mb-2 font-semibold font-inter">Categories</h2>
 
-      <div className="p-4 sm:p-6 rounded-2xl bg-lightgoldcolorsix grid"></div>
+      <div className="p-4 sm:p-6 rounded-3xl bg-lightgoldcolorsix grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
+        {categories.map((props, index) => {
+          const { image, label } = props;
+
+          return (
+            <div
+              key={label}
+              className={classNames(
+                "relative rounded-2xl overflow-hidden",
+                index !== 1 && "h-[200px]",
+                index === 1
+                  ? "xl:row-span-2 h-[200px] xl:h-auto"
+                  : index === 2
+                  ? "xl:col-span-3"
+                  : index === 4
+                  ? "xl:col-span-2"
+                  : "col-span-1"
+              )}
+            >
+              <div className="h-full w-full relative p-4 before:absolute before:content-[' '] before:block before:inset-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black/5 before:to-black before:z-10">
+                <img
+                  src={image}
+                  alt={label}
+                  className="absolute h-full w-full inset-0 object-cover object-center"
+                />
+                <div className="h-full w-full z-20 flex justify-end flex-col relative">
+                  <p className="capitalize text-lg font-satoshi font-medium text-white relative">{label}</p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 };
