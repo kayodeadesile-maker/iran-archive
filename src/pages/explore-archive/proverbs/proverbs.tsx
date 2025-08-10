@@ -7,9 +7,9 @@ import { HeartIcon } from "@heroicons/react/24/outline";
 import { PaginationComponent } from "@/components/common/pagination/Pagination";
 import { useNavigate } from "react-router-dom";
 import { SuggestionComponent } from "@/components/suggestion/suggestion";
+import RandomCoverImage from "@/assets/random-cover-image.jpg";
 
-const FILTERS = ["wisdom", "patient", "respect", "hard-work", "relationships", "caution"] as const;
-type Filters = (typeof FILTERS)[number];
+type Filters = "wisdom" | "patient" | "respect" | "hard-work" | "relationships" | "caution";
 
 export default function Proverbs() {
   const env = import.meta.env;
@@ -143,6 +143,7 @@ export default function Proverbs() {
         />
 
         <SuggestionComponent
+          imageSrc={RandomCoverImage}
           meaning="You help the vulnerable with all your capacity, or to satisfactory. If you don’t, your effort might not reflect because they can’t help themselves"
           title="Proverb of the Day"
           suggestionTitle="Àgbàtàn là gbòlè; tá a bá dá aṣọ fún òlè, a pàláró; tá a bá làjà fún òlè, a ṣìndé lẹ́ni"
