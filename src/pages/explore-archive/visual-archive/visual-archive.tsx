@@ -21,8 +21,23 @@ const VisualArchive = () => {
     <section className="pt-10 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Visual Hero section start */}
-        <div className="relative rounded-3xl overflow-hidden">
-          <img
+        <motion.div
+          variants={{
+            intitial: {},
+            animate: {
+              transition: {
+                staggerChildren: 0.5,
+                duration: 0.8,
+                delayChildren: 0.1,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              },
+            },
+          }}
+          animate="animate"
+          initial="initial"
+          className="relative rounded-3xl overflow-hidden"
+        >
+          <motion.img
             src={VisualCoverImage}
             alt="proverbs cover image"
             title="proverbs cover image"
@@ -38,7 +53,7 @@ const VisualArchive = () => {
           </div>
 
           <div className="absolute inset-0 bg-black/50"></div>
-        </div>
+        </motion.div>
         {/* Visual Hero section start */}
 
         {/* Visual Categories section start */}

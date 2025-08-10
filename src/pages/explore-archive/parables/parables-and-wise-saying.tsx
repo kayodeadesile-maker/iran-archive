@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { SuggestionComponent } from "@/components/suggestion/suggestion";
 import RandomCoverImage from "@/assets/random-cover-image.jpg";
 
+import { motion } from "framer-motion";
+
 const categories = [
   {
     value: "wisdom",
@@ -117,35 +119,109 @@ export default function ParablesAndWiseSayings() {
     },
   ];
 
+  const imageVariants = {
+    initial: {
+      scale: 1.2,
+    },
+    animate: {
+      scale: 1,
+    },
+  };
+
+  const titleVariants = {
+    initial: {
+      y: 30,
+      opacity: 0,
+    },
+
+    animate: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
   return (
     <section className="pt-10 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="relative rounded-3xl overflow-hidden">
-          <img
+        <motion.div
+          variants={{
+            intitial: {},
+            animate: {
+              transition: {
+                staggerChildren: 0.5,
+                duration: 0.8,
+                delayChildren: 0.1,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              },
+            },
+          }}
+          animate="animate"
+          initial="initial"
+          className="relative rounded-3xl overflow-hidden"
+        >
+          <motion.img
+            variants={{
+              ...imageVariants,
+              animate: {
+                ...imageVariants.animate,
+                transition: {
+                  duration: 0.5,
+                  ease: "easeOut",
+                  delay: 0.25,
+                },
+              },
+            }}
             src={ParableCoverImage}
             alt="Parables cover image"
             title="Parables cover image"
             className="h-full w-full absolute inset-0 object-cover"
           />
-          <div className="flex flex-col min-h-[250px] lg:min-h-[340px] justify-center relative z-10 p-4 md:p-6">
-            <h1 className="text-xl sm:text-4xl lg:text-5xl font-inter font-bold text-white mb-1 auto-translate">
+          <motion.div className="flex flex-col min-h-[250px] lg:min-h-[340px] justify-center relative z-10 p-4 md:p-6">
+            <motion.h1
+              variants={{
+                ...titleVariants,
+                animate: {
+                  ...titleVariants.animate,
+                  transition: {
+                    duration: 0.6,
+                    ease: "easeOut",
+                    delay: 0.4,
+                  },
+                },
+              }}
+              className="text-xl sm:text-4xl lg:text-5xl font-inter font-bold text-white mb-1 auto-translate"
+            >
               Àkànlò Èdè ati Ọ̀rọ̀ Ọlọ́gbọ́n
-            </h1>
-            <p className="font-satoshi font-normal text-base sm:text-lg lg:text-2xl text-shadecolorseven leading-relaxed max-w-3xl">
+            </motion.h1>
+            <motion.p
+              variants={{
+                ...titleVariants,
+                animate: {
+                  ...titleVariants.animate,
+                  transition: {
+                    duration: 0.7,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    delay: 0.2,
+                  },
+                },
+              }}
+              className="font-satoshi font-normal text-base sm:text-lg lg:text-2xl text-shadecolorseven leading-relaxed max-w-3xl"
+            >
               Yoruba Parable and Wise Saying
-            </p>
-          </div>
-        </div>
+            </motion.p>
+          </motion.div>
+        </motion.div>
 
         <ProverbAlphabetFilteringBoardComponent />
         <CategoryFilter handleFilter={handleFilter} filter={filter} />
 
-        <ul className="space-y-3">
+        <motion.ul className="space-y-3">
           {React.Children.toArray(
             proverbList.map(({ content, id }, index) => {
               return (
-                <ProverbListItemComponent
+                <ParableListItemComponent
                   content={content}
+                  index={index}
                   onClick={() => navigate(`${content}-${index}-${id}`)}
                   isFavourite={!!isFavourite[`${content}-${index}-${id}`]}
                   handleMarkAsFavourite={handleMarkAsFavourite}
@@ -156,7 +232,7 @@ export default function ParablesAndWiseSayings() {
               );
             })
           )}
-        </ul>
+        </motion.ul>
 
         <PaginationComponent
           hasNextPage={true}
@@ -279,26 +355,78 @@ const AlphabetComponent = ({
   );
 };
 
-interface ProverbListItemProps {
+interface ParableListItemProps {
   content: string;
   id: string;
   isFavourite: boolean;
   handleMarkAsFavourite: (value: string) => void;
   handleMarkAsNotFavourite: (value: string) => void;
   onClick: () => void;
+  index: number;
 }
 
-const ProverbListItemComponent: React.FC<ProverbListItemProps> = ({
+const ParableListItemComponent: React.FC<ParableListItemProps> = ({
   content,
   isFavourite,
   handleMarkAsFavourite,
   handleMarkAsNotFavourite,
   id,
   onClick,
+  index,
 }) => {
+  const item = (delay: number) => {
+    return {
+      initial: { opacity: 0, y: 20 },
+      animate: { opacity: 1, y: 0 },
+      transition: {
+        delay: 0.5 + delay / 10,
+      },
+    };
+  };
+
+  const button = {
+    initial: {
+      opacity: 0,
+      scale: 0.85,
+      y: 10,
+    },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+    },
+  };
+
   return (
-    <li className="even:bg-lightgoldcolorfive odd:bg-lightgoldcolorsix px-4 py-2.5 border border-gray-200">
-      <div className="flex justify-between items-center">
+    <motion.li
+      variants={{
+        ...item(index),
+        animate: {
+          ...item(index).animate,
+          transition: {
+            ...item(index).transition,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          },
+        },
+      }}
+      animate="animate"
+      initial="initial"
+      className="even:bg-lightgoldcolorfive odd:bg-lightgoldcolorsix px-4 py-2.5 border border-gray-200"
+    >
+      <motion.div
+        variants={{
+          intitial: {},
+          animate: {
+            transition: {
+              staggerChildren: 0.5,
+              duration: 0.8,
+              delayChildren: 0.1,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            },
+          },
+        }}
+        className="flex justify-between items-center"
+      >
         <button
           type="button"
           onClick={(event) => {
@@ -312,8 +440,9 @@ const ProverbListItemComponent: React.FC<ProverbListItemProps> = ({
             {content}
           </span>
         </button>
+
         <div className="inline-flex items-center space-x-2">
-          <button type="button" className="cursor-pointer">
+          <motion.button variants={button} type="button" className="cursor-pointer">
             <span className="flex items-center justify-center h-8 w-8 rounded-full bg-lightgoldcolorthree">
               <svg
                 width="14"
@@ -330,9 +459,10 @@ const ProverbListItemComponent: React.FC<ProverbListItemProps> = ({
                 />
               </svg>
             </span>
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
+            variants={button}
             type="button"
             className="cursor-pointer"
             onClick={() =>
@@ -348,9 +478,9 @@ const ProverbListItemComponent: React.FC<ProverbListItemProps> = ({
                 strokeWidth={2.5}
               />
             </span>
-          </button>
+          </motion.button>
 
-          <button type="button" className="cursor-pointer">
+          <motion.button variants={button} type="button" className="cursor-pointer">
             <span className="flex items-center justify-center h-8 w-8">
               <svg
                 width="20"
@@ -373,9 +503,9 @@ const ProverbListItemComponent: React.FC<ProverbListItemProps> = ({
                 />
               </svg>
             </span>
-          </button>
+          </motion.button>
         </div>
-      </div>
-    </li>
+      </motion.div>
+    </motion.li>
   );
 };
