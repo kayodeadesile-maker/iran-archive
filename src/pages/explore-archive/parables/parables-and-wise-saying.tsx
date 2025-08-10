@@ -7,6 +7,7 @@ import { PaginationComponent } from "@/components/common/pagination/Pagination";
 import ParableCoverImage from "@/assets/parables-cover-image.png";
 import { useNavigate } from "react-router-dom";
 import { SuggestionComponent } from "@/components/suggestion/suggestion";
+import RandomCoverImage from "@/assets/random-cover-image.jpg";
 
 const categories = [
   {
@@ -168,6 +169,7 @@ export default function ParablesAndWiseSayings() {
         />
 
         <SuggestionComponent
+          imageSrc={RandomCoverImage}
           meaning="You help the vulnerable with all your capacity, or to satisfactory. If you don’t, your effort might not reflect because they can’t help themselves"
           title="Parable and Wise Saying of the Day"
           suggestionTitle="Àgbàtàn là gbòlè; tá a bá dá aṣọ fún òlè, a pàláró; tá a bá làjà fún òlè, a ṣìndé lẹ́ni"
