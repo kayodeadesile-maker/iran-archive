@@ -75,7 +75,7 @@ const categories = [
 const Categories = () => {
   const gridContainer = {
     initial: {},
-    anmate: {
+    animate: {
       transition: {
         staggerChildren: 0.15,
       },
@@ -92,7 +92,18 @@ const Categories = () => {
       <h2 className="text-xl lg:text-2xl mb-2 font-semibold font-inter">Categories</h2>
 
       <motion.div
-        variants={gridContainer}
+        variants={{
+          ...gridContainer,
+          animate: {
+            ...gridContainer.animate,
+            transition: {
+              ...gridContainer.animate.transition,
+              duration: 0.8,
+              delayChildren: 0.1,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            },
+          },
+        }}
         initial="initial"
         whileInView="animate"
         viewport={{ once: true, amount: 0.2 }}
