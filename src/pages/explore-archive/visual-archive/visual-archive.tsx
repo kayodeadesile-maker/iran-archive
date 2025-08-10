@@ -7,8 +7,9 @@ import YorubaArtifactsCoverImage from "@/assets/visuals/artifacts-cover-image.jp
 import AudioFilesCoverImage from "@/assets/visuals/audio-cover-image.jpg";
 import HeritageSitesCoverImage from "@/assets/visuals/heritage-cover-image.jpg";
 import { classNames } from "@/utils";
-
+import RandomCoverImage from "@/assets/random-cover-image.jpg";
 import { motion } from "framer-motion";
+import { SuggestionComponent } from "@/components/suggestion/suggestion";
 
 const VisualArchive = () => {
   return (
@@ -38,6 +39,12 @@ const VisualArchive = () => {
         {/* Visual Categories section start */}
         <Categories />
         {/* Visual Categories section end */}
+
+        <SuggestionComponent
+          imageSrc={RandomCoverImage}
+          suggestionTitle="This sacred drum from Ìjẹ̀ṣà was believed to speak to spirits through its rhythm."
+          title="Do you Know ?"
+        />
       </div>
     </section>
   );
