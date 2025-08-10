@@ -106,7 +106,7 @@ const TopPickPlantCard = (props: TopPickPlantCardProps) => {
         className="absolute h-full w-full inset-0 object-cover object-center"
       />
 
-      <span className="flex items-center size-16 rounded-full absolute top-1/2 bg-white/50 z-30 left-1/2 -translate-1/2">
+      <span className="flex items-center justify-center size-16 rounded-full absolute top-1/2 bg-white/50 z-30 left-1/2 -translate-1/2">
         <PlayIcon className="fill-red stroke-0" />
       </span>
 
@@ -214,7 +214,7 @@ const Categories = () => {
                 />
 
                 {index === 2 && (
-                  <span className="flex items-center size-16 rounded-full absolute top-1/2 bg-white/50 z-30 left-1/2 -translate-1/2">
+                  <span className="flex items-center justify-center size-16 rounded-full absolute top-1/2 bg-white/50 z-30 left-1/2 -translate-1/2">
                     <PlayIcon className="fill-red stroke-0" />
                   </span>
                 )}
