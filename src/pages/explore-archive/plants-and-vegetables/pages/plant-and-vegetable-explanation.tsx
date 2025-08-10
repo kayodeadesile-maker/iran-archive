@@ -265,7 +265,8 @@ const PlantAndVegetableCarousel = () => {
     <div className="mt-4">
       <div className="space-y-7">
         <motion.div
-          animate="animate"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.2 }}
           initial="initial"
           variants={{
             ...containerVariants,

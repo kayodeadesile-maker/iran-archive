@@ -8,6 +8,8 @@ import AudioFilesCoverImage from "@/assets/visuals/audio-cover-image.jpg";
 import HeritageSitesCoverImage from "@/assets/visuals/heritage-cover-image.jpg";
 import { classNames } from "@/utils";
 
+import { motion } from "framer-motion";
+
 const VisualArchive = () => {
   return (
     <section className="pt-10 px-4">
@@ -71,16 +73,54 @@ const categories = [
 ];
 
 const Categories = () => {
+  const gridContainer = {
+    initial: {},
+    animate: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const cardItem = {
+    initial: { opacity: 0, y: 30, scale: 0.95 },
+    animate: { opacity: 1, y: 0, scale: 1 },
+  };
+
   return (
     <section className="mt-20">
       <h2 className="text-xl lg:text-2xl mb-2 font-semibold font-inter">Categories</h2>
 
-      <div className="p-4 sm:p-6 rounded-3xl bg-lightgoldcolorsix grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
+      <motion.div
+        variants={{
+          ...gridContainer,
+          animate: {
+            ...gridContainer.animate,
+            transition: {
+              ...gridContainer.animate.transition,
+              duration: 0.8,
+              delayChildren: 0.1,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            },
+          },
+        }}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, amount: 0.2 }}
+        className="p-4 sm:p-6 rounded-3xl bg-lightgoldcolorsix grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3"
+      >
         {categories.map((props, index) => {
           const { image, label } = props;
 
           return (
-            <div
+            <motion.div
+              variants={{
+                ...cardItem,
+                animate: {
+                  ...cardItem.animate,
+                  transition: { duration: 0.5, ease: "easeOut" },
+                },
+              }}
               key={label}
               className={classNames(
                 "relative rounded-2xl overflow-hidden",
@@ -101,13 +141,15 @@ const Categories = () => {
                   className="absolute h-full w-full inset-0 object-cover object-center"
                 />
                 <div className="h-full w-full z-20 flex justify-end flex-col relative">
-                  <p className="capitalize text-lg font-satoshi font-medium text-white relative">{label}</p>
+                  <p className="capitalize text-lg font-satoshi font-medium text-white relative">
+                    {label}
+                  </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
-      </div>
+      </motion.div>
     </section>
   );
 };

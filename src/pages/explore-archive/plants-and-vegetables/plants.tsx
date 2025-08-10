@@ -398,7 +398,7 @@ const categories = [
 
 const CategoriesFilter = () => {
   const { ref: containerRef, inView: containerInView } = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0.1,
   });
 
