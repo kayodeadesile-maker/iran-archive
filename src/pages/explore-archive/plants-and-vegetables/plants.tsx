@@ -151,7 +151,7 @@ const PlantsOverview = () => {
         variants={containerVariants}
         initial="initial"
         animate="animate"
-        className="space-y-2 shrink-0 xl:max-w-xl 2xl:max-w-2xl xl:w-full"
+        className="space-y-2 shrink-0 xl:max-w-lg 2xl:max-w-2xl"
       >
         <div className="mx-auto sm:mx-0">
           <motion.h1
@@ -204,7 +204,7 @@ const PlantsOverview = () => {
             },
           },
         }}
-        className="grid grid-cols-3 grid-rows-2 gap-3 h-96 xl:h-[400px] min-w-0"
+        className="grid grid-cols-4 grid-rows-2 gap-3 h-96 xl:h-[400px]"
       >
         <motion.div
           variants={{
@@ -237,7 +237,7 @@ const PlantsOverview = () => {
               },
             },
           }}
-          className="col-span-1 row-span-2 overflow-hidden rounded-3xl"
+          className="col-span-2 row-span-2 overflow-hidden rounded-3xl"
         >
           <img
             src={EweAbamodaImage}

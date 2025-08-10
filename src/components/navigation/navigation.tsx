@@ -82,15 +82,19 @@ export const AppNavigation = ({ open, close }: AppNavigationPropsType) => {
         return pathname === "/home" || pathname === "/";
       }
 
-      const routeLabel = route.label.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and");
+      // replace route label with character (e.g &, /, space) with an hyphen separating the route label
+      const routeLabel = route.label
+        .toLowerCase()
+        .replace(/[/]/g, "or")
+        .replace(/\s+/g, "-")
+        .replace(/&/g, "and");
 
       return page.some((segment) => {
         const segmentInLowerCase = segment.toLowerCase();
-        const labelWords = route.label.toLowerCase().split(/[\s&]+/);
 
         if (segmentInLowerCase === routeLabel) return true;
 
-        return labelWords.some((word) => segmentInLowerCase.includes(word) && word.length > 2);
+        // return labelWords.some((word) => segmentInLowerCase.includes(word) && word.length > 2);
       });
     },
     [pathname, page]
