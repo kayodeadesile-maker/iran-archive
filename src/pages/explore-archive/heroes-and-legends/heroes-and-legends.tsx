@@ -171,9 +171,9 @@ const HeroesAndLegends = () => {
                   alt=""
                   className="h-full w-full absolute inset-0 object-cover -z-1"
                 />
-                <div className="z-1">
-                  <p className="text-white bold text-xl">{h.heroName}</p>
-                  <p className="text-white text-xs">{h.heroDescription}</p>
+                <div className="z-1 text-left">
+                  <p className="text-white font-bold text-xl">{h.heroName}</p>
+                  <p className="text-white text-lg font-thin">{h.heroDescription}</p>
                 </div>
               </button>
             ))}

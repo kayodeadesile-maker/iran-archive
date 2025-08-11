@@ -19,6 +19,7 @@ const HeroOrLegendExplanation = () => {
           heroAlias="The Liberator of Ìfẹ̀"
           heroTitle="Queen of Ile-Ifẹ̀"
           heroTimePeriod="Pre-15th Century"
+          heroStory="Moremi Ajasoro was a legendary queen of the Yoruba kingdom of Ife, known for her bravery and sacrifice. She played a crucial role in defending her people against invaders by infiltrating their ranks and gathering intelligence. Her story is celebrated in Yoruba oral tradition, symbolizing courage and resilience."
         />
       </div>
     </section>
@@ -198,13 +199,14 @@ type HeroDescriptionProps = {
   heroAlias: string
   heroTitle: string
   heroTimePeriod: string
+  heroStory: string
 }
-const HeroDescription = ({heroName, heroAlias, heroTitle, heroTimePeriod}: HeroDescriptionProps)=>{
+const HeroDescription = ({heroName, heroAlias, heroTitle, heroTimePeriod, heroStory}: HeroDescriptionProps)=>{
   return (
     <div className="px-25">
       <div className="mb-4">
         <p className="font-bold">Name</p>
-        <p className="font-bold text-2xl">{heroName}</p>
+        <p className="font-bold text-xl">{heroName}</p>
       </div>
       <div className="mb-4">
         <p className="font-bold text-lg">Alias</p>
@@ -218,6 +220,12 @@ const HeroDescription = ({heroName, heroAlias, heroTitle, heroTimePeriod}: HeroD
         <p className="font-bold text-lg">Time Period / Historical Context</p>
         <p className="text-gray-400 text-lg">{heroTimePeriod}</p>
       </div>
+      <hr className="border-lightgoldcolorone border-[1.5px] my-10"/>
+      <div className="mb-4">
+        <p className="text-shadecolorfour text-lg font-satoshi font-normal">
+          {heroStory}
+        </p>
+        </div>
     </div>
   );
 }
