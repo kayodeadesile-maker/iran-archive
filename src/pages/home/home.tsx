@@ -666,12 +666,12 @@ const SearchComponent = ({ searchText, handleClearSearch, handleSearch }: Search
 
         {searchText && (
           <button
-            className="flex items-center justify-center h-6 w-6 rounded-full absolute top-1/2 right-2 -translate-y-1/2 bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-indigo-500"
+            className="flex items-center cursor-pointer justify-center h-6 w-6 rounded-full absolute top-1/2 right-2 -translate-y-1/2 bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-indigo-500"
             title="clear search"
             type="button"
             onClick={handleClearSearch}
           >
-            <XMarkIcon className="h-3" />
+            <XMarkIcon className="h-3" strokeWidth={2}/>
           </button>
         )}
       </div>

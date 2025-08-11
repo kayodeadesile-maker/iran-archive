@@ -346,7 +346,7 @@ const categories = [
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g clip-path="url(#clip0_360_793)">
+        <g clipPath="url(#clip0_360_793)">
           <path
             d="M4.146 6.35351C3.407 5.61451 3 4.63151 3 3.58551V1.99951H4V3.58551C4 4.36451 4.303 5.09551 4.854 5.64651C5.593 6.38551 6 7.36851 6 8.41451V10.0005H5V8.41451C5 7.63551 4.697 6.90451 4.146 6.35351ZM9 7.41451V9.00051H10V7.41451C10 6.36851 9.593 5.38551 8.854 4.64651C8.303 4.09651 8 3.36451 8 2.58551V0.999512H7V2.58551C7 3.63151 7.407 4.61451 8.146 5.35351C8.697 5.90351 9 6.63551 9 7.41451ZM24 10.9555V12.0005C24 18.6175 18.617 24.0005 12 24.0005C5.383 24.0005 0 18.6165 0 11.9995C0 10.4995 0.283 8.99951 0.283 8.99951H1.29L1.354 9.42451C1.982 13.5415 4.092 15.9995 7 15.9995C10.037 15.9995 12 14.0375 12 10.9995C12 7.65651 14.211 5.26751 17.442 5.02051C17.12 2.40151 15.517 0.999512 14 0.999512V-0.000488281C15.99 -0.000488281 18.093 1.74951 18.448 5.01351C22.096 5.23151 24 8.10951 24 10.9545V10.9555ZM18 6.00051C16.619 6.00051 15.544 6.40251 14.75 7.04251L14.772 7.03151C15.414 8.24651 16.651 9.00051 18.001 9.00051C19.351 9.00051 20.581 8.25051 21.224 7.04051C20.431 6.40451 19.362 6.00051 18 6.00051ZM23 10.9555C23 9.84451 22.661 8.69351 21.951 7.78151C21.1 9.15851 19.614 10.0005 18 10.0005C16.386 10.0005 14.891 9.15251 14.041 7.76751C13.335 8.67951 13 9.84251 13 11.0005C13 14.5895 10.589 17.0005 7 17.0005C4.247 17.0005 2.11 15.2275 1.001 12.1425C1.077 18.1425 5.982 23.0005 12 23.0005C18.065 23.0005 23 18.0655 23 12.0005V10.9555Z"
             fill="#0A0B0E"
@@ -404,7 +404,7 @@ const CategoriesFilter = () => {
 
   const [itemRef, itemInView] = useInView({
     threshold: 0.9,
-    triggerOnce: false,
+    triggerOnce: true,
   });
 
   const categoriesContainerVariants = {
@@ -462,7 +462,7 @@ const CategoriesFilter = () => {
                   ease: "easeOut",
                 }}
                 className={classNames(
-                  "block flex-grow shrink-0 group",
+                  "block flex-grow shrink-0 group h-24 ",
                   idx === 2 ? "sm:col-span-2" : "sm:col-span-1 lg:col-span-2",
                   idx > 2 && "lg:col-span-3",
                   "xl:col-span-1"
@@ -490,7 +490,7 @@ const CategoryCard = (props: CategoryCardProps) => {
     <button
       type="button"
       title={label}
-      className="group w-full cursor-pointer border border-gray-300 flex flex-col p-4 items-center justify-cenyer gap-4 rounded-xl bg-lightgoldcolorfive"
+      className="flex flex-col col-span-1 items-center space-y-2 bg-lightgoldcolorfive h-24 p-4 w-full rounded-xl cursor-pointer justify-center "
     >
       <span className="flex items-center justify-center">{Icon}</span>
 
@@ -536,7 +536,7 @@ const TopPickPlantCard = (props: TopPickPlantCardProps) => {
   return (
     <div
       onClick={() => navigate("/explore-archive/plants-and-vegetables/:plantId")}
-      className="group relative overflow-hidden h-[20rem] border border-gray-300 w-full col-span-1 rounded-2xl before:absolute before:content-[' '] before:block before:inset-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black/5 before:to-black before:z-10"
+      className="group relative overflow-hidden h-[20rem] w-full col-span-1 rounded-2xl before:absolute before:content-[' '] before:block before:inset-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black/5 before:to-black before:z-10"
     >
       <img
         src={image}
@@ -668,7 +668,7 @@ const PopularPlantCard = (props: PopularPlantCardProps) => {
   return (
     <div
       onClick={() => navigate("/explore-archive/plants-and-vegetables/:plantId")}
-      className="group relative overflow-hidden h-[16rem] border border-gray-300 w-full col-span-1 rounded-2xl before:absolute before:content-[' '] before:block before:inset-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black/5 before:to-black before:z-10"
+      className="group relative overflow-hidden h-[16rem] w-full col-span-1 rounded-2xl before:absolute before:content-[' '] before:block before:inset-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black/5 before:to-black before:z-10"
     >
       <img
         src={image}
@@ -688,7 +688,7 @@ const PopularPlants = () => {
   return (
     <div className="mt-5">
       <h2 className="text-xl lg:text-2xl mb-2 font-semibold font-inter">Popular</h2>
-      <div className="grid grd-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 gap-y-5 mt-4">
+      <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 gap-y-5 mt-4">
         {React.Children.toArray(
           popularPlants.map((pick, idx) => {
             return <PopularPlantCard key={`${pick.yorubaName}-${idx}`} {...pick} />;
