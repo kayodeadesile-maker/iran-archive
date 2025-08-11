@@ -1,7 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap");
+
 @import "tailwindcss";
 /* Inter Font Family */
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: "Irish Grover", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  src: url("./assets//fonts/IrishGrover-Regular.ttf");
+}
 
 /*Avenir  */
 @font-face {
@@ -191,6 +200,7 @@
   --leading-xs-normal: 1.25;
 
   --font-avenirMT: "Avenri Montserrat", sans;
+  --font-irishGrover: "Irish Grover", system-ui;
   --font-sourcesans: "Source Sans 3", system-ui, sans-serif;
   --font-satoshi: "Satoshi", system-ui, sans-serif;
   --font-inter: "Inter", system-ui, sans-serif;
