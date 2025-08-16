@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
-import CoverImage from "@/assets/parables-cover-image.png";
+import CoverImage from "@/assets/learn-yoruba/learn-cover-image.png";
 import { Link } from "react-router-dom";
+import LearnImageOne from "@/assets/learn-yoruba/learn-image-one.png";
+import LearnImageTwo from "@/assets/learn-yoruba/learn-image-two.png";
+import LearnImageThree from "@/assets/learn-yoruba/learn-image-three.png";
+import AlphabetImage from "@/assets/learn-yoruba/alphabets-image.png";
 
 const alphabets = [
   { label: "a", value: "a", usage: "Aja" },
@@ -129,9 +133,9 @@ export default function YorubaAlphabtes() {
         {/* Yoruba Aplhabets end */}
 
         <div className="w-full mt-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 bg-lightgoldcolorfour p-8">
+          <div className="h-max grid gap-8 grid-cols-1 xl:grid-cols-2 bg-lightgoldcolorfour px-6 xl:px-8 py-10 rounded-2xl">
             <div className="space-y-4">
-              <h2 className="text-5xl font-inter font-semibold">Learn Yoruba</h2>
+              <h2 className="text-4xl sm:text-5xl font-inter font-semibold">Learn Yoruba</h2>
               <div>
                 <p className="text-lg sm:text-xl font-satoshi font-normal">
                   Yorùbá is one of the major languages spoken in West Africa, particularly in
@@ -158,6 +162,32 @@ export default function YorubaAlphabtes() {
                   />
                 </svg>
               </Link>
+            </div>
+
+            <div className="relative shrink-0 flex gap-3 xl:place-self-end">
+              <div className="xl:translate-x-4 h-56 w-64 overflow-hidden rounded-3xl">
+                <img
+                  src={LearnImageOne}
+                  alt="learn image one"
+                  className=" h-full w-full object-cover object-center"
+                />
+              </div>
+
+              <div className="overflow-hidden rounded-3xl w-64">
+                <img
+                  src={LearnImageTwo}
+                  alt="learn image two"
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
+
+              <div className="w-28 h-36 overflow-hidden rounded-3xl translate-x-20 translate-y-10 xl:translate-y-60 absolute">
+                <img
+                  src={LearnImageThree}
+                  alt="learn image three"
+                  className=" h-full w-full object-cover object-center"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -191,7 +221,11 @@ const AlphabetCard = (props: AlphabetCardProps) => {
   return (
     <button type="button" className="cursor-pointer relative">
       <div className="absolute h-[9.5rem] rounded-3xl -z-10 bg-gradient-to-b from-[#006EFF]/50 to-black block w-full inset-x-0 top-1/2 -translate-y-1/2 " />
-      <div className="space-y-4 p-2 rounded-3xl bg-accentbluecolor-dark2 overflow-hidden">
+      <div className="space-y-4 p-2 rounded-3xl relative bg-accentbluecolor-dark2 overflow-hidden">
+        <img
+          src={AlphabetImage}
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
         <div className="relative w-14 h-16 rounded-2xl flex items-center justify-center bg-black">
           <h3 className="text-3xl font-inter font-medium uppercase text-white">{label}</h3>
 
@@ -199,9 +233,12 @@ const AlphabetCard = (props: AlphabetCardProps) => {
             <p className="text-xl font-inter font-medium text-black inline">{label}</p>
           </div>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="relative flex items-center justify-between">
           <p className="text-lg font-satoshi font-bold text-white">{usage}</p>
-          <button className="cursor-pointer flex items-center justify-center size-10 rounded-lg bg-black/50">
+          <span
+            role="button"
+            className="cursor-pointer flex items-center justify-center size-10 rounded-lg bg-black/50"
+          >
             <svg
               width="13"
               height="13"
@@ -223,7 +260,7 @@ const AlphabetCard = (props: AlphabetCardProps) => {
                 fill="white"
               />
             </svg>
-          </button>
+          </span>
         </div>
       </div>
     </button>
