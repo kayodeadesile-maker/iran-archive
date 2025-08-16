@@ -3,6 +3,10 @@ import Home from "@/pages/home/home";
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
+/**
+ *  Explore Archives Import
+ */
+
 // Proverbs Imports
 const Proverbs = lazy(() => import("@/pages/explore-archive/proverbs/proverbs"));
 const ProverbsExplaination = lazy(
@@ -48,6 +52,15 @@ const VisualArchive = lazy(() => import("@/pages/explore-archive/visual-archive/
 
 // Photo Gallery
 const PhotoGallery = lazy(() => import("@/pages/explore-archive/photo-gallery/photo-gallery"));
+
+/**
+ * Learn Yoruba Imports
+ */
+
+// Yoruba Alphabets
+const YorubaAlphabtes = lazy(
+  () => import("@/pages/learn-yoruba/yoruba-alphabets/yoruba-alphabets")
+);
 
 export const routes = createBrowserRouter([
   {
@@ -223,6 +236,40 @@ export const routes = createBrowserRouter([
                 <PhotoGallery />
               </Suspense>
             ),
+          },
+        ],
+      },
+      {
+        path: "learn-yoruba",
+        children: [
+          {
+            path: "yoruba-alphabets",
+            children: [
+              {
+                index: true,
+                element: (
+                  <Suspense
+                    fallback={
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
+                    }
+                  >
+                    <YorubaAlphabtes />
+                  </Suspense>
+                ),
+              },
+              {
+                path: ":alphabetId",
+                element: (
+                  <Suspense
+                    fallback={
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
+                    }
+                  >
+                    <></>
+                  </Suspense>
+                ),
+              },
+            ],
           },
         ],
       },
