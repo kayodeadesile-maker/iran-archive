@@ -7,9 +7,9 @@
 
 @font-face {
   font-family: "Irish Grover", system-ui;
+  src: url("./assets/fonts/IrishGrover-Regular.ttf");
   font-weight: 400;
   font-style: normal;
-  src: url("./assets/fonts/IrishGrover-Regular.ttf");
 }
 
 /*Avenir  */
@@ -191,6 +191,9 @@
   --color-shadecolornine: #eff0f4;
   --color-shadecolorsix: #a0a7bc;
 
+  --color-accentbluecolor-dark2: #001633;
+  --color-accentbluecolor: #006eff;
+
   --color-green: #0c3924;
   --color-red: #ff0505;
   --color-lightgreen: #358b62;
@@ -200,7 +203,7 @@
   --leading-xs-normal: 1.25;
 
   --font-avenirMT: "Avenri Montserrat", sans;
-  --font-irishGrover: "Irish Grover", system-ui;
+  --font-irishGrover: "Irish Grover", system-ui, sans-serif;
   --font-sourcesans: "Source Sans 3", system-ui, sans-serif;
   --font-satoshi: "Satoshi", system-ui, sans-serif;
   --font-inter: "Inter", system-ui, sans-serif;
