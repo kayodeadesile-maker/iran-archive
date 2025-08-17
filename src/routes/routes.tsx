@@ -51,7 +51,9 @@ const OralTraditions = lazy(
 const VisualArchive = lazy(() => import("@/pages/explore-archive/visual-archive/visual-archive"));
 
 // Photo Gallery
-const PhotoGallery = lazy(() => import("@/pages/explore-archive/photo-gallery/photo-gallery"));
+const PhotoGallery = lazy(
+  () => import("@/pages/explore-archive/visual-archive/pages/photo-gallery")
+);
 
 /**
  * Learn Yoruba Imports
@@ -219,23 +221,32 @@ export const routes = createBrowserRouter([
           },
           {
             path: "visual-archive",
-            element: (
-              <Suspense
-                fallback={<p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>}
-              >
-                <VisualArchive />
-              </Suspense>
-            ),
-          },
-          {
-            path: "gallery",
-            element: (
-              <Suspense
-                fallback={<p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>}
-              >
-                <PhotoGallery />
-              </Suspense>
-            ),
+            children: [
+              {
+                index: true,
+                element: (
+                  <Suspense
+                    fallback={
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
+                    }
+                  >
+                    <VisualArchive />
+                  </Suspense>
+                ),
+              },
+              {
+                path: "gallery",
+                element: (
+                  <Suspense
+                    fallback={
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
+                    }
+                  >
+                    <PhotoGallery />
+                  </Suspense>
+                ),
+              },
+            ],
           },
         ],
       },
