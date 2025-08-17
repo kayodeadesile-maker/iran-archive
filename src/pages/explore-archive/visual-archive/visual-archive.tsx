@@ -15,6 +15,7 @@ import OranmiyanImage from "@/assets/visuals/oranmiyan-festival-image.png";
 import EgungunFestivalImage from "@/assets/visuals/egungun-festival-image.png";
 import React from "react";
 import { PlayIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 const VisualArchive = () => {
   return (
@@ -136,26 +137,32 @@ const categories = [
   {
     label: "illustrated stories",
     image: IllustratedCoverImage,
+    path: "",
   },
   {
     label: "photo gallery",
     image: PhotoGalleryCoverImage,
+    path: "/explore-archive/visual-archive/gallery",
   },
   {
     label: "video files",
     image: VidoeFilesCoverImage,
+    path: "",
   },
   {
     label: "yoruba artifacts",
     image: YorubaArtifactsCoverImage,
+    path: "",
   },
   {
     label: "audio files",
     image: AudioFilesCoverImage,
+    path: "",
   },
   {
     label: "heritage sitess",
     image: HeritageSitesCoverImage,
+    path: "",
   },
 ];
 
@@ -197,20 +204,14 @@ const Categories = () => {
         className="p-4 sm:p-6 rounded-3xl bg-lightgoldcolorsix grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3"
       >
         {categories.map((props, index) => {
-          const { image, label } = props;
+          const { image, label, path } = props;
 
           return (
-            <motion.div
-              variants={{
-                ...cardItem,
-                animate: {
-                  ...cardItem.animate,
-                  transition: { duration: 0.5, ease: "easeOut" },
-                },
-              }}
+            <Link
+              to={path}
               key={label}
               className={classNames(
-                "relative rounded-2xl overflow-hidden",
+                "relative rounded-2xl overflow-hidden group",
                 index !== 1 && "h-[200px]",
                 index === 1
                   ? "xl:row-span-2 h-[200px] xl:h-auto"
@@ -221,25 +222,36 @@ const Categories = () => {
                   : "col-span-1"
               )}
             >
-              <div className="h-full w-full relative p-4 before:absolute before:content-[' '] before:block before:inset-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black/5 before:to-black before:z-10">
-                <img
-                  src={image}
-                  alt={label}
-                  className="absolute h-full w-full inset-0 object-cover object-center"
-                />
+              <motion.div
+                variants={{
+                  ...cardItem,
+                  animate: {
+                    ...cardItem.animate,
+                    transition: { duration: 0.5, ease: "easeOut" },
+                  },
+                }}
+                className={classNames("relative rounded-2xl overflow-hidden h-full w-full")}
+              >
+                <div className="h-full w-full relative p-4 before:absolute before:content-[' '] before:block before:inset-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black/5 before:to-black before:z-10">
+                  <img
+                    src={image}
+                    alt={label}
+                    className="absolute h-full w-full inset-0 object-cover object-center"
+                  />
 
-                {index === 2 && (
-                  <span className="flex items-center justify-center size-16 rounded-full absolute top-1/2 bg-white/50 z-30 left-1/2 -translate-1/2">
-                    <PlayIcon className="fill-red stroke-0" />
-                  </span>
-                )}
-                <div className="h-full w-full z-20 flex justify-end flex-col relative">
-                  <p className="capitalize text-lg font-satoshi font-medium text-white relative">
-                    {label}
-                  </p>
+                  {index === 2 && (
+                    <span className="flex items-center justify-center size-16 rounded-full absolute top-1/2 bg-white/50 z-30 left-1/2 -translate-1/2">
+                      <PlayIcon className="fill-red stroke-0" />
+                    </span>
+                  )}
+                  <div className="h-full w-full z-20 flex justify-end flex-col relative">
+                    <p className="capitalize text-lg font-satoshi font-medium text-white relative">
+                      {label}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           );
         })}
       </motion.div>
