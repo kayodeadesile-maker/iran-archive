@@ -1,9 +1,7 @@
 import { motion } from "framer-motion";
 import CoverImage from "@/assets/learn-yoruba/learn-cover-image.png";
 import { Link } from "react-router-dom";
-import LearnImageOne from "@/assets/learn-yoruba/learn-image-one.png";
-import LearnImageTwo from "@/assets/learn-yoruba/learn-image-two.png";
-import LearnImageThree from "@/assets/learn-yoruba/learn-image-three.png";
+import LearnYorubaImage from "@/assets/learn-yoruba/learn-yoruba-image.png";
 import AlphabetImage from "@/assets/learn-yoruba/alphabets-image.png";
 
 const alphabets = [
@@ -73,7 +71,7 @@ export default function YorubaAlphabtes() {
           }}
           animate="animate"
           initial="initial"
-          className="relative rounded-3xl overflow-hidden"
+          className="relative rounded-3xl overflow-hidden before:absolute before:content-[' '] before:block before:inset-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black/20 before:z-10 before:to-black/50"
         >
           <motion.img
             variants={{
@@ -133,8 +131,8 @@ export default function YorubaAlphabtes() {
         {/* Yoruba Aplhabets end */}
 
         <div className="w-full mt-20">
-          <div className="h-max grid gap-8 grid-cols-1 xl:grid-cols-2 bg-lightgoldcolorfour px-6 xl:px-8 py-10 rounded-2xl">
-            <div className="space-y-4">
+          <div className="h-full grid gap-8 grid-cols-1 xl:grid-cols-2 bg-lightgoldcolorfour px-6 xl:px-8 2xl:px-10 py-10 rounded-2xl">
+            <div className="space-y-10 xl:place-self-center">
               <h2 className="text-4xl sm:text-5xl font-inter font-semibold">Learn Yoruba</h2>
               <div>
                 <p className="text-lg sm:text-xl font-satoshi font-normal">
@@ -164,29 +162,18 @@ export default function YorubaAlphabtes() {
               </Link>
             </div>
 
-            <div className="relative shrink-0 flex gap-3 xl:place-self-end">
-              <div className="xl:translate-x-4 h-56 w-64 overflow-hidden rounded-3xl">
-                <img
-                  src={LearnImageOne}
-                  alt="learn image one"
-                  className=" h-full w-full object-cover object-center"
-                />
-              </div>
-
-              <div className="overflow-hidden rounded-3xl w-64">
-                <img
-                  src={LearnImageTwo}
-                  alt="learn image two"
-                  className="h-full w-full object-cover object-center"
-                />
-              </div>
-
-              <div className="w-28 h-36 overflow-hidden rounded-3xl translate-x-20 translate-y-10 xl:translate-y-60 absolute">
-                <img
-                  src={LearnImageThree}
-                  alt="learn image three"
-                  className=" h-full w-full object-cover object-center"
-                />
+            {/* Updated Image Gallery Section */}
+            <div className="relative min-h-[300px] md:min-h-[500px] xl:min-h-[400px] flex items-start ">
+              {/* Main image container */}
+              <div className="relative w-full h-full">
+                {/* Primary large image */}
+                <div className="">
+                  <img
+                    src={LearnYorubaImage}
+                    alt="learn image one"
+                    className="h-full w-full object-cover object-center"
+                  />
+                </div>
               </div>
             </div>
           </div>
