@@ -29,7 +29,7 @@ export const LearnYorubaMenuComponent = ({ buttonRef, onClose }: LearnYorubaMenu
     {
       title: "yoruba alphabets",
       backgroundClass: "!bg-lightgoldcolorfive",
-      href: "",
+      href: "/learn-yoruba/yoruba-alphabets",
       direction: "left",
     },
     {

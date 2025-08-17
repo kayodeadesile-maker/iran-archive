@@ -1,15 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap"); */
 
 @import "tailwindcss";
 /* Inter Font Family */
 
-@custom-variant dark (&:where(.dark, .dark *));
+/* @custom-variant dark (&:where(.dark, .dark *)); */
 
 @font-face {
-  font-family: "Irish Grover", system-ui;
+  font-family: "Irish Grover";
+  src: url("./assets/fonts/IrishGrover-Regular.ttf");
   font-weight: 400;
+  font-display: swap;
   font-style: normal;
-  src: url("./assets//fonts/IrishGrover-Regular.ttf");
 }
 
 /*Avenir  */
@@ -191,8 +192,11 @@
   --color-shadecolornine: #eff0f4;
   --color-shadecolorsix: #a0a7bc;
 
+  --color-accentbluecolor-dark2: #001633;
+  --color-accentbluecolor: #006eff;
+
   --color-green: #0c3924;
-  --color-red: #FF0505;
+  --color-red: #ff0505;
   --color-lightgreen: #358b62;
 
   --text-3xxl: 2rem;

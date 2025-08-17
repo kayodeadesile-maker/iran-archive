@@ -536,7 +536,7 @@ const TopPickPlantCard = (props: TopPickPlantCardProps) => {
   return (
     <div
       onClick={() => navigate("/explore-archive/plants-and-vegetables/:plantId")}
-      className="group relative overflow-hidden h-[20rem] w-full col-span-1 rounded-2xl before:absolute before:content-[' '] before:block before:inset-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black/5 before:to-black before:z-10"
+      className="group relative overflow-hidden h-[20rem] w-full col-span-1 rounded-2xl before:absolute before:content-[' '] before:block before:inset-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black/5 before:to-black/50 before:z-10"
     >
       <img
         src={image}
@@ -559,7 +559,7 @@ const TopPickPlants = () => {
   return (
     <div className="mt-20">
       <h2 className="text-xl lg:text-2xl mb-2 font-semibold font-inter">Top Picks</h2>
-      <div className="grid grd-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6 mt-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6 mt-4">
         {React.Children.toArray(
           top_picks.map((pick, idx) => {
             return <TopPickPlantCard key={`${pick.yorubaName}-${idx}`} {...pick} />;

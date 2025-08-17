@@ -3,10 +3,12 @@ import Home from "@/pages/home/home";
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
+/**
+ *  Explore Archives Import
+ */
+
 // Proverbs Imports
-const Proverbs = lazy(
-  () => import("@/pages/explore-archive/proverbs/proverbs")
-);
+const Proverbs = lazy(() => import("@/pages/explore-archive/proverbs/proverbs"));
 const ProverbsExplaination = lazy(
   () => import("@/pages/explore-archive/proverbs/pages/proverb-explanation")
 );
@@ -20,22 +22,16 @@ const ParablesbDetailExplaination = lazy(
 );
 
 // Plants and Vegatbles Imports
-const IndigenousPlants = lazy(
-  () => import("@/pages/explore-archive/plants-and-vegetables/plants")
-);
+const IndigenousPlants = lazy(() => import("@/pages/explore-archive/plants-and-vegetables/plants"));
 const PlantAndVegetableExplanation = lazy(
   () =>
-    import(
-      "@/pages/explore-archive/plants-and-vegetables/pages/plant-and-vegetable-explanation"
-    )
+    import("@/pages/explore-archive/plants-and-vegetables/pages/plant-and-vegetable-explanation")
 );
 
 // Historical Moments and Events Imports
 const HistoricalMomentsAndEvents = lazy(
   () =>
-    import(
-      "@/pages/explore-archive/historical-moments-and-events/historical-moments-and-events"
-    )
+    import("@/pages/explore-archive/historical-moments-and-events/historical-moments-and-events")
 );
 
 // Heros and Legends Imports
@@ -43,10 +39,7 @@ const HeroesAndLegends = lazy(
   () => import("@/pages/explore-archive/heroes-and-legends/heroes-and-legends")
 );
 const HeroOrLegendExplanation = lazy(
-  () =>
-    import(
-      "@/pages/explore-archive/heroes-and-legends/pages/hero-or-legend-explanation"
-    )
+  () => import("@/pages/explore-archive/heroes-and-legends/pages/hero-or-legend-explanation")
 );
 
 // Oral Tradition Imports
@@ -55,8 +48,18 @@ const OralTraditions = lazy(
 );
 
 // Visual Archive Imports
-const VisualArchive = lazy(
-  () => import("@/pages/explore-archive/visual-archive/visual-archive")
+const VisualArchive = lazy(() => import("@/pages/explore-archive/visual-archive/visual-archive"));
+
+// Photo Gallery
+const PhotoGallery = lazy(() => import("@/pages/explore-archive/photo-gallery/photo-gallery"));
+
+/**
+ * Learn Yoruba Imports
+ */
+
+// Yoruba Alphabets
+const YorubaAlphabtes = lazy(
+  () => import("@/pages/learn-yoruba/yoruba-alphabets/yoruba-alphabets")
 );
 
 export const routes = createBrowserRouter([
@@ -84,9 +87,7 @@ export const routes = createBrowserRouter([
                 element: (
                   <Suspense
                     fallback={
-                      <p className="font-medium font-satoshi text-gray-800 px-2">
-                        loading...
-                      </p>
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
                     }
                   >
                     <Proverbs />
@@ -98,9 +99,7 @@ export const routes = createBrowserRouter([
                 element: (
                   <Suspense
                     fallback={
-                      <p className="font-medium font-satoshi text-gray-800 px-2">
-                        loading...
-                      </p>
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
                     }
                   >
                     <ProverbsExplaination />
@@ -113,11 +112,7 @@ export const routes = createBrowserRouter([
             path: "historical-moments",
             element: (
               <Suspense
-                fallback={
-                  <p className="font-medium font-satoshi text-gray-800 px-2">
-                    loading...
-                  </p>
-                }
+                fallback={<p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>}
               >
                 <HistoricalMomentsAndEvents />
               </Suspense>
@@ -131,9 +126,7 @@ export const routes = createBrowserRouter([
                 element: (
                   <Suspense
                     fallback={
-                      <p className="font-medium font-satoshi text-gray-800 px-2">
-                        loading...
-                      </p>
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
                     }
                   >
                     <ParablesAndWiseSayings />
@@ -145,9 +138,7 @@ export const routes = createBrowserRouter([
                 element: (
                   <Suspense
                     fallback={
-                      <p className="font-medium font-satoshi text-gray-800 px-2">
-                        loading...
-                      </p>
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
                     }
                   >
                     <ParablesbDetailExplaination />
@@ -165,9 +156,7 @@ export const routes = createBrowserRouter([
                 element: (
                   <Suspense
                     fallback={
-                      <p className="font-medium font-satoshi text-gray-800 px-2">
-                        loading...
-                      </p>
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
                     }
                   >
                     <IndigenousPlants />
@@ -180,9 +169,7 @@ export const routes = createBrowserRouter([
                 element: (
                   <Suspense
                     fallback={
-                      <p className="font-medium font-satoshi text-gray-800 px-2">
-                        loading...
-                      </p>
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
                     }
                   >
                     <PlantAndVegetableExplanation />
@@ -199,9 +186,7 @@ export const routes = createBrowserRouter([
                 element: (
                   <Suspense
                     fallback={
-                      <p className="font-medium font-satoshi text-gray-800 px-2">
-                        loading...
-                      </p>
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
                     }
                   >
                     <HeroesAndLegends />
@@ -213,9 +198,7 @@ export const routes = createBrowserRouter([
                 element: (
                   <Suspense
                     fallback={
-                      <p className="font-medium font-satoshi text-gray-800 px-2">
-                        Loading...
-                      </p>
+                      <p className="font-medium font-satoshi text-gray-800 px-2">Loading...</p>
                     }
                   >
                     <HeroOrLegendExplanation />
@@ -228,11 +211,7 @@ export const routes = createBrowserRouter([
             path: "oral-traditions",
             element: (
               <Suspense
-                fallback={
-                  <p className="font-medium font-satoshi text-gray-800 px-2">
-                    loading...
-                  </p>
-                }
+                fallback={<p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>}
               >
                 <OralTraditions />
               </Suspense>
@@ -242,15 +221,55 @@ export const routes = createBrowserRouter([
             path: "visual-archive",
             element: (
               <Suspense
-                fallback={
-                  <p className="font-medium font-satoshi text-gray-800 px-2">
-                    loading...
-                  </p>
-                }
+                fallback={<p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>}
               >
                 <VisualArchive />
               </Suspense>
             ),
+          },
+          {
+            path: "gallery",
+            element: (
+              <Suspense
+                fallback={<p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>}
+              >
+                <PhotoGallery />
+              </Suspense>
+            ),
+          },
+        ],
+      },
+      {
+        path: "learn-yoruba",
+        children: [
+          {
+            path: "yoruba-alphabets",
+            children: [
+              {
+                index: true,
+                element: (
+                  <Suspense
+                    fallback={
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
+                    }
+                  >
+                    <YorubaAlphabtes />
+                  </Suspense>
+                ),
+              },
+              {
+                path: ":alphabetId",
+                element: (
+                  <Suspense
+                    fallback={
+                      <p className="font-medium font-satoshi text-gray-800 px-2">loading...</p>
+                    }
+                  >
+                    <></>
+                  </Suspense>
+                ),
+              },
+            ],
           },
         ],
       },
